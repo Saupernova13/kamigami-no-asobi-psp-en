@@ -1,0 +1,9 @@
+wait 600
+shot b00
+press cross
+wait 600
+shot b01
+wait 900
+shot b02
+wait 900
+shot b03
