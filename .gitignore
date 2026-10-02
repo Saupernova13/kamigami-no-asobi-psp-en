@@ -1,0 +1,11 @@
+# game data and build output never go in the repo
+work/
+*.iso
+*.ISO
+*.cso
+*.ELF
+*.BIN
+*.DAT
+*.dat
+__pycache__/
+*.pyc
