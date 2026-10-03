@@ -15,6 +15,7 @@ import struct
 import subprocess
 import sys
 
+import dictionary
 import eboot_strings
 import font
 import game
@@ -113,27 +114,53 @@ QUIZ_LINE_PX = 320      # widest Japanese quiz line: 18 full-width glyphs + trac
 QUIZ_SPACING = 2        # the UI loops' proportional advance adds 2px per glyph
 
 
-def build_quiz(img, tr, metrics, report):
-    """-> {DATA.DAT path: rebuilt archive} with the English quiz, or {} when there is none."""
-    if not tr:
-        return {}
-    files, entries, inner, inner_entries = quiz.load(img)
+DICT_LINE_PX = 360      # dictionary text area (x 72 to the scroll bar)
+DICT_SPACING = 1        # DictAdvance in asm/eboot.asm: ink width + 1
 
-    def lines(text):
-        # narrower until every line fits its 64-byte field as (c, 0x01) pairs
-        for px in range(QUIZ_LINE_PX, 100, -10):
-            out = wrap.wrap(text, metrics, px, QUIZ_SPACING).split("\n")
-            if all(len(encode_ui(x)) < quiz.FIELD for x in out):
-                return out
-        return out
 
+def fit_lines(text, metrics, px, spacing, field=None):
+    """Word-wrap for the UI loops; with `field`, narrower until each line's pair
+    encoding fits a field of that many bytes."""
+    for width in range(px, 100, -10):
+        out = wrap.wrap(text, metrics, width, spacing).split(chr(10))
+        if field is None or all(len(encode_ui(x)) < field for x in out):
+            return out
+    return out
+
+
+def patch_quiz(pack, tr, metrics, report):
+    """QUIZ.dat bytes -> rebuilt with English from tr."""
+    inner, inner_entries = nispack.load_bytes(pack)
     inner = dict(inner)
     for name in inner:
         if name.lower().endswith(".dat"):
-            inner[name] = quiz.apply(inner[name], name, tr, encode_ui, lines, report)
+            inner[name] = quiz.apply(
+                inner[name], name, tr, encode_ui,
+                lambda t: fit_lines(t, metrics, QUIZ_LINE_PX, QUIZ_SPACING, quiz.FIELD), report)
+    return nispack.build(inner_entries, inner)
+
+
+def patch_dictionary(pack, tr, metrics, report):
+    """DICTIONARY.dat bytes -> rebuilt with English from tr."""
+    inner, inner_entries = nispack.load_bytes(pack)
+    inner = dict(inner)
+    inner[dictionary.NAME] = dictionary.rebuild(
+        inner[dictionary.NAME], tr, encode_ui,
+        lambda t: fit_lines(t, metrics, DICT_LINE_PX, DICT_SPACING), report)
+    return nispack.build(inner_entries, inner)
+
+
+def build_data_dat(img, quiz_tr, dict_tr, metrics, report):
+    """-> {DATA.DAT path: rebuilt archive}, or {} when there is nothing to change."""
+    if not quiz_tr and not dict_tr:
+        return {}
+    files, entries = img.archive(quiz.ARCHIVE)
     files = dict(files)
-    files[quiz.PACK] = nispack.build(inner_entries, inner)
-    report["units"] += len(tr)
+    if quiz_tr:
+        files[quiz.PACK] = patch_quiz(files[quiz.PACK], quiz_tr, metrics, report)
+    if dict_tr:
+        files[dictionary.PACK] = patch_dictionary(files[dictionary.PACK], dict_tr, metrics, report)
+    report["units"] += len(quiz_tr) + len(dict_tr)
     return {quiz.ARCHIVE: nispack.build(entries, files)}
 
 
@@ -168,7 +195,7 @@ def encode_ui(text):
 # Free space for relocated strings: the nameplate string pool (only referenced through
 # game.SPEAKER_TABLE) and the tail of the asm code cave.
 NAMEPLATE_POOL = (0x089243BC, 0x089246C4)
-STRING_HEAP = (0x088A7B80 + 0x200, 0x088A7B80 + 1076)
+STRING_HEAP = (0x088A7B80 + 0x280, 0x088A7B80 + 1076)
 EXTRA_SEGMENT = 0x20000   # bytes added after bss for strings that outgrow their slot
 
 
@@ -271,7 +298,7 @@ def main():
 
     img = game.Image(a.iso)
     report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": [], "relocated": 0,
-              "quiz_too_long": []}
+              "quiz_too_long": [], "dict_too_long": []}
 
     elf = decrypt_eboot(img, pspdecrypt, a.workdir)
     patched = os.path.join(a.workdir, "EBOOT.patched.ELF")
@@ -291,8 +318,9 @@ def main():
     metrics = font.Metrics(start_files["fontA.ftd"])
     translations = {tag: load_json(os.path.join(a.translations, f"{tag}.json"), {}) for tag in game.STORY_FILES}
     archives = build_scripts(img, translations, metrics, report)
-    archives.update(build_quiz(img, load_json(os.path.join(a.translations, "quiz.json"), {}),
-                               metrics, report))
+    archives.update(build_data_dat(img, load_json(os.path.join(a.translations, "quiz.json"), {}),
+                                   load_json(os.path.join(a.translations, "dictionary.json"), {}),
+                                   metrics, report))
     img.close()
 
     shutil.copyfile(a.iso, a.out)
@@ -314,8 +342,8 @@ def main():
             f.write("\n".join(report["overflow"]) + "\n")
     if report["relocated"]:
         print(f"  {report['relocated']} EBOOT strings moved to the extra segment")
-    for uid in report["quiz_too_long"]:
-        print("  quiz text cut to fit:", uid)
+    for uid in report["quiz_too_long"] + report["dict_too_long"]:
+        print("  text cut to fit:", uid)
     for line in report["eboot_too_long"]:
         print("  EBOOT string too long:", line)
 

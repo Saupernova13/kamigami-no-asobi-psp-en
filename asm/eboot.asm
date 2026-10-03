@@ -15,6 +15,7 @@ LETTER_SPACING equ 1
 
 PercentForSize  equ 0x08889ac4   ; (size step) -> percent, as used by the fixed advance
 FixedAdvance    equ 0x0888a998   ; original: full-width advance for a size step
+GlyphAdvance    equ 0x0888a910   ; (code, size step, fixed) -> advance
 WidthFontA      equ 0x088a1690   ; (code, percent) -> ink width, FontA metrics
 GlyphIndex      equ 0x088a2128   ; code -> font table index
 FontAFtdPtr     equ 0x08996934   ; -> FontA.ftd (u16 count, then s8 left/right per glyph)
@@ -59,9 +60,15 @@ ModeCheck 0x0888ae70, ModePtr1c_20, 0x0888ae90
 ModeCheck 0x08890650, ModeCode1c_50, 0x0889068c    ; FUN_08890550
 ModeCheck 0x0889076c, ModeCode1c_50, 0x0889079c
 
+; --- dictionary body (FUN_08813e58): one glyph at a time, advance from GlyphAdvance with
+; fixed = 1, minus 2. The glyph itself goes through FUN_0888ab70, which the ModeCheck
+; above already draws proportionally, so only the advance needs the ink width.
+.org 0x08814094
+    jal     DictAdvance
+
 ; --- code cave: FUN_088a7b80 has no callers, jumps, pointers or address constructions --
 .org 0x088a7b80
-.area 0x200                     ; code; the rest of the cave is a string heap (tools/build.py)
+.area 0x280                     ; code; the rest of the cave is a string heap (tools/build.py)
 
 ; Mode stubs run on the caller's stack frame (no frame of their own).
 ; ModeCode: current char is a halfword at CODE(sp). ModePtr: string pointer at PTR(sp).
@@ -170,10 +177,36 @@ AsciiAdvance:
 @@fixed:
     j       FixedAdvance
     nop
+
+; a0 = code, a1 = size step, a2 = fixed flag. ASCII units and the half space: ink width + 3, which the caller
+; turns into ink width + 1 (it subtracts 2). Everything else: GlyphAdvance as before.
+DictAdvance:
+    li      t9, 0x6e87          ; half space: measured like ASCII (8 px at 100%)
+    beq     a0, t9, @@measure
+    srl     t8, a0, 8
+    li      t9, 1
+    bne     t8, t9, @@other
+    nop
+@@measure:
+    addiu   sp, sp, -32
+    sw      ra, 16(sp)
+    sw      a0, 20(sp)
+    jal     PercentForSize
+    move    a0, a1
+    lw      a0, 20(sp)
+    jal     WidthFontA
+    move    a1, v0
+    addiu   v0, v0, 3
+    lw      ra, 16(sp)
+    jr      ra
+    addiu   sp, sp, 32
+@@other:
+    j       GlyphAdvance
+    nop
 .endarea
 
-.org 0x088a7b80 + 0x200
-.area 1076 - 0x200, 0           ; STRING_HEAP: filled by the build
+.org 0x088a7b80 + 0x280
+.area 1076 - 0x280, 0           ; STRING_HEAP: filled by the build
 .endarea
 
 .close
