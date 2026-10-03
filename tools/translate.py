@@ -17,6 +17,7 @@ import os
 import re
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.request
 
@@ -85,7 +86,7 @@ def balance_quotes(s, jp):
 def restore(en, info, jp=""):
     """Model English -> build markup. Returns (markup, problems)."""
     problems = []
-    s = en.translate(PUNCT).strip()
+    s = ascii_letters(en.translate(PUNCT)).strip()
     s = re.sub(r"\s+", " ", s)
     s = re.sub(r"\.{7,}", "......", s)   # long Japanese ellipses (each … is "...")
     s = balance_quotes(s, jp)
@@ -118,6 +119,21 @@ def restore(en, info, jp=""):
     return clean, problems
 
 
+LETTERS = {"æ": "ae", "Æ": "Ae", "ð": "d", "Ð": "D", "þ": "th", "Þ": "Th", "ø": "o",
+           "Ø": "O", "ß": "ss", "œ": "oe"}
+
+
+def ascii_letters(s):
+    """Latin letters the font lacks (Ragnarök, Lævateinn, Ōkuninushi) -> plain ASCII."""
+    s = "".join(LETTERS.get(ch, ch) for ch in s)
+    out = []
+    for ch in s:
+        if ord(ch) > 0x7F and unicodedata.category(ch).startswith("L") and not _encodable(ch):
+            ch = "".join(c for c in unicodedata.normalize("NFKD", ch) if ord(c) < 0x80) or ch
+        out.append(ch)
+    return "".join(out)
+
+
 def _encodable(ch):
     try:
         ch.encode("cp932")
@@ -145,7 +161,9 @@ def system_prompt(gl):
         "- Use only plain ASCII punctuation (\", ', ..., -). No Japanese characters in the output.\n"
         "- 'quiz question' items are mythology quiz questions: translate as a short question or "
         "true/false statement (at most 90 characters). 'quiz answer' items are answer choices: "
-        "a few words, at most 28 characters, no final period.\n"
+        "a few words, at most 28 characters, no final period. 'dictionary entry title' items: "
+        "the term, at most 30 characters. 'dictionary section heading' items start with ■ "
+        "(keep it, then a space).\n"
         "- Output only a JSON array with exactly one English string per input item, in order."
     )
 
@@ -159,6 +177,12 @@ def speaker_label(gl, u):
         return "quiz question"
     if u["kind"] == "quiz_choice":
         return "quiz answer"
+    if u["kind"] == "dict_title":
+        return "dictionary entry title"
+    if u["kind"] == "dict_heading":
+        return "dictionary section heading"
+    if u["kind"] == "dict_text":
+        return "dictionary entry text"
     return gl["speakers"].get(str(u.get("speaker", 0)), f"speaker {u.get('speaker')}")
 
 
