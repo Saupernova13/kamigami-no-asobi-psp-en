@@ -1,14 +1,14 @@
 {
  "40011/p53": "\"If it's the president's order.\"",
  "40085/p14": "\"...Damn it.\"",
- "40091/p6": "\"..............................\"",
+ "40091/p6": "\"......\"",
  "40122/p1": "\"That's...\"",
  "40211/p26": "That was when it happened.",
  "40211/p55": "\"...!\"",
  "40243/p3": "\"Yes!\"",
- "40271/p1": "\"..............................\"",
- "40281/p2": "\"..............................\"",
- "40602/p3": "\"..............................\"",
+ "40271/p1": "\"......\"",
+ "40281/p2": "\"......\"",
+ "40602/p3": "\"......\"",
  "40441/p11": "And then...",
  "40441/p15": "\"No way...\"",
  "40442/p10": "And then...",
@@ -334,7 +334,6 @@
  "40084/p14": "For some reason, his pursuers were gone, and he was running the course alone.",
  "40084/p15": "It seemed that, behind Apollon's success, he had achieved the feat of destroying two paper balloons.",
  "40084/p16": "...I felt a bit sorry for him.",
- "40084/p17": "The sign he saw last read... '{kw:31:}Cross the finish line with Cerberus.'",
  "40084/p18": "Hades silently rejoiced, seeing this as his chance. Cerberus was the hound of the underworld, a dog under Hades' command.",
  "40084/p19": "\"Cerberus, I'm borrowing your back.\"",
  "40084/p20": "As soon as he spoke, Hades leaped onto the pitch-black, three-headed dog.",
@@ -552,7 +551,6 @@
  "40211/p2": "\"Eh... a leaf from Yggdrasil? That's not a plant from my world... Is it even in the Garden?\"",
  "40211/p3": "\"Aha, too bad! Does that mean I've already won?\"",
  "40211/p4": "\"Then, I'll take this paper...\"",
- "40211/p5": "\"...Wait, what's this!? '{kw:32:}The White Rabbit of Inaba'?\"",
  "40211/p6": "\"That's from Japanese mythology... Ah, if I say more, it'll be a hint, so I'll stay quiet. Anyway, you'd better figure out how to get your item.\"",
  "40211/p7": "\"Does anyone have a leaf from Yggdrasil? Please, just give me one!\"",
  "40211/p8": "Balder raised his voice, calling out to the students who were cheering him on.",
@@ -1141,5 +1139,7 @@
  "40504/p2": "I felt that the great divide between humans and gods had begun to narrow, if only a little.",
  "40504/p3": "It was all thanks to everyone's hard work. To my classmates, whom I had met here.",
  "40504/p4": "I, too, would strive to convey the true nature of humanity more deeply to them.",
- "40504/p5": "...And so, my school life truly began."
+ "40504/p5": "...And so, my school life truly began.",
+ "40084/p17": "The last sign he saw read... \"Finish with {kw:31:1:Cerberus}Cerberus.\"",
+ "40211/p5": "\"...Wait, what's this!? '{kw:32:1:The White Rabbit of Inaba}The White Rabbit of Inaba'?\""
 }
