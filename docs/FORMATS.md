@@ -104,6 +104,19 @@ surname slot cannot hold "Kusanagi", so the heroine's nameplate (`%s㌻%s` at
 `0x08929974`) and backlog speaker (`【%s㌻%s】` at `0x08924d38`) become `%.0s%s`: given
 name only.
 
+## Mythology quiz (`tools/quiz.py`)
+
+`DATA.DAT` -> `QUIZ.dat` (a nested NISPACK) -> eight files of 23,016 bytes:
+`4quiz00`-`03` (four choices) and `tfquiz00`-`03` (true/false). Each: `u32` header size
+(0x1a0), three `u32` question counts (15 + 20 + 15), 50 `{u32 id, u32 offset}` pairs, then
+50 records of `u32 id`, three 64-byte question lines and four 64-byte choices, all
+zero-padded SJIS. The first choice is the right answer; true/false records keep their
+answer key (a circle or cross) in choice 0, which stays untouched. English is stored as
+`(c, 0x01)` pairs, so a field holds 31 characters; the build wraps questions at 320 px
+(the widest Japanese line) and narrower until every line fits. 400 questions, 1,000
+choices. Not yet checked in the emulator (the quiz is not reachable from a new game
+without a save).
+
 ## Not done yet
 
 - Name entry screen: the kana grid and labels are still Japanese; Latin needs the
@@ -113,4 +126,5 @@ name only.
   `FUN_0888a4ac`) still measure fixed widths, so centered English sits a little off.
 - `0x0892855c` (read rates screen) mixes single-byte ASCII into a UI string in the
   original; check that its renderer takes pairs.
-- Quiz data, keywords/dictionary, `memorial*.dat`, images.
+- Dictionary, profiles, `memorial*.dat`, Garden/gallery screens, images (option values,
+  voice-setting names and menu labels are textures).

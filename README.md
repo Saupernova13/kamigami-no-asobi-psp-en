@@ -18,7 +18,8 @@ lives in this repository; everything is extracted from your own ISO.
 | Machine translation | done, all 37,862 units (unedited MT, `translation/en/`) |
 | UI / EBOOT strings, nameplates | done (`translation/en/eboot.json`), verified in emulator |
 | Player name | default "Yui", proportional in the window; name entry screen still Japanese |
-| Quiz, dictionary, images | not started |
+| Mythology quiz | done (MT, `translation/en/quiz.json`), not yet seen in emulator |
+| Dictionary, profiles, memorial, images | not started |
 
 ## Use
 
@@ -26,6 +27,7 @@ Needs Python 3.11+ with Pillow, pspdecrypt and armips (PATH, or `PSPDECRYPT` / `
 
 ```
 python tools/extract.py original.iso            # Japanese units -> work/text/
+python tools/quiz.py original.iso               # quiz units -> work/text/quiz.json
 python tools/translate.py                       # MT, resumable -> translation/en/
 python tools/build.py original.iso english.iso  # patched ISO
 ```
