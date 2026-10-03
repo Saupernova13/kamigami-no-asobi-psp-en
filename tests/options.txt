@@ -1,0 +1,40 @@
+wait 600
+press cross
+wait 600
+press start 8
+wait 300
+press start 8
+wait 1200
+press circle 8
+wait 400
+shot m0
+press down 8
+wait 30
+press down 8
+wait 30
+press circle 8
+wait 400
+shot o0
+press down 8
+wait 60
+shot o1
+press down 8
+wait 60
+shot o2
+press circle 8
+wait 300
+shot o3
+press down 8
+wait 60
+shot o4
+press cross 8
+wait 200
+press down 8
+wait 60
+shot o5
+press down 8
+wait 60
+shot o6
+press down 8
+wait 60
+shot o7
