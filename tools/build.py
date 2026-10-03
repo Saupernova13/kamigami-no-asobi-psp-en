@@ -21,6 +21,7 @@ import game
 import iso as isolib
 import nispack
 import prx
+import quiz
 import script_text
 import story
 import wrap
@@ -106,6 +107,34 @@ def build_scripts(img, translations, metrics, report):
         out[arc] = nispack.build(entries, files)
         report["units"] += len(laid)
     return out
+
+
+QUIZ_LINE_PX = 320      # widest Japanese quiz line: 18 full-width glyphs + tracking
+QUIZ_SPACING = 2        # the UI loops' proportional advance adds 2px per glyph
+
+
+def build_quiz(img, tr, metrics, report):
+    """-> {DATA.DAT path: rebuilt archive} with the English quiz, or {} when there is none."""
+    if not tr:
+        return {}
+    files, entries, inner, inner_entries = quiz.load(img)
+
+    def lines(text):
+        # narrower until every line fits its 64-byte field as (c, 0x01) pairs
+        for px in range(QUIZ_LINE_PX, 100, -10):
+            out = wrap.wrap(text, metrics, px, QUIZ_SPACING).split("\n")
+            if all(len(encode_ui(x)) < quiz.FIELD for x in out):
+                return out
+        return out
+
+    inner = dict(inner)
+    for name in inner:
+        if name.lower().endswith(".dat"):
+            inner[name] = quiz.apply(inner[name], name, tr, encode_ui, lines, report)
+    files = dict(files)
+    files[quiz.PACK] = nispack.build(inner_entries, inner)
+    report["units"] += len(tr)
+    return {quiz.ARCHIVE: nispack.build(entries, files)}
 
 
 HALF_SPACE = bytes([0x87, 0x6E])
@@ -241,7 +270,8 @@ def main():
     armips = find_tool("armips", a.armips, "ARMIPS")
 
     img = game.Image(a.iso)
-    report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": [], "relocated": 0}
+    report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": [], "relocated": 0,
+              "quiz_too_long": []}
 
     elf = decrypt_eboot(img, pspdecrypt, a.workdir)
     patched = os.path.join(a.workdir, "EBOOT.patched.ELF")
@@ -261,6 +291,8 @@ def main():
     metrics = font.Metrics(start_files["fontA.ftd"])
     translations = {tag: load_json(os.path.join(a.translations, f"{tag}.json"), {}) for tag in game.STORY_FILES}
     archives = build_scripts(img, translations, metrics, report)
+    archives.update(build_quiz(img, load_json(os.path.join(a.translations, "quiz.json"), {}),
+                               metrics, report))
     img.close()
 
     shutil.copyfile(a.iso, a.out)
@@ -282,6 +314,8 @@ def main():
             f.write("\n".join(report["overflow"]) + "\n")
     if report["relocated"]:
         print(f"  {report['relocated']} EBOOT strings moved to the extra segment")
+    for uid in report["quiz_too_long"]:
+        print("  quiz text cut to fit:", uid)
     for line in report["eboot_too_long"]:
         print("  EBOOT string too long:", line)
 
