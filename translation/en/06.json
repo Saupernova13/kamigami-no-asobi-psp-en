@@ -1115,7 +1115,6 @@
  "72171/p1": "\"Huh?\"",
  "72171/p2": "\"If you get involved, you'll end up ruined too.\"",
  "72171/p3": "\"You idiot... messing around like that...!\"",
- "72171/p4": "\"It may be as Totsuka Y says.\"",
  "72171/p5": "\"Huh? Nii...? What are you talking about?\"",
  "72171/p6": "\"I deserve to be criticized.\"",
  "72171/p7": "\"I will devote myself to my studies so that I may graduate. As always...\"",
@@ -4627,5 +4626,6 @@
  "75008/p37": "{kw:122:0:}\"It seems I really don't want to be apart from you.\"",
  "78022/p3": "\"I saw in a certain book that {kw:135:0:siblings}siblings tend to resemble each other.\"",
  "73052/p5": "{kw:114:0:}\"It's the first time I've wanted something so much on my own... It feels strange.\"",
- "77031/p27": "\"I want you to keep this as a{kw:132:0:bond of brothers}bond of brothers.\""
+ "77031/p27": "\"I want you to keep this as a{kw:132:0:bond of brothers}bond of brothers.\"",
+ "72171/p4": "\"It may be as Yo Totsuka says.\""
 }

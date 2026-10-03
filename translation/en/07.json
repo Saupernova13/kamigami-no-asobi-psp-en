@@ -676,8 +676,6 @@
  "81022/p7": "\"The head... So you're trying to kill people.\"",
  "81022/p8": "\"N-no, it's not something so dangerous...\"",
  "81022/p9": "As I explained what I'd read in books to Takeru, I laid out the protective gear.",
- "81022/p10": "\"You wear this men (mask) on your head, then add the d (torso protector) and tare (apron) over your hakama and keikogi, and finally equip the kote (gloves).\"",
- "81022/p11": "\"When practicing kendo, the areas you strike are called datotsu-bui (striking areas). There are four: kote, men, d, and tsuki (thrust).\"",
  "81022/p12": "\"It seems whether tsuki is allowed depends on the situation.\"",
  "81022/p13": "Takeru listened to my explanation with a serious expression.",
  "81022/p14": "\"Kendo is said to be a martial art that aims to shape human character through the study of sword principles and provides spiritual training.\"",
@@ -3870,9 +3868,7 @@
  "82042/p25": "\"Oh, this is it! Look, Kusanagi!\"",
  "82042/p26": "The seashell resting in Takeru's palm looked exactly like the one I had picked up earlier.",
  "81002/p19": "{kw:52:1:}\"The Ame-no-Murakumo is a sword that was found in the tail of the Yamata-no-Orochi. I assume you've at least heard of it.\"",
- "82111/p5": "{kw:54:1:}I raised the Kusanagi Sword as if wielding a great sword, swinging it left, right, and then left again.",
  "82082/p12": "{kw:150:0:}\"If you cannot deny it, it is because there is doubt within you.\"",
- "82131/p28": "Takeru, now a god, held the {kw:55:1:Totsuka Sword}Totsuka Sword/1 in a ready stance, slashing at the monster.",
  "81023/p14": "{kw:142:0:}\"I was just checking to see if I was getting muscle soreness.\"",
  "81025/p19": "But how did something as grand as the {kw:53:1:Three Sacred Treasures}Three Sacred Treasures end up at my house...?",
  "80052/p3": "{kw:137:0:}\"...Stubborn as a weed.\"",
@@ -3886,5 +3882,9 @@
  "86008/p36": "{kw:171:0:}\"Geez... I guess I can't win against you.\"",
  "84022/p17": "\"Eventually, those prayers turned into{kw:56:1:curses}curses, giving birth to a monster. That was Yamata no Orochi.\"",
  "84081/p7": "{kw:163:0:}\"That's all thanks to you, Yui.\"",
- "83101/p12": "{kw:158:0:}Everyone surrounded us, causing a huge commotion."
+ "83101/p12": "{kw:158:0:}Everyone surrounded us, causing a huge commotion.",
+ "82111/p5": "{kw:54:1:}I raised the Kusanagi Sword as if wielding the Onusa, swinging it left, right, and left.",
+ "82131/p28": "{kw:55:1:}Takeru, now a god, had Ame-no-Murakumo drawn and was slashing at the monster.",
+ "81022/p10": "\"You wear the men on your head, then put on the do and tare over the hakama and keikogi, and equip the kote.\"",
+ "81022/p11": "\"When practicing kendo, the valid striking areas are called datotsu-bui. There are four: the kote, men, do, and tsuki.\""
 }

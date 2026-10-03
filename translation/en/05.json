@@ -3867,7 +3867,6 @@
  "61051/p7": "{kw:57:0:}\"By listening to them and looking up at the night sky, even the same sky will appear in a different light.\"{op:038c:0100}{op:038d:01009d188000}",
  "60071/p8": "{kw:52:0:}What kind of stars are in the 'problematic' constellations? I'm a little curious.",
  "61066/p1": "\"The constellation of {kw:42:1:Andromeda}Andromeda, and the Great Andromeda Galaxy.\"",
- "61066/p5": "\"The hero {kw:43:1:Perseus}Perseus saves the maiden Andromeda from a monster.\"",
  "60084/p16": "\"If you ever want to fall into the {kw:41:1:Tartarus}Tartarus, just let me know. I'll bury you in the depths of despair.\"",
  "61081/p2": "{kw:44:1:}\"I'll order a telescope from the student council shop. Because there's absolutely no nectar here.\"",
  "61081/p7": "A Greek joke... or is it a {kw:59:0:Greek-style pun}Greek-style pun?",
@@ -3877,5 +3876,6 @@
  "64011/p4": "{kw:71:0:}\"You're right. But I'm not skilled enough at living that way. ...Forgive me.\"",
  "68004/p2": "{kw:91:0:}\"...The last person I wanted to see here. What a troublesome guy.\"",
  "67005/p17": "{kw:88:0:}Our astronomy club gazed at the stars until we were exhausted, learned until our heads spun, and enjoyed the celestial bodies to our heart's content.",
- "63052/p6": "{kw:67:0:}A place where the living are never permitted to enter."
+ "63052/p6": "{kw:67:0:}A place where the living are never permitted to enter.",
+ "61066/p5": "{kw:43:1:}\"The hero {kw:42:1:Perseus}Perseus saves the maiden Andromeda from a monster.\""
 }
