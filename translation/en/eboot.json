@@ -1,7 +1,11 @@
 {
  "0x0892476c": "None",
+ "0x089248dc": "Ｙｕｉ",
+ "0x089248e4": "Ｙｕｉ",
  "0x089249a0": "New Save Data",
  "0x08924e90": "Enter Name",
+ "0x08924ea4": "Ｙｕｉ",
+ "0x08924eac": "Ｙｕｉ",
  "0x08924eb4": "Choose the quiz difficulty",
  "0x08924ed4": "(Change it later in Option)",
  "0x08924f48": "Is this OK?",
@@ -289,6 +293,8 @@
  "0x08928b4c": "Save system data?",
  "0x08928b90": "Change the quiz difficulty",
  "0x08928bac": "(Change it later in Option)",
+ "0x08928bdc": "Ｙｕｉ",
+ "0x08928be4": "Ｙｕｉ",
  "0x08929984": "Yes",
  "0x0892998c": "No",
  "0x08961bc8": "Kamigami no Asobi",
@@ -501,5 +507,15 @@
   "61": "Zeus",
   "70": "Grudge of the Dead",
   "9999": "???"
+ },
+ "0x08924d38": {
+  "en": "【%.0s%s】",
+  "size": 12,
+  "note": "backlog speaker for the heroine: given name only (the surname slot holds 3 chars)"
+ },
+ "0x08929974": {
+  "en": "%.0s%s",
+  "size": 8,
+  "note": "heroine nameplate: given name only"
  }
 }
