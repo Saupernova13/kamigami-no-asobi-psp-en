@@ -117,14 +117,18 @@ answer key (a circle or cross) in choice 0, which stays untouched. English is st
 choices. Not yet checked in the emulator (the quiz is not reachable from a new game
 without a save).
 
+## Dictionary (`tools/dictionary.py`)
+
+`DATA.DAT` -> `DICTIONARY.dat` -> `dictionary.dat`: `u32` count (80), `{u32 id, u32
+offset}` pairs, then variable-size entries: `u32` category, `s16` item count (1), `s16`
+line count, a 64-byte inverted-SJIS title at +8, one 20-byte item at +0x48, then
+zero-terminated inverted-SJIS lines from +0x5c (the first is empty), padded to 4. The
+line count drives the scroll bar (`FUN_088140e0`, 22 px a line) and must match the lines.
+Lines are drawn by `FUN_08813e58` one glyph at a time; `87 6C` / `87 6D` in a line insert
+the player's surname / given name. The page header is a texture per entry
+(`dbtx00`-`79.txp` in `DATA.DAT`), not text. The build rebuilds the entries and the
+offset table; `DictAdvance` in the asm gives the body a proportional advance.
+
 ## Not done yet
 
-- Name entry screen: the kana grid and labels are still Japanese; Latin needs the
-  grid's full-width page. Full-width names in UI loops (nameplate, name entry) are
-  still fixed width.
-- UI centering: the width loops (`FUN_0888a3b0`, `FUN_0888a6a4`, `FUN_0888a7b0`,
-  `FUN_0888a4ac`) still measure fixed widths, so centered English sits a little off.
-- `0x0892855c` (read rates screen) mixes single-byte ASCII into a UI string in the
-  original; check that its renderer takes pairs.
-- Dictionary, profiles, `memorial*.dat`, Garden/gallery screens, images (option values,
-  voice-setting names and menu labels are textures).
+Open tasks, with where to start on each, are listed in [HANDOFF.md](HANDOFF.md).
