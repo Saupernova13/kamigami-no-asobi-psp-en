@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 JP_CHARS = re.compile(r"[぀-ヿ㐀-鿿ｦ-ﾟ]")
-KW = re.compile(r"\{kw:(\d+):([^}]*)\}")
+KW = re.compile(r"\{kw:(\d+:\d+):([^}]*)\}")   # {kw:ID:FLAG:TEXT}; kid keeps "ID:FLAG"
 OPTOK = re.compile(r"\{op:[0-9a-f]{4}:[0-9a-f]*\}")
 
 PUNCT = str.maketrans({
@@ -87,6 +87,7 @@ def restore(en, info, jp=""):
     problems = []
     s = en.translate(PUNCT).strip()
     s = re.sub(r"\s+", " ", s)
+    s = re.sub(r"\.{7,}", "......", s)   # long Japanese ellipses (each … is "...")
     s = balance_quotes(s, jp)
     for n, tok in enumerate(info["ops"]):
         ph = f"⟨{n + 1}⟩"
@@ -262,9 +263,9 @@ def batches(units, size, max_chars):
 
 def save(path, data):
     tmp = path + ".tmp"
-    with open(tmp, "w", encoding="utf-8", newline="
-") as f:
+    with open(tmp, "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
+        f.write("\n")
     os.replace(tmp, path)
 
 
