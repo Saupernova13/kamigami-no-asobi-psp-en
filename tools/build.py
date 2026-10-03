@@ -9,7 +9,9 @@ Intermediate files go to work/build/.
 import argparse
 import json
 import os
+import re
 import shutil
+import struct
 import subprocess
 import sys
 
@@ -106,11 +108,80 @@ def build_scripts(img, translations, metrics, report):
     return out
 
 
-def patch_eboot_strings(elf, original, table, report):
+HALF_SPACE = bytes([0x87, 0x6E])
+
+
+FORMAT_SPEC = re.compile(r"%[-+ 0#]*\d*(?:\.\d+)?[sdxXuc]|[\n\t]")
+
+
+def encode_ui(text):
+    """Game UI strings go through 2-byte string loops that stop at a zero byte, so ASCII is
+    stored as (c, 0x01) pairs: the glyph lookup ignores the second byte of an ASCII unit.
+    The space becomes the engine's 8px half space (87 6E), which its metrics special-case;
+    a paired 0x20 would be measured as a full-width glyph. printf specifiers and line
+    breaks stay single bytes, as in the original strings, for the code that formats them."""
+    out = bytearray()
+    pos = 0
+    for m in list(FORMAT_SPEC.finditer(text)) + [None]:
+        for ch in text[pos:m.start() if m else len(text)]:
+            if ch == " ":
+                out += HALF_SPACE
+            elif " " < ch <= "~":
+                out += bytes([ord(ch), 1])
+            else:
+                out += ch.encode("cp932")
+        if m:
+            out += m.group().encode("ascii")
+            pos = m.end()
+    return bytes(out)
+
+
+# Free space for relocated strings: the nameplate string pool (only referenced through
+# game.SPEAKER_TABLE) and the tail of the asm code cave.
+NAMEPLATE_POOL = (0x089243BC, 0x089246C4)
+STRING_HEAP = (0x088A7B80 + 0x200, 0x088A7B80 + 1076)
+EXTRA_SEGMENT = 0x20000   # bytes added after bss for strings that outgrow their slot
+
+
+def patch_nameplates(elf, names, heap, report):
+    """names: {speaker id: English}. Repack every nameplate string (English where given,
+    otherwise the original bytes) into the free regions, then the extra segment's heap,
+    and repoint the table."""
+    elf = bytearray(elf)
+    table = game.speaker_table(bytes(elf))
+    regions = [list(NAMEPLATE_POOL), list(STRING_HEAP), heap]
+    blobs = {}
+    for sid, ptr in table.items():
+        en = names.get(str(sid))
+        blobs[sid] = (encode_ui(en) if en is not None else game.elf_cstring(bytes(elf), ptr)) + b"\0"
+    o = game.elf_off(NAMEPLATE_POOL[0])
+    elf[o:game.elf_off(NAMEPLATE_POOL[1])] = bytes(NAMEPLATE_POOL[1] - NAMEPLATE_POOL[0])
+    placed = {}
+    va = game.SPEAKER_TABLE
+    for sid in table:
+        blob = blobs[sid]
+        if blob not in placed:
+            region = next((r for r in regions if r[1] - r[0] >= len(blob)), None)
+            if region is None:
+                report["eboot_too_long"].append(f"nameplates: out of room at speaker {sid}")
+                return bytes(elf)
+            addr = region[0]
+            elf[game.elf_off(addr):game.elf_off(addr) + len(blob)] = blob
+            region[0] = (addr + len(blob) + 3) & ~3
+            placed[blob] = addr
+        while struct.unpack_from("<I", elf, game.elf_off(va))[0] != sid:
+            va += 8
+        struct.pack_into("<I", elf, game.elf_off(va) + 4, placed[blob])
+    return bytes(elf)
+
+
+def patch_eboot_strings(elf, original, table, heap, report):
     """table: {"0xADDR": "English" | {"en": ..., "size": N}}. Strings are replaced in
     place; the room for each comes from the catalog of the original EBOOT unless the
-    entry states a size (struct fields wider than the catalog can prove)."""
+    entry states a size (struct fields wider than the catalog can prove). Strings that
+    do not fit move to heap ([next free, end], advanced here) and their references follow."""
     slots = {e["addr"]: e for e in eboot_strings.catalog(original)}
+    refs = eboot_strings.references(original)
     elf = bytearray(elf)
     for addr, ent in table.items():
         if isinstance(ent, str):
@@ -120,13 +191,40 @@ def patch_eboot_strings(elf, original, table, report):
         if size is None:
             report["eboot_too_long"].append(f"{addr}: not a known string, give a size")
             continue
-        raw = ent["en"].encode(slot.get("enc", "cp932")) + b"\0"
+        enc = slot.get("enc", "cp932")
+        raw = (encode_ui(ent["en"]) if enc == "cp932" else ent["en"].encode(enc)) + b"\0"
+        where = refs.get(int(addr, 16), [])
+        if len(raw) > size and not where and "size" not in ent:
+            size = max(size, slot.get("field", 0))        # inline record field: grow in place
         if len(raw) > size:
-            report["eboot_too_long"].append(f"{addr} {ent['en']!r} ({len(raw)} > {size})")
+            if not where or heap[1] - heap[0] < len(raw):
+                report["eboot_too_long"].append(f"{addr} {ent['en']!r} ({len(raw)} > {size}, "
+                                                f"{'no room' if where else 'no references to move it'})")
+                continue
+            new = heap[0]
+            heap[0] = (new + len(raw) + 3) & ~3
+            o = game.elf_off(new)
+            elf[o:o + len(raw)] = raw
+            for ref in where:
+                repoint(elf, ref, new)
+            report["relocated"] += 1
             continue
         o = game.elf_off(int(addr, 16))
         elf[o:o + size] = raw + b"\0" * (size - len(raw))
     return bytes(elf)
+
+
+def repoint(elf, ref, new):
+    if ref[0] == "word":
+        struct.pack_into("<I", elf, game.elf_off(ref[1]), new)
+        return
+    _, lui, lo_ins = ref
+    lo_word, = struct.unpack_from("<I", elf, game.elf_off(lo_ins))
+    signed = lo_word >> 26 == 0x09            # addiu sign-extends its half, ori does not
+    hi = ((new + 0x8000) >> 16 if signed else new >> 16) & 0xFFFF
+    lui_word, = struct.unpack_from("<I", elf, game.elf_off(lui))
+    struct.pack_into("<I", elf, game.elf_off(lui), (lui_word & 0xFFFF0000) | hi)
+    struct.pack_into("<I", elf, game.elf_off(lo_ins), (lo_word & 0xFFFF0000) | (new & 0xFFFF))
 
 
 def main():
@@ -143,7 +241,7 @@ def main():
     armips = find_tool("armips", a.armips, "ARMIPS")
 
     img = game.Image(a.iso)
-    report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": []}
+    report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": [], "relocated": 0}
 
     elf = decrypt_eboot(img, pspdecrypt, a.workdir)
     patched = os.path.join(a.workdir, "EBOOT.patched.ELF")
@@ -152,7 +250,12 @@ def main():
         eboot = f.read()
     with open(elf, "rb") as f:
         original_elf = f.read()
-    eboot = patch_eboot_strings(eboot, original_elf, load_json(os.path.join(a.translations, "eboot.json"), {}), report)
+    eboot_tr = load_json(os.path.join(a.translations, "eboot.json"), {})
+    names = eboot_tr.pop("nameplates", {})
+    eboot, seg = prx.add_segment(eboot, EXTRA_SEGMENT)
+    heap = [seg, seg + EXTRA_SEGMENT]
+    eboot = patch_eboot_strings(eboot, original_elf, eboot_tr, heap, report)
+    eboot = patch_nameplates(eboot, names, heap, report)
 
     start_files, _ = img.archive("/PSP_GAME/USRDIR/START.DAT")
     metrics = font.Metrics(start_files["fontA.ftd"])
@@ -174,6 +277,8 @@ def main():
               f"(listed in {a.workdir}/overflow.txt)")
         with open(os.path.join(a.workdir, "overflow.txt"), "w", encoding="utf-8") as f:
             f.write("\n".join(report["overflow"]) + "\n")
+    if report["relocated"]:
+        print(f"  {report['relocated']} EBOOT strings moved to the extra segment")
     for line in report["eboot_too_long"]:
         print("  EBOOT string too long:", line)
 
