@@ -1125,7 +1125,7 @@
  "60043/p2": "I couldn't quite remember why I was sleeping anywhere other than my bed.",
  "60043/p3": "Ah, right. It seems I fell asleep without realizing it while planning things in my room after returning from the club room.",
  "60043/p4": "\"Hey, you look beat, Kusanagi.\"",
- "60043/p6": "\"My name is Yui Kusanagi.\"",
+ "60043/p6": "\"My name is {NAME} Kusanagi.\"",
  "60043/p7": "\"I know that already. By the way, Kusanagi.\"",
  "60043/p8": "...She doesn't know at all.",
  "60043/p9": "\"You want some too? It's delicious.\"",
@@ -3877,5 +3877,5 @@
  "68004/p2": "{kw:91:0:}\"...The last person I wanted to see here. What a troublesome guy.\"",
  "67005/p17": "{kw:88:0:}Our astronomy club gazed at the stars until we were exhausted, learned until our heads spun, and enjoyed the celestial bodies to our heart's content.",
  "63052/p6": "{kw:67:0:}A place where the living are never permitted to enter.",
- "61066/p5": "{kw:43:1:}\"The hero {kw:42:1:Perseus}Perseus saves the maiden Andromeda from a monster.\""
+ "61066/p5": "\"The hero {kw:43:1:Perseus}Perseus saves the maiden Andromeda from a monster.\""
 }
