@@ -17,7 +17,7 @@ lives in this repository; everything is extracted from your own ISO.
 | Glossary | done (`data/glossary.json`) |
 | Machine translation | done, all 37,862 units (unedited MT, `translation/en/`) |
 | UI / EBOOT strings, nameplates | done (`translation/en/eboot.json`), verified in emulator |
-| Name entry (default name, kana grid) | not started: `{NAME}` still prints 結衣 |
+| Player name | default "Yui", proportional in the window; name entry screen still Japanese |
 | Quiz, dictionary, images | not started |
 
 ## Use

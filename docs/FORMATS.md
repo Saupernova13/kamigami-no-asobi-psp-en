@@ -55,9 +55,11 @@ Flag is 1 or 0 (92 each).
 | code cave | `FUN_0880d2b0` | `FUN_088a7b80` (1,076 B, dead) |
 
 The font here uses 18 px cells drawn at 16 px: advance = `int((18 - l - r) * 16/18 + 0.5)`,
-spaces 8 px. The draw already offsets each glyph by its left bearing, so the patch only
-supplies the advance; shifting the entry x as well puts narrow glyphs (`! ' i l I`) on top
-of the previous letter. With the patch, English renders proportionally in the message
+spaces 8 px. The draw already offsets ASCII glyphs by their left bearing, so for those the
+patch only supplies the advance; shifting the entry x as well puts narrow glyphs
+(`! ' i l I`) on top of the previous letter. Full-width letters and digits (`82 4F`-`82 9A`,
+what player names are typed in) are drawn at their cell origin, so the patch measures
+them too and moves their entry x left by the bearing. With the patch, English renders proportionally in the message
 window (verified in the emulator). Window: 3 lines of ~390 px.
 
 The backlog takes its code from the same emitter call, so the one hi-byte patch covers it.
@@ -89,14 +91,24 @@ shows 20), so dialog prompts must stay short. Help-bar lines are not cut.
 `0x08964b54`: `{u32 id, char *name}` pairs, ending with id 9999. `build.patch_nameplates`
 repacks every name (English where `eboot.json` has a `nameplates` entry) into the
 original pool, then the cave tail, then the extra segment, and repoints the table.
-Verified in the emulator ("Father"). The heroine's nameplate and `{NAME}` come from the
-player-name buffer, not this table.
+Verified in the emulator ("Father").
+
+## Player name
+
+Name entry keeps a `u16[10]` at `0x0896630e`: surname 3 characters, given name 3,
+nickname 4, copied into 32-byte buffers at `0x089ef088` (`FUN_08805c48`). Only the given
+name is used in the script (`{NAME}`, 130 lines); the surname is fixed and appears as
+literal text. The name pipeline reads SJIS characters, so `(c, 0x01)` pairs break it; the
+defaults are full-width (`Ｙｕｉ`), which the window patch renders proportionally. The
+surname slot cannot hold "Kusanagi", so the heroine's nameplate (`%s㌻%s` at
+`0x08929974`) and backlog speaker (`【%s㌻%s】` at `0x08924d38`) become `%.0s%s`: given
+name only.
 
 ## Not done yet
 
-- Name entry: the kana grid and the default name (`草薙`/`結衣`/`ユイ` at `0x08924e9c`)
-  are still Japanese, so `{NAME}` prints 結衣 in English lines. The name buffers are
-  sized for a few full-width characters, so an ASCII default needs their limits first.
+- Name entry screen: the kana grid and labels are still Japanese; Latin needs the
+  grid's full-width page. Full-width names in UI loops (nameplate, name entry) are
+  still fixed width.
 - UI centering: the width loops (`FUN_0888a3b0`, `FUN_0888a6a4`, `FUN_0888a7b0`,
   `FUN_0888a4ac`) still measure fixed widths, so centered English sits a little off.
 - `0x0892855c` (read rates screen) mixes single-byte ASCII into a UI string in the
