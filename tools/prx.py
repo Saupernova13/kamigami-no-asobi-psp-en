@@ -94,6 +94,26 @@ def to_static(elf, base=DEFAULT_BASE):
     return bytes(elf), touched
 
 
+def add_segment(elf, size, align=0x100):
+    """Append a zero-filled PT_LOAD segment just past the highest loaded address, reusing
+    the program header freed by to_static. -> (elf, segment address). The loader then
+    reserves it as part of the module, so it is safe space for relocated strings."""
+    elf = bytearray(elf)
+    ph = phdrs(elf)
+    top = max(p[2] + p[5] for p in ph if p[0] == PT_LOAD)
+    va = (top + align - 1) & ~(align - 1)
+    slot = next(i for i, p in enumerate(ph) if p[0] == 0)
+    # keep file offset = address - (segment 0 address - its file offset), the linear mapping
+    # every tool here uses (game.elf_off); the gap after the file end is zero padding
+    off = va - (ph[0][2] - ph[0][1])
+    if off < len(elf):
+        raise ValueError("segment would overlap existing file data")
+    elf += bytes(off - len(elf) + size)
+    phoff, = struct.unpack_from("<I", elf, 0x1C)
+    struct.pack_into("<8I", elf, phoff + slot * 32, PT_LOAD, off, va, va, size, size, 6, 16)
+    return bytes(elf), va
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("prx")

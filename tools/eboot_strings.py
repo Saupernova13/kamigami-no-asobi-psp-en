@@ -6,10 +6,13 @@ Each entry: {"addr": "0x088dc4f4", "jp": "...", "size": N, "enc": "cp932" | "utf
 Game text is Shift-JIS; the PSP system dialog messages are UTF-8. `size` is the room a
 replacement may use in place: the original bytes plus any alignment padding that runs
 straight into the next string. Padding that ends anywhere else might be a struct field,
-so it is not counted.
+so it is not counted. `field` is set when the string looks like a fixed char array in a
+record (zeros run on to a 16/32/64-byte boundary): the room a string nothing points to
+can use, since it cannot be moved.
 """
 import argparse
 import json
+import struct
 import re
 import sys
 
@@ -60,8 +63,73 @@ def catalog(elf):
         nxt = offs[i + 1] if i + 1 < len(offs) else None
         if nxt is not None and nxt - (off + n + 1) < 4 and not any(elf[off + n + 1:nxt]):
             size = nxt - off
-        out.append({"addr": f"{off + game.ELF_BASE:#010x}", "jp": text, "size": size, "enc": enc})
+        ent = {"addr": f"{off + game.ELF_BASE:#010x}", "jp": text, "size": size, "enc": enc}
+        field = _field(elf, off, n)
+        if field > size:
+            ent["field"] = field
+        out.append(ent)
     return out
+
+
+def _field(elf, off, n):
+    """Largest of 16/32/64 bytes that the string plus the zeros after it fill."""
+    end = off + n
+    limit = min(off + 64, len(elf))
+    while end < limit and elf[end] == 0:
+        end += 1
+    return max((f for f in (16, 32, 64) if f <= end - off), default=0)
+
+
+CODE_END = 0x08804000 + 0x11EF7C
+
+
+def references(elf):
+    """-> {address: [("word", va) | ("hilo", lui_va, addiu_va), ...]} for every word in the
+    image and every lui/addiu (or lui/ori) pair that forms an address. A pair is only
+    reported when it can be repointed alone: the addiu writes back into the lui register
+    and nothing reads that register in between."""
+    first = game.elf_off(0x08804000)
+    n = (len(elf) - first) // 4
+    words = struct.unpack_from(f"<{n}I", elf, first)
+    refs = {}
+    for i, w in enumerate(words):
+        refs.setdefault(w, []).append(("word", 0x08804000 + i * 4))
+    ncode = (CODE_END - 0x08804000) // 4
+    for i in range(ncode):
+        w = words[i]
+        op = w >> 26
+        if op not in (0x09, 0x0D):
+            continue
+        rs, rt, lo = (w >> 21) & 31, (w >> 16) & 31, w & 0xFFFF
+        if rs != rt or rs == 0:
+            continue
+        for k in range(i - 1, max(-1, i - 24), -1):
+            v = words[k]
+            if v >> 26 == 0x0F and (v >> 16) & 31 == rs:
+                if any(_reads(words[j], rs) for j in range(k + 1, i)):
+                    break
+                lo_s = lo - 0x10000 if (lo & 0x8000 and op == 0x09) else lo
+                addr = (((v & 0xFFFF) << 16) + lo_s) & 0xFFFFFFFF
+                refs.setdefault(addr, []).append(("hilo", 0x08804000 + k * 4, 0x08804000 + i * 4))
+                break
+            if _writes(v, rs):
+                break
+    return refs
+
+
+def _reads(w, r):
+    op = w >> 26
+    rs, rt = (w >> 21) & 31, (w >> 16) & 31
+    if op == 0:
+        return r in (rs, rt)
+    return rs == r or (op in (0x04, 0x05, 0x28, 0x29, 0x2B) and rt == r)
+
+
+def _writes(w, r):
+    op = w >> 26
+    if op == 0:
+        return (w >> 11) & 31 == r
+    return op not in (0x02, 0x03, 0x04, 0x05, 0x28, 0x29, 0x2B) and (w >> 16) & 31 == r
 
 
 def main():
