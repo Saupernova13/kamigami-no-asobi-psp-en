@@ -262,7 +262,8 @@ def batches(units, size, max_chars):
 
 def save(path, data):
     tmp = path + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
+    with open(tmp, "w", encoding="utf-8", newline="
+") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     os.replace(tmp, path)
 
