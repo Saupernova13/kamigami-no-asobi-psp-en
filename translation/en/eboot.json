@@ -317,6 +317,10 @@
  "0x08970124": "Hitohira",
  "0x089701a4": "Tsukito",
  "0x08970228": "Vow",
+ "0x089702a8": {
+  "en": "Takeru",
+  "size": 32
+ },
  "0x0897032c": "I bless you",
  "0x089703ac": "Balder",
  "0x08970430": "Liar",
@@ -340,6 +344,10 @@
  "0x0897159c": "Apollon",
  "0x089715bc": "Hades",
  "0x089715dc": "Tsukito",
+ "0x089715fc": {
+  "en": "Takeru",
+  "size": 32
+ },
  "0x0897161c": "Balder",
  "0x0897163c": "Loki",
  "0x0897165c": "Anubis",
