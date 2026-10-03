@@ -129,7 +129,7 @@ def _encodable(ch):
 def system_prompt(gl):
     names = "; ".join(f"{k} = {v}" for k, v in gl["terms"].items())
     return (
-        "You are translating the Japanese otome visual novel 'Uta no Prince-sama' (PSP) into "
+        f"You are translating the Japanese otome visual novel '{gl['game']}' (PSP) into "
         "natural, fluent, idiomatic English for a fan translation. Translate the meaning and "
         "tone, not word by word; dialogue should sound like real people talking.\n"
         + "\n".join(gl["style"]) + "\n"
@@ -143,6 +143,9 @@ def system_prompt(gl):
         "- Text inside ⟦ ⟧ is a dictionary keyword: put ⟦ ⟧ around the English words that "
         "translate it. Keep ⟨1⟩-style markers in place.\n"
         "- Use only plain ASCII punctuation (\", ', ..., -). No Japanese characters in the output.\n"
+        "- 'quiz question' items are mythology quiz questions: translate as a short question or "
+        "true/false statement (at most 90 characters). 'quiz answer' items are answer choices: "
+        "a few words, at most 28 characters, no final period.\n"
         "- Output only a JSON array with exactly one English string per input item, in order."
     )
 
@@ -152,6 +155,10 @@ def speaker_label(gl, u):
         return "choice"
     if u["kind"] == "arg":
         return "title/system text"
+    if u["kind"] == "quiz":
+        return "quiz question"
+    if u["kind"] == "quiz_choice":
+        return "quiz answer"
     return gl["speakers"].get(str(u.get("speaker", 0)), f"speaker {u.get('speaker')}")
 
 
