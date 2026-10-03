@@ -15,9 +15,10 @@ lives in this repository; everything is extracted from your own ISO.
 | English in the message window (proportional) | done, verified in emulator |
 | Word wrap + window continuation | done (390 px, 3 lines) |
 | Glossary | done (`data/glossary.json`) |
-| Machine translation | ready, not run (local LLM could not start: C: full) |
-| UI / EBOOT strings, nameplates | catalogued, not translated |
-| Name entry, quiz, dictionary, images | not started |
+| Machine translation | done, all 37,862 units (unedited MT, `translation/en/`) |
+| UI / EBOOT strings, nameplates | done (`translation/en/eboot.json`), verified in emulator |
+| Name entry (default name, kana grid) | not started: `{NAME}` still prints 結衣 |
+| Quiz, dictionary, images | not started |
 
 ## Use
 

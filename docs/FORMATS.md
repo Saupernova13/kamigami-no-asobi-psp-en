@@ -55,22 +55,50 @@ Flag is 1 or 0 (92 each).
 | code cave | `FUN_0880d2b0` | `FUN_088a7b80` (1,076 B, dead) |
 
 The font here uses 18 px cells drawn at 16 px: advance = `int((18 - l - r) * 16/18 + 0.5)`,
-spaces 8 px. With the patch, English renders proportionally in the message window
-(verified in the emulator). Window: 3 lines of ~390 px.
+spaces 8 px. The draw already offsets each glyph by its left bearing, so the patch only
+supplies the advance; shifting the entry x as well puts narrow glyphs (`! ' i l I`) on top
+of the previous letter. With the patch, English renders proportionally in the message
+window (verified in the emulator). Window: 3 lines of ~390 px.
 
 The backlog takes its code from the same emitter call, so the one hi-byte patch covers it.
 
+## UI strings (`tools/eboot_strings.py`, `tools/build.py`)
+
+The UI loops step 2 bytes and stop at a zero byte, so English is stored as `(c, 0x01)`
+pairs (`build.encode_ui`); a space is the 8 px half space `87 6E` (the game uses it too,
+shown as `㌻` by cp932), and printf specifiers and `
+`/`	` stay single bytes for the
+code that formats them. The loops reload a fixed/proportional flag from the stack; the
+patch replaces each reload with a call that reports "proportional" for an ASCII unit (15
+sites in 5 loops, listed in `asm/eboot.asm`).
+
+Room: a pair-encoded string is twice as long as its ASCII, so most English does not fit
+in place. `eboot_strings.references` finds what points at each string: data words (251
+strings) and `lui`/`addiu` or `lui`/`ori` pairs that can be repointed alone (117). Those
+strings move to an extra PT_LOAD segment that `prx.add_segment` appends after bss
+(128 KB at `0x08c4ab00`; the loader reserves it as part of the module). Strings nothing
+points to are char arrays inside records (32 or 64 bytes: quiz options, song and event
+titles, Garden objects); the catalog's `field` gives that room. The current table moves
+259 strings and fits everything else in place.
+
+Dialog boxes cut a line after a fixed number of 2-byte units (the name confirm dialog
+shows 20), so dialog prompts must stay short. Help-bar lines are not cut.
+
 ## Nameplates
 
-`0x08964b54`: `{u32 id, char *name}` pairs, ending with id 9999. Because these are
-pointers, long English names can live anywhere (not done yet). Ids are listed in
-`data/glossary.json`.
+`0x08964b54`: `{u32 id, char *name}` pairs, ending with id 9999. `build.patch_nameplates`
+repacks every name (English where `eboot.json` has a `nameplates` entry) into the
+original pool, then the cave tail, then the extra segment, and repoints the table.
+Verified in the emulator ("Father"). The heroine's nameplate and `{NAME}` come from the
+player-name buffer, not this table.
 
 ## Not done yet
 
-- UI/EBOOT strings: catalog exists (`tools/eboot_strings.py`, 774 unique), no English yet.
-  The 11 string loops still stop at a zero byte, so UI English must either use the
-  `(c, 0x01)` pair encoding or get the Utapri-style `CharAt` loop patch.
-- Translation run: the pipeline works, but the run was blocked by the local LLM failing to
-  start while C: was full.
-- Name entry (kana grid), quiz data, keywords/dictionary, `memorial*.dat`, images.
+- Name entry: the kana grid and the default name (`草薙`/`結衣`/`ユイ` at `0x08924e9c`)
+  are still Japanese, so `{NAME}` prints 結衣 in English lines. The name buffers are
+  sized for a few full-width characters, so an ASCII default needs their limits first.
+- UI centering: the width loops (`FUN_0888a3b0`, `FUN_0888a6a4`, `FUN_0888a7b0`,
+  `FUN_0888a4ac`) still measure fixed widths, so centered English sits a little off.
+- `0x0892855c` (read rates screen) mixes single-byte ASCII into a UI string in the
+  original; check that its renderer takes pairs.
+- Quiz data, keywords/dictionary, `memorial*.dat`, images.
