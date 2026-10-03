@@ -26,13 +26,28 @@ def _pieces(markup):
     return out
 
 
+def _units(markup):
+    """Group pieces into breakable units: runs of words and tokens with no space between
+    them ("{NAME}." stays whole), single spaces, and hard breaks."""
+    units = []
+    for kind, text, wtext in _pieces(markup):
+        if kind in ("word", "tok") and units and units[-1][0] == "unit":
+            _, t, w = units[-1]
+            units[-1] = ("unit", t + text, w + wtext)
+        elif kind in ("word", "tok"):
+            units.append(("unit", text, wtext))
+        else:
+            units.append((kind, text, wtext))
+    return units
+
+
 def wrap(markup, metrics, max_width, letter_spacing=0):
     def width(s):
         return metrics.width(s) + letter_spacing * len(s)
 
     lines, cur, cur_w = [], [], 0
     pending_space = ""
-    for kind, text, wtext in _pieces(markup):
+    for kind, text, wtext in _units(markup):
         if kind == "br":
             lines.append(cur)
             cur, cur_w, pending_space = [], 0, ""
@@ -42,7 +57,7 @@ def wrap(markup, metrics, max_width, letter_spacing=0):
             continue
         w = width(wtext)
         sp = width(pending_space) if pending_space else 0
-        if cur and kind == "word" and cur_w + sp + w > max_width:
+        if cur and wtext and cur_w + sp + w > max_width:
             lines.append(cur)
             cur, cur_w, pending_space, sp = [], 0, "", 0
         if pending_space:
