@@ -85,7 +85,8 @@ the glossary.
 ```
 git checkout -b feat/edit-<package>              # never commit to the primary branch
 python tools/show.py 04 50001                    # Japanese and English side by side
-  ... edit translation/en/04.json ...
+  ... write the revised units as {"id": "English"} to work/edits.json ...
+python tools/apply_edits.py 04 work/edits.json    # merge (or edit translation/en/04.json)
 python tools/check.py translation/en/04.json --iso <original.iso>
 python tools/build.py <original.iso> work/out/en.iso    # optional: see it in game
 git commit -m "fix(translation): edit Apollon route scenes 50001-50020"
