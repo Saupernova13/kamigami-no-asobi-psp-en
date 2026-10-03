@@ -7,7 +7,7 @@ Reads work/text/<tag>.json (from extract.py), writes translation/en/<tag>.json a
 can be stopped and resumed at any point; delete an entry to have it redone.
 
 Markup handling: line breaks and the half-width indent space are layout only and are
-dropped (build.py re-wraps); {NAME}/{SURNAME} pass through; keyword markers become
+dropped (build.py re-wraps); {NAME}/{NICK}/{SURNAME} pass through; keyword markers become
 ⟦...⟧ brackets the model must keep around the matching English words; other inline
 instructions become ⟨n⟩ placeholders.
 """
@@ -154,8 +154,8 @@ def system_prompt(gl):
         "- Japanese quote brackets 「」 become straight double quotes. Lines without 「」 are "
         "narration or thoughts: do not put quotes around them.\n"
         "- Do not repeat the [speaker] label in your output.\n"
-        "- Keep {NAME} and {SURNAME} exactly as written; they are the player's given name and "
-        "family name. When both appear together write {NAME} {SURNAME}.\n"
+        "- Keep {NAME}, {NICK} and {SURNAME} exactly as written; they are the player's given "
+        "name, nickname and family name. When both appear together write {NAME} {SURNAME}.\n"
         "- Text inside ⟦ ⟧ is a dictionary keyword: put ⟦ ⟧ around the English words that "
         "translate it. Keep ⟨1⟩-style markers in place.\n"
         "- Use only plain ASCII punctuation (\", ', ..., -). No Japanese characters in the output.\n"

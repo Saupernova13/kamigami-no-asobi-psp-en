@@ -7,7 +7,7 @@ import re
 
 from script_text import split_markup
 
-NAME_RESERVE = {"{NAME}": "Haruka", "{SURNAME}": "Nanami"}
+NAME_RESERVE = {"{NAME}": "Haruka", "{NICK}": "Haruka", "{SURNAME}": "Nanami"}
 WORD = re.compile(r"\S+|\s+")
 
 

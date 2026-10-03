@@ -10,7 +10,7 @@ Units
 
 Page markup
   \\n                 line break (op 0xCC 0000)
-  {SURNAME} {NAME}   player name variables (op 0xD5 arg 0 / 1)
+  {SURNAME} {NAME} {NICK}   player name variables (op 0xD5 arg 0 / 1 / 2)
   {kw:ID:F:TEXT}     keyword marker (op 0x7DD: u16 id, u8 flag F, u8 len, text): tags the
                      word TEXT that comes just *before* it as dictionary entry ID; the
                      marker itself is not printed
@@ -37,7 +37,7 @@ OP_WAIT_ARGS = b"\x01\x03"   # op 0xCC 0x0301: wait for input
 OP_PAGE_END = 0x04
 OP_PAGE_ID = 0x03
 
-TOKEN = re.compile(r"\{(SURNAME|NAME|kw:\d+:\d+:[^}]*|op:[0-9a-f]{4}:[0-9a-f]*)\}|\n|\f")
+TOKEN = re.compile(r"\{(SURNAME|NAME|NICK|kw:\d+:\d+:[^}]*|op:[0-9a-f]{4}:[0-9a-f]*)\}|\n|\f")
 
 
 # --- argument strings -------------------------------------------------------------
@@ -86,8 +86,8 @@ def arg_text_set(ins, text):
 def token_for(ins):
     if ins.op == OP_LINE and ins.arg0 == 0:
         return "\n"
-    if ins.op == OP_NAME and ins.arg0 in (0, 1):
-        return "{SURNAME}" if ins.arg0 == 0 else "{NAME}"
+    if ins.op == OP_NAME and ins.arg0 in (0, 1, 2) and ins.args[2:] == b"":
+        return ("{SURNAME}", "{NAME}", "{NICK}")[ins.arg0]
     if ins.op == OP_KEYWORD:
         return f"{{kw:{ins.arg0}:{ins.args[2]}:{arg_text_get(ins)}}}"
     return f"{{op:{ins.op:04x}:{ins.args.hex()}}}"
@@ -100,6 +100,8 @@ def instr_for(token):
         return Instr(OP_NAME, b"\0\0")
     if token == "{NAME}":
         return Instr(OP_NAME, b"\1\0")
+    if token == "{NICK}":
+        return Instr(OP_NAME, b"\2\0")
     body = token[1:-1]
     if body.startswith("kw:"):
         _, kid, flag, text = body.split(":", 3)
