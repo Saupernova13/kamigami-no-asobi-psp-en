@@ -153,7 +153,7 @@ class Runner:
             return sum(1 << BUTTONS[b] for b in self.held)
         return int(any(BUTTONS[b] == button_id for b in self.held))
 
-    def load(self, iso, boot_wait=3.0):
+    def load(self, iso, boot_wait=10.0):
         self._iso = os.path.abspath(iso).encode()
         info = GameInfo(self._iso, None, 0, None)
         self.core.retro_load_game.argtypes = [C.POINTER(GameInfo)]
@@ -226,6 +226,8 @@ def main():
     ap.add_argument("--workdir", default="work/harness")
     ap.add_argument("--out", default="work/shots")
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument("--boot-wait", type=float, default=10.0,
+                    help="seconds to let the async loader finish before the first frame")
     ap.add_argument("iso")
     ap.add_argument("script", help="input script file")
     a = ap.parse_args()
@@ -235,7 +237,7 @@ def main():
         os.makedirs(d, exist_ok=True)
     prepare_system_dir(system_dir, a.assets)
     r = Runner(a.core, system_dir, save_dir, a.verbose)
-    r.load(a.iso)
+    r.load(a.iso, a.boot_wait)
     with open(a.script) as f:
         run_script(r, f.read(), a.out)
 
