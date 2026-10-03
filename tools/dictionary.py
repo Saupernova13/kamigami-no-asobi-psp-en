@@ -12,7 +12,8 @@ dictionary.dat: u32 count, count x {u32 entry id, u32 offset}, then the entries:
   zero padding to a multiple of 4
   zero padding to a multiple of 4
 Body lines are pre-broken at about 24 full-width characters; a line starting with
-"■" is a section heading. "㌫" (87 6B) stands for the heroine's fixed surname.
+"■" is a section heading. "㌫" (87 6C) and "㍊" (87 6D) are markers the renderer (FUN_08813e58) replaces with
+the player's surname and given name; units carry them as 草薙 and {NAME}.
 
 Units: "dict/<id>/t" (title), "dict/<id>/h<n>" (headings), "dict/<id>/p<n>" (paragraphs:
 the lines between headings and blank lines, joined).
@@ -32,7 +33,8 @@ NAME = "dictionary.dat"
 TITLE_START, TITLE_END = 8, 0x4E
 FIXED = bytes.fromhex("e001600000000000e0016000000000")
 BODY_START = TITLE_END + len(FIXED)
-SURNAME_MARK = "㌫"         # 87 6B in cp932
+SURNAME_MARK = "\u332b"         # 87 6C: the renderer inserts the player's surname
+NAME_MARK = "\u334a"            # 87 6D: ... and given name
 
 
 def invert(raw):
@@ -91,11 +93,14 @@ def units_for(data):
                 nh += 1
             elif kind == "p":
                 yield {"id": f"dict/{eid}/p{np_}", "kind": "dict_text",
-                       "jp": "".join(block).replace(SURNAME_MARK, "草薙")}
+                       "jp": "".join(block).replace(SURNAME_MARK, "草薙").replace(NAME_MARK, "{NAME}")}
                 np_ += 1
 
 
 def encode_line(text, encode):
+    # the surname slot holds three characters, so it is written out; the given name stays
+    # a marker the renderer fills in
+    text = text.replace("{SURNAME}", "Kusanagi").replace("{NAME}", NAME_MARK)
     return invert(encode(text)) + b"\0"
 
 
