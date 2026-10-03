@@ -16,6 +16,8 @@ LETTER_SPACING equ 1
 PercentForSize  equ 0x08889ac4   ; (size step) -> percent, as used by the fixed advance
 FixedAdvance    equ 0x0888a998   ; original: full-width advance for a size step
 WidthFontA      equ 0x088a1690   ; (code, percent) -> ink width, FontA metrics
+GlyphIndex      equ 0x088a2128   ; code -> font table index
+FontAFtdPtr     equ 0x08996934   ; -> FontA.ftd (u16 count, then s8 left/right per glyph)
 
 ; --- script VM, single-byte text path (FUN_08871678) ----------------------------------
 .org 0x08875228                 ; second byte passed to the emitter FUN_08862f20 (window
@@ -101,34 +103,70 @@ ModePtr  ModePtr1c_20, 0x1c, 0x20
 ModeCode ModeCode1c_50, 0x1c, 0x50
 
 ; a0 = signed size step, a1 = 0, caller's s0 = glyph table (count at +0x1aa0,
-; entries of 10 bytes: s16 x, s16 y, u16 code, ...). Returns v0 = advance: the glyph's
-; ink width for an ASCII unit (the draw already offsets glyphs by their left bearing),
-; the fixed full-width advance otherwise.
+; entries of 10 bytes: s16 x, s16 y, u16 code = lead | second << 8, ...). Returns
+; v0 = advance: the ink width for an ASCII unit (second byte 1) or a full-width letter
+; or digit (82 4F-82 9A, what player names are typed in), the fixed full-width advance
+; otherwise. The draw offsets ASCII glyphs by their left bearing itself; a full-width
+; glyph is drawn at its cell origin, so its entry x moves left by the bearing here.
 AsciiAdvance:
     lw      t8, 0x1aa0(s0)      ; index of the entry just written
     sll     t7, t8, 2
     addu    t7, t7, t8
     sll     t7, t7, 1
     addu    t6, t7, s0          ; entry
-    lhu     t7, 4(t6)
+    lhu     t7, 4(t6)           ; code
     srl     t8, t7, 8
     li      t9, 1
-    bne     t8, t9, @@fixed
+    beq     t8, t9, @@measure
+    andi    t9, t7, 0xff        ; (delay) ASCII: measure the byte
+    li      t5, 0x82
+    bne     t9, t5, @@fixed
+    addiu   t8, t8, -0x4f       ; (delay) second byte - 0x4f
+    sltiu   t8, t8, 0x9b - 0x4f
+    beq     t8, zero, @@fixed
     nop
-    addiu   sp, sp, -32
+    move    t9, t7              ; full-width: measure the whole code
+@@measure:
+    addiu   sp, sp, -40
     sw      ra, 16(sp)
     sw      s1, 20(sp)
+    sw      s2, 24(sp)
+    sw      s3, 28(sp)
+    move    s3, t6              ; entry
     jal     PercentForSize      ; a0 = size step
-    move    s1, t6
-    lhu     a0, 4(s1)
-    andi    a0, a0, 0xff
+    move    s1, t9              ; (delay) code to measure
+    move    s2, v0              ; percent
+    move    a0, s1
     jal     WidthFontA
-    move    a1, v0              ; percent
+    move    a1, s2
+    sltiu   t8, s1, 0x100
+    bne     t8, zero, @@done    ; ASCII: no shift
+    sw      v0, 32(sp)          ; (delay) width
+    jal     GlyphIndex
+    move    a0, s1
+    lui     t9, FontAFtdPtr >> 16
+    lw      t9, FontAFtdPtr & 0xffff(t9)
+    sll     v0, v0, 1
+    addu    t9, t9, v0
+    lb      t8, 2(t9)           ; left bearing, 18px-cell units
+    sll     t8, t8, 4           ; * 16/18 * percent/100
+    mult    t8, s2
+    mflo    t8
+    li      t9, 1800
+    div     t8, t9
+    mflo    t8
+    lhu     t9, 0(s3)
+    subu    t9, t9, t8
+    sh      t9, 0(s3)
+@@done:
+    lw      v0, 32(sp)
     addiu   v0, v0, LETTER_SPACING
+    lw      s3, 28(sp)
+    lw      s2, 24(sp)
     lw      s1, 20(sp)
     lw      ra, 16(sp)
     jr      ra
-    addiu   sp, sp, 32
+    addiu   sp, sp, 40
 @@fixed:
     j       FixedAdvance
     nop
