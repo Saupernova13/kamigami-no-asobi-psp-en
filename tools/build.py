@@ -272,10 +272,13 @@ def main():
 
     print(f"wrote {a.out}: {report['units']} script units applied, "
           f"{len(report['split'])} long pages continued in a second window")
+    overflow_path = os.path.join(a.workdir, "overflow.txt")
+    if os.path.exists(overflow_path):
+        os.remove(overflow_path)              # never leave a list from an earlier build
     if report["overflow"]:
         print(f"  {len(report['overflow'])} lines wider than {MAX_LINE_PX}px "
               f"(listed in {a.workdir}/overflow.txt)")
-        with open(os.path.join(a.workdir, "overflow.txt"), "w", encoding="utf-8") as f:
+        with open(overflow_path, "w", encoding="utf-8") as f:
             f.write("\n".join(report["overflow"]) + "\n")
     if report["relocated"]:
         print(f"  {report['relocated']} EBOOT strings moved to the extra segment")
