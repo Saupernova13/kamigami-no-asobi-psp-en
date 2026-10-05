@@ -1,0 +1,85 @@
+# boot -> Option: Message Skip All, Message Speed Fastest -> New Game (default name)
+# -> System Menu -> Option -> Key Config: R = Auto Skip, L = Next Select -> first page.
+# Run with --fresh (the option toggles assume default settings). Ends with state 'story'.
+# Then: press r to skip to the next choice (tests/walk.txt).
+wait 600
+press cross
+wait 600
+press start 8
+wait 300
+press start 8
+wait 1200
+press circle 8
+wait 400
+press down 8
+wait 30
+press down 8
+wait 30
+press circle 8
+wait 400
+press circle 8
+wait 60
+press right 8
+wait 30
+press down 8
+wait 30
+press down 8
+wait 30
+repeat 2 press right 8
+wait 30
+press start 8
+wait 60
+press left 8
+wait 30
+press circle 8
+wait 200
+wait 900
+press up 8
+wait 30
+press up 8
+wait 30
+press circle 8
+wait 600
+press start 8
+wait 200
+press left 8
+wait 30
+press circle 8
+wait 200
+press circle 8
+wait 600
+wait 400
+press triangle 8
+wait 200
+repeat 6 press down 8
+wait 30
+press circle 8
+wait 400
+press down 8
+wait 30
+press circle 8
+wait 60
+press right 8
+wait 30
+press circle 8
+wait 60
+press square left 8
+wait 60
+press left 8
+wait 30
+press square right 8
+wait 60
+press start 8
+wait 60
+press left 8
+wait 30
+press circle 8
+wait 300
+press cross 8
+wait 300
+press cross 8
+wait 300
+press circle 8
+wait 200
+shot story
+save story

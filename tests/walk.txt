@@ -1,0 +1,429 @@
+# From state 'story' (tests/setup_skip.txt): skip to each choice, pick an option, repeat.
+# The pick rotates 1st/2nd/3rd so menus that loop until every option is PASSED move on.
+# Shots w001.. after each skip; states w010, w020, ...
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w001
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w002
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w003
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w004
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w005
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w006
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w007
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w008
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w009
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w010
+save w010
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w011
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w012
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w013
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w014
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w015
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w016
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w017
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w018
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w019
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w020
+save w020
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w021
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w022
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w023
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w024
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w025
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w026
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w027
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w028
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w029
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w030
+save w030
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w031
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w032
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w033
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w034
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w035
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w036
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w037
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w038
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w039
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w040
+save w040
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w041
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w042
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w043
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w044
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w045
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w046
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w047
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w048
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w049
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w050
+save w050
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w051
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w052
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w053
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w054
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w055
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w056
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w057
+repeat 1 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w058
+repeat 2 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w059
+repeat 3 press down 8
+wait 30
+press circle 8
+wait 200
+press r 8
+wait 900
+shot w060
+save w060
