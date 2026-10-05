@@ -368,10 +368,12 @@ def main():
     metrics = font.Metrics(start_files["fontA.ftd"])
     translations = {tag: load_json(os.path.join(a.translations, f"{tag}.json"), {}) for tag in game.STORY_FILES}
     archives = build_scripts(img, translations, metrics, report)
-    images = image_edits(img, imagetext.load_spec(os.path.join(a.translations, "..", "images.json")),
-                         start_files, report)
+    dict_tr = load_json(os.path.join(a.translations, "dictionary.json"), {})
+    spec = (imagetext.load_spec(os.path.join(a.translations, "..", "images.json"))
+            + imagetext.dictionary_headers(dict_tr))
+    images = image_edits(img, spec, start_files, report)
     archives.update(build_data_dat(img, load_json(os.path.join(a.translations, "quiz.json"), {}),
-                                   load_json(os.path.join(a.translations, "dictionary.json"), {}),
+                                   dict_tr,
                                    load_json(os.path.join(a.translations, "memorial.json"), {}),
                                    images.pop(quiz.ARCHIVE, []), metrics, report))
     archives.update(build_image_archives(img, images, set(archives)))

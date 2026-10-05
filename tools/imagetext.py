@@ -101,6 +101,9 @@ def render_label(img, label, font):
         img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), parse_colour(erase)), (x0, y0))
     size = label.get("size", (y1 - y0) - 4)
     m = font.mask(label["text"], label.get("spacing", 1))
+    if label.get("fit"):        # shrink until it fits the rect width
+        while size > 8 and round(m.width * size / CELL) + 2 > x1 - x0:
+            size -= 1
     w = max(1, round(m.width * size / CELL))
     m = m.resize((w, size), Image.LANCZOS)
     pad = 1 if outline[3] else 0
@@ -124,6 +127,19 @@ def apply(txp_bytes, labels, font, new_palette=False):
     for label in labels:
         render_label(img, label, font)
     return txp.write_txp(img, txp_bytes, new_palette)
+
+
+def dictionary_headers(dict_tr):
+    """Spec entries for the dictionary page headers: dbtxNNNN.txp in DATA.DAT is the title
+    of entry NNNN, 256x24, brown with a white outline, centred."""
+    out = []
+    for key, title in dict_tr.items():
+        parts = key.split("/")
+        if len(parts) == 3 and parts[2] == "t" and title:
+            out.append({"texture": f"DATA.DAT/dbtx{int(parts[1]):04d}.txp",
+                        "labels": [{"rect": [0, 0, 256, 24], "text": title, "size": 19, "fit": True,
+                                    "fill": "#60411fff", "outline": "#fbfaf9ff"}]})
+    return out
 
 
 def split_path(path):
