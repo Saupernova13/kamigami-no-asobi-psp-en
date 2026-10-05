@@ -17,7 +17,7 @@ Formats and addresses are in [FORMATS.md](FORMATS.md), the general method in
 - Build: `tools/build.py` makes a full English ISO from the original in seconds once the
   EBOOT is decrypted; `tools/check.py` validates all translation files.
 
-Not seen in game yet: the mythology quiz (needs a save that reaches it), choices, most
+Not seen in game yet: the Mythology Monologue screen, chapter select, the mythology quiz (needs a save that reaches it), choices, most
 EBOOT strings, route text.
 
 ## Build and test
@@ -76,17 +76,29 @@ Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 
 In rough priority order. Each says where to start.
 
-1. **Images.** Many labels are textures: option values (既読のみ, 普通, デフォルト, 無効,
-   有効), Voice Setting names, dictionary page headers (`dbtx00`-`79.txp` in `DATA.DAT`,
-   one per entry), title-screen character cards, chapter names (序章 badge), name-entry
-   labels and the bottom button hints (初期化, 決定, 中止, ...). `tools/txp.py` reads TXP
-   (4/8-bit palette, swizzled) but cannot write yet: add an encoder (quantize to the
-   original palette size, swizzle, keep the header), then an image pipeline
-   (`work/images/` exports, edited PNGs in a gitignored folder, the build re-imports).
-   Fonts for re-lettering are an art decision; keep sizes identical.
-2. **`memorial*.dat` (111 files in `DATA.DAT`)**: inverted SJIS, likely the Mythology
-   Monologue stories (`MEMORIAL.dat` is its screen). Format unknown: start by diffing
-   headers and checking whether it is the story bytecode (0xFF markers) like `*_Story.dat`.
+1. **Images (package IMG, in progress).** Text baked into textures is re-lettered from
+   `translation/images.json` by `tools/imagetext.py` (see its docstring and
+   [TRANSLATION.md](TRANSLATION.md#images)). Done and checked in game: option values,
+   option hint bar, decision button, name-entry labels, dictionary page headers (all 80,
+   generated from the dictionary titles). Done, not seen in game: chapter-select titles
+   (86), tabs, name tags. Still Japanese (survey of `imagetext.py export`):
+   - `DATA.DAT/GALLERY.dat`: character name tags on the 9 character cards; hint bar
+     (voice play/stop, ...).
+   - `DATA.DAT/GARDEN.dat`: help hints (camera, add character, ...), Garden menu list
+     (chibi character, my house, object, season, music, event), button labels
+     (select/deselect, place, close).
+   - `DATA.DAT/AUDIOROOM.dat`: help panel (play, stop, ...).
+   - `DATA.DAT/SKIP.dat`: skip/mode hints; season icons 春 夏 秋 冬 (calligraphic art).
+   - `DATA.DAT/PROFILE.dat`: name tags with readings, mythology labels (vertical), the
+     profile stats table (birthday, height, weight, likes, ...: needs the values
+     translated too).
+   - `START.DAT/systemMenu_ChapterIcons.txp`: chapter badges (序章, 第1章 ...),
+     calligraphic: an art decision.
+   - Title-screen character cards (attract mode), CG/text in story images: not surveyed.
+2. **Mythology Monologue (done, MT).** `tools/memorial.py`: the 111 `memorial*.dat` files
+   use the dictionary layout; the body renderer `FUN_088233c4` shares `DictAdvance`.
+   `MEMORIAL_LINE_PX` (330) is a guess from the Japanese line length: check in game once a
+   monologue is unlocked, and fix titles that come out too long.
 3. **Quiz in game.** Reach the quiz (it is in the story after the prologue, or Extra after
    a clear) and check line layout; adjust `QUIZ_LINE_PX` in `tools/build.py`.
 4. **Choices.** Check the choice box width with a long English choice; add a limit to
