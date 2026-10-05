@@ -2540,5 +2540,66 @@
     "outline": "#ffffffff"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/AUDIOROOM.dat/submenu_help_music.txp",
+  "labels": [
+   {
+    "rect": [
+     114,
+     34,
+     204,
+     53
+    ],
+    "text": "Play/Stop",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     65,
+     204,
+     84
+    ],
+    "text": "Pause",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     93,
+     210,
+     113
+    ],
+    "text": "Category",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     123,
+     204,
+     143
+    ],
+    "text": "Mode",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]
