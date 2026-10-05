@@ -117,7 +117,7 @@ def check_file(path, units, metrics, issues):
             lines = build.fit_lines(en, metrics, build.QUIZ_LINE_PX, build.QUIZ_SPACING, quiz.FIELD)
             if len(lines) > quiz.LINES:
                 issues.append(("WARN", where, "question needs more than 3 lines (will be cut)"))
-        if kind in ("dict_title", "mem_title") and not chars and len(build.encode_ui(en)) >= 64:
+        if kind in ("dict_title", "mem_title", "sel_title") and not chars and len(build.encode_ui(en)) >= 64:
             issues.append(("WARN", where, "title longer than 31 characters (will be cut)"))
     missing = [u["id"] for u in units if u["id"] not in tr]
     return len(tr), len(units), missing
