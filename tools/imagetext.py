@@ -1,6 +1,7 @@
 """Re-letter text baked into textures, from a declarative spec.
 
   python tools/imagetext.py preview <original.iso> [--spec translation/images.json] [--out work/images/preview]
+  python tools/imagetext.py export <original.iso> [--out work/images/export] [--art]
 
 translation/images.json lists textures and the labels to replace:
 
@@ -8,10 +9,11 @@ translation/images.json lists textures and the labels to replace:
     "labels": [{"rect": [13, 193, 62, 214], "text": "Read Only", "size": 12}, ...]}]
 
 "texture" is the path through the ISO's archives (archive in USRDIR / nested pack /
-file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa")
+file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa",
+or "erase": "extend" to repeat the column left of the rect, for text on an opaque bar)
 and the English is drawn centred in it, at "size" px (default: the rect height minus
 4), in "fill"/"outline" colours (default: sampled from the original pixels in the rect -
-the lightest and the darkest opaque colours). Glyphs come from the game's own FontA
+the lightest and the darkest opaque colours; "outline": "#00000000" for none). Glyphs come from the game's own FontA
 (START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
 
 `preview` writes before/after PNGs so a label can be checked without a build.
@@ -89,8 +91,14 @@ def render_label(img, label, font):
         fill = parse_colour(label["fill"])
     if "outline" in label:
         outline = parse_colour(label["outline"])
-    erase = parse_colour(label.get("erase", "#00000000"))
-    img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), erase), (x0, y0))
+    erase = label.get("erase", "#00000000")
+    if erase == "extend":       # opaque bars: repeat the column just left of the rect
+        for y in range(y0, y1):
+            c = img.getpixel((x0 - 1, y))
+            for x in range(x0, x1):
+                img.putpixel((x, y), c)
+    else:
+        img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), parse_colour(erase)), (x0, y0))
     size = label.get("size", (y1 - y0) - 4)
     m = font.mask(label["text"], label.get("spacing", 1))
     w = max(1, round(m.width * size / CELL))
@@ -138,14 +146,56 @@ def load_spec(path):
         return json.load(f)
 
 
+ART_ONLY = ("ci", "bg")    # character sprites and backgrounds: no text, skipped by export
+
+
+def walk_textures(files, prefix):
+    """Yield (spec path, texture bytes) for every .txp, descending into nested NISPACKs."""
+    for name in sorted(files):
+        data = files[name]
+        if name.lower().endswith(".txp"):
+            yield f"{prefix}/{name}", data
+        elif data[:7] == b"NISPACK":
+            yield from walk_textures(nispack.load_bytes(data)[0], f"{prefix}/{name}")
+
+
+def export(img, out, include_art=False):
+    """Every texture as PNG under out/, named by its spec path, for finding baked-in text."""
+    count = 0
+    for arc in sorted(p for p in img.iso.files if p.startswith(USRDIR.upper()) and p.endswith(".DAT")):
+        try:
+            files, _ = img.archive(arc)
+        except Exception:
+            continue
+        for path, data in walk_textures(files, arc[len(USRDIR):]):
+            stem = path.rsplit("/", 1)[-1]
+            if not include_art and stem.lower().startswith(ART_ONLY) and stem[2:3].isdigit():
+                continue
+            try:
+                im = txp.read_txp(data)
+            except ValueError:
+                continue
+            dest = os.path.join(out, *path.split("/"))[:-4] + ".png"
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            im.save(dest)
+            count += 1
+    return count
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("cmd", choices=["preview"])
+    ap.add_argument("cmd", choices=["preview", "export"])
     ap.add_argument("iso")
     ap.add_argument("--spec", default=os.path.join(ROOT, "translation", "images.json"))
     ap.add_argument("--out", default=os.path.join(ROOT, "work", "images", "preview"))
+    ap.add_argument("--art", action="store_true", help="export: include ci*/bg* art too")
     a = ap.parse_args()
     img = game.Image(a.iso)
+    if a.cmd == "export":
+        out = a.out if a.out != ap.get_default("out") else os.path.join(ROOT, "work", "images", "export")
+        print(f"{export(img, out, a.art)} textures -> {out}")
+        img.close()
+        return
     start, _ = img.archive(USRDIR + "START.DAT")
     font = Font(start)
     os.makedirs(a.out, exist_ok=True)
