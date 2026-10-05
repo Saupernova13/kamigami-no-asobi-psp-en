@@ -2479,5 +2479,66 @@
     "outline": "#ffffffff"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_help.txp",
+  "labels": [
+   {
+    "rect": [
+     20,
+     27,
+     69,
+     47
+    ],
+    "text": "Toggle",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     112,
+     27,
+     141,
+     47
+    ],
+    "text": "Place",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     20,
+     52,
+     72,
+     72
+    ],
+    "text": "Toggle",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     20,
+     76,
+     60,
+     95
+    ],
+    "text": "Close",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
  }
 ]
