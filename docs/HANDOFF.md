@@ -20,6 +20,18 @@ Formats and addresses are in [FORMATS.md](FORMATS.md), the general method in
 Not seen in game yet: the Mythology Monologue screen, chapter select, the mythology quiz (needs a save that reaches it), choices, most
 EBOOT strings, route text.
 
+## Current state (2026-10-05)
+
+- Coverage: every extracted unit has English - 37,862 story units (01-12), 1,200 quiz,
+  254 dictionary, 6,771 Mythology Monologue, the hand-written EBOOT UI, 109 re-lettered
+  textures. `check.py`: 0 errors, 14 warnings (memorial name tokens turned into pronouns).
+- Quality: story, quiz, dictionary and monologue are **unedited machine translation**.
+  Hand-written: EBOOT UI, nameplates, event/chapter titles, image labels. The editing
+  passes (packages S01-S12, Q, D, M in [TRANSLATION.md](TRANSLATION.md)) are the main
+  remaining translation work; none has been merged yet.
+- The first playtest ISO went out at this state (built from `feat/text-pipeline` at
+  `49bf49b`). Playtest reports are the fastest way to find the in-game checks below.
+
 ## Build and test
 
 Needs Python 3.11+ with Pillow (and capstone for disassembly), `pspdecrypt` and `armips`
@@ -33,6 +45,16 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out
 
 `work/build/EBOOT.ELF` (decrypted, relocated) is cached; delete it to redo. armips
 rewrites `work/build/EBOOT.patched.ELF` on every build.
+
+### Playtest build
+
+A release is just the steps above in order: `check.py` must show 0 errors, then
+`build.py`, then `tests/ui.txt` through the harness, and look at the story-page shots
+(`n*`/`m*`: English, wrapped inside the window, no stray glyphs). The output ISO is the
+same size as the original; it is verified on PPSSPP only (hardware/CFW untested). Name the copy with
+the date and "WIP" while the text is unedited MT. The harness exits with status 9 after
+the last command (the core tearing down at process exit); a run that printed every
+`shot` line completed.
 
 ### Harness notes
 
