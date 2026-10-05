@@ -89,6 +89,11 @@ def layout_page(markup, metrics, report, uid):
     return "\f".join(windows)
 
 
+# A choice label holds 32 units (FUN_08862da0 appends to a 64-byte field but checks the
+# count against 0x81, so a longer label overwrites the count and the next choice).
+CHOICE_UNITS = 32
+
+
 def build_scripts(img, translations, metrics, report):
     """-> {archive path in ISO: rebuilt archive bytes}"""
     out = {}
@@ -101,7 +106,13 @@ def build_scripts(img, translations, metrics, report):
         for uid, en in tr.items():
             if not en:
                 continue
-            laid[uid] = layout_page(en, metrics, report, f"{tag}:{uid}") if "/p" in uid else en
+            if "/p" in uid:
+                laid[uid] = layout_page(en, metrics, report, f"{tag}:{uid}")
+            elif "/c" in uid and len(en) > CHOICE_UNITS:
+                laid[uid] = en[:CHOICE_UNITS + 1].rsplit(" ", 1)[0][:CHOICE_UNITS]
+                report["quiz_too_long"].append(f"{tag}:{uid}")
+            else:
+                laid[uid] = en
         for sc in st.scenes:
             sc.instrs = script_text.apply_scene(sc.sid, sc.instrs, laid)
         files, entries = img.archive(arc)
@@ -245,7 +256,7 @@ def encode_ui(text):
 # Free space for relocated strings: the nameplate string pool (only referenced through
 # game.SPEAKER_TABLE) and the tail of the asm code cave.
 NAMEPLATE_POOL = (0x089243BC, 0x089246C4)
-STRING_HEAP = (0x088A7B80 + 0x280, 0x088A7B80 + 1076)
+STRING_HEAP = (0x088A7B80 + 0x300, 0x088A7B80 + 1076)
 EXTRA_SEGMENT = 0x20000   # bytes added after bss for strings that outgrow their slot
 
 

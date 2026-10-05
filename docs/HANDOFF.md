@@ -51,7 +51,7 @@ rewrites `work/build/EBOOT.patched.ELF` on every build.
 | `AsciiAdvance` | window layout `0x0887dd98` | ink-width advance for ASCII and full-width letters; bearing shift for full-width |
 | `ModeCheck` stubs | 15 sites in 5 UI loops | proportional branch for ASCII units |
 | `DictAdvance` | `0x08814094` | dictionary body advance |
-| code cave | `0x088a7b80` (0x280 code, rest string heap) | stubs; small strings |
+| code cave | `0x088a7b80` (0x300 code, rest string heap) | stubs; small strings |
 
 Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 `eboot_strings.references` (pointer and lui/addiu refs), `build.patch_nameplates`.

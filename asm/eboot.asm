@@ -60,6 +60,25 @@ ModeCheck 0x0888ae70, ModePtr1c_20, 0x0888ae90
 ModeCheck 0x08890650, ModeCode1c_50, 0x0889068c    ; FUN_08890550
 ModeCheck 0x0889076c, ModeCode1c_50, 0x0889079c
 
+; --- UI width loops (used to centre and right-align strings): with the fixed flag set they
+; count a full-width cell per unit, while the draw loops above now draw ASCII
+; proportionally, so centred English drifted left. Same stubs: ASCII measures
+; proportionally. Two shapes: "lw a0, MODE / bnez a0, X" and "lw a0, MODE / ori a1, 1 /
+; bne a0, a1, X" (the ori stays in the delay slot; the stubs leave a1 alone).
+.macro ModeCheckOne, site, stub, target
+    .org site
+        jal     stub
+        ori     a1, zero, 1
+        bne     v0, a1, target
+.endmacro
+ModeCheckOne 0x0888a844, ModeCode0c_1e, 0x0888a86c  ; FUN_0888a7b0
+ModeCheckOne 0x0888a738, ModeCode0c_1e, 0x0888a760  ; FUN_0888a6a4
+ModeCheck    0x0888a54c, ModeCode0c_1e, 0x0888a588  ; FUN_0888a4ac
+ModeCheck    0x0888a588, ModeCode0c_1e, 0x0888a5b4
+ModeCheckOne 0x0888a5e4, ModeCode0c_1e, 0x0888a660
+ModeCheck    0x0888a660, ModeCode0c_1e, 0x0888a680
+ModeCheck    0x08890868, ModeCode08_1c, 0x088908d0  ; FUN_088907dc
+
 ; --- dictionary body (FUN_08813e58): one glyph at a time, advance from GlyphAdvance with
 ; fixed = 1, minus 2. The glyph itself goes through FUN_0888ab70, which the ModeCheck
 ; above already draws proportionally, so only the advance needs the ink width.
@@ -70,9 +89,21 @@ ModeCheck 0x0889076c, ModeCode1c_50, 0x0889079c
 .org 0x0882369c
     jal     DictAdvance
 
+; --- choices (FUN_08871678 measures and lays out the labels, FUN_088753fc draws them):
+; each glyph goes through FUN_0888a27c, then x moves by GlyphAdvance(code, -1, fixed 1),
+; a full-width cell even for ASCII. Labels are (c, 0x01) pairs from the VM emitter.
+.org 0x08872a00
+    jal     ChoiceAdvance
+.org 0x08872f60
+    jal     ChoiceAdvance
+.org 0x088734a8
+    jal     ChoiceAdvance
+.org 0x08875798
+    jal     ChoiceAdvance
+
 ; --- code cave: FUN_088a7b80 has no callers, jumps, pointers or address constructions --
 .org 0x088a7b80
-.area 0x280                     ; code; the rest of the cave is a string heap (tools/build.py)
+.area 0x300                     ; code; the rest of the cave is a string heap (tools/build.py)
 
 ; Mode stubs run on the caller's stack frame (no frame of their own).
 ; ModeCode: current char is a halfword at CODE(sp). ModePtr: string pointer at PTR(sp).
@@ -112,6 +143,8 @@ ModePtr  ModePtr18_20, 0x18, 0x20
 ModeCode ModeCode1c_3c, 0x1c, 0x3c
 ModePtr  ModePtr1c_20, 0x1c, 0x20
 ModeCode ModeCode1c_50, 0x1c, 0x50
+ModeCode ModeCode0c_1e, 0x0c, 0x1e
+ModeCode ModeCode08_1c, 0x08, 0x1c
 
 ; a0 = signed size step, a1 = 0, caller's s0 = glyph table (count at +0x1aa0,
 ; entries of 10 bytes: s16 x, s16 y, u16 code = lead | second << 8, ...). Returns
@@ -182,25 +215,34 @@ AsciiAdvance:
     j       FixedAdvance
     nop
 
-; a0 = code, a1 = size step, a2 = fixed flag. ASCII units and the half space: ink width + 3, which the caller
-; turns into ink width + 1 (it subtracts 2). Everything else: GlyphAdvance as before.
+; a0 = code, a1 = size step, a2 = fixed flag. ASCII units and the half space: ink width
+; plus a gap, everything else GlyphAdvance as before. DictAdvance adds 3, which its
+; caller turns into ink width + 1 (it subtracts 2); ChoiceAdvance adds the spacing itself.
 DictAdvance:
+    b       InkAdvance
+    li      t7, 3
+ChoiceAdvance:
+    li      t7, LETTER_SPACING
+InkAdvance:
     li      t9, 0x6e87          ; half space: measured like ASCII (8 px at 100%)
     beq     a0, t9, @@measure
     srl     t8, a0, 8
     li      t9, 1
     bne     t8, t9, @@other
     nop
+    andi    a0, a0, 0xff        ; ASCII unit: measure the byte, so a space is 8 px
 @@measure:
     addiu   sp, sp, -32
     sw      ra, 16(sp)
     sw      a0, 20(sp)
+    sw      t7, 24(sp)
     jal     PercentForSize
     move    a0, a1
     lw      a0, 20(sp)
     jal     WidthFontA
     move    a1, v0
-    addiu   v0, v0, 3
+    lw      t7, 24(sp)
+    addu    v0, v0, t7
     lw      ra, 16(sp)
     jr      ra
     addiu   sp, sp, 32
@@ -209,8 +251,8 @@ DictAdvance:
     nop
 .endarea
 
-.org 0x088a7b80 + 0x280
-.area 1076 - 0x280, 0           ; STRING_HEAP: filled by the build
+.org 0x088a7b80 + 0x300
+.area 1076 - 0x300, 0           ; STRING_HEAP: filled by the build
 .endarea
 
 .close
