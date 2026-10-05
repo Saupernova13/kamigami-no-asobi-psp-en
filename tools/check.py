@@ -5,9 +5,9 @@
 With no files, checks every translation/en/*.json that has Japanese units in work/text
 (run tools/extract.py, quiz.py and dictionary.py first). Reports, per unit:
 
-  ERROR   unknown unit id, broken or missing markup token, character the game cannot
+  ERROR   unknown unit id, broken or missing keyword/op token, character the game cannot
           draw, Japanese left in the English
-  WARN    line wider than the window after layout, quiz/dictionary text that will be
+  WARN    name token dropped or added, line wider than the window after layout, text that will be
           cut, untranslated units (coverage)
 
 Exit status is 1 when there are errors (or warnings with --strict). Fix errors before
@@ -91,9 +91,12 @@ def check_file(path, units, metrics, issues):
         if want != got:
             missing = want - got
             extra = got - want
-            # a lost keyword is harmless only when it was re-added empty by the translator
-            if missing or extra:
-                issues.append(("ERROR", where, f"tokens differ: missing {dict(missing)} extra {dict(extra)}"))
+            # Name inserts may become pronouns ("you", "her") or be added where the Japanese
+            # leaves the name implied: worth a look, not an error. Anything else must match.
+            names = {"{NAME}", "{NICK}", "{SURNAME}"}
+            hard = {k for k in list(missing) + list(extra) if k not in names}
+            level = "ERROR" if hard else "WARN"
+            issues.append((level, where, f"tokens differ: missing {dict(missing)} extra {dict(extra)}"))
         if JP_CHARS.search(en):
             issues.append(("ERROR", where, "Japanese characters in the English"))
         chars = bad_chars(en)
