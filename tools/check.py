@@ -6,7 +6,7 @@ With no files, checks every translation/en/*.json that has Japanese units in wor
 (run tools/extract.py, quiz.py and dictionary.py first). Reports, per unit:
 
   ERROR   unknown unit id, broken or missing keyword/op token, character the game cannot
-          draw, Japanese left in the English
+          draw, Japanese left in the English, choice over 32 characters
   WARN    name token dropped or added, line wider than the window after layout, text that will be
           cut, untranslated units (coverage)
 
@@ -108,6 +108,9 @@ def check_file(path, units, metrics, issues):
             build.layout_page(en, metrics, rep, where)
             if rep["overflow"]:
                 issues.append(("WARN", where, f"a word is wider than {build.MAX_LINE_PX}px"))
+        if kind == "choice" and len(en) > build.CHOICE_UNITS:
+            issues.append(("ERROR", where, f"choice longer than {build.CHOICE_UNITS} characters "
+                           "(it would overwrite the next choice; the build cuts it)"))
         if kind == "quiz_choice" and not chars and len(build.encode_ui(en)) >= quiz.FIELD:
             issues.append(("WARN", where, "choice longer than 31 characters (will be cut)"))
         if kind == "quiz" and metrics and not chars:
