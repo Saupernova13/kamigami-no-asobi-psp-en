@@ -3872,5 +3872,1763 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/anm0304.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     37,
+     205,
+     68
+    ],
+    "text": "Clytie Blooming at Sunset",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     69,
+     235,
+     99
+    ],
+    "text": "A Stage Blessed by Thalia",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     100,
+     205,
+     134
+    ],
+    "text": "Feast of the Sun God",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     134,
+     205,
+     165
+    ],
+    "text": "A Song of Woven Love",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     166,
+     208,
+     198
+    ],
+    "text": "The Tragedy of Oedipus",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     199,
+     208,
+     228
+    ],
+    "text": "Flames of Love",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     263,
+     164,
+     441,
+     196
+    ],
+    "text": "Memories of Beautiful Days",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     263,
+     197,
+     434,
+     230
+    ],
+    "text": "Glory of the Laurel",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     36,
+     448,
+     67
+    ],
+    "text": "A Prophecy for the Future",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     68,
+     448,
+     99
+    ],
+    "text": "Embraced by Sunlight",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     100,
+     448,
+     131
+    ],
+    "text": "Bond of Father and Son",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     132,
+     456,
+     163
+    ],
+    "text": "Fantasia of Dark and Light",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     269,
+     5,
+     451,
+     34
+    ],
+    "text": "Memories of Delos",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#c49001",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0305.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     35,
+     183,
+     67
+    ],
+    "text": "Stars in the Night Sky",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     176,
+     101
+    ],
+    "text": "After a Fierce Battle",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     132
+    ],
+    "text": "The Lyre of Orpheus",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     136,
+     251,
+     165
+    ],
+    "text": "The Garnet Star in Your Eyes",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     168,
+     205,
+     198
+    ],
+    "text": "Happiness in Misfortune",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     200,
+     205,
+     229
+    ],
+    "text": "A Ray of Light in the Dark",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     6,
+     467,
+     34
+    ],
+    "text": "A Cursed Life",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     38,
+     467,
+     66
+    ],
+    "text": "At the Ends of the Deep Earth",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     71,
+     467,
+     99
+    ],
+    "text": "Grudge of the Dead",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     100,
+     470,
+     131
+    ],
+    "text": "Wrapped in Starlight",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     132,
+     467,
+     163
+    ],
+    "text": "The Road to Happiness",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     164,
+     467,
+     195
+    ],
+    "text": "Hearts That Share",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     196,
+     467,
+     227
+    ],
+    "text": "The Underworld King's Solitude",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#a00d21",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0306.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     35,
+     183,
+     67
+    ],
+    "text": "Meeting a Mythical Beast",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     176,
+     101
+    ],
+    "text": "Glory of the Laurel",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     133
+    ],
+    "text": "The Rabbit of the Lunar Sea",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     136,
+     251,
+     166
+    ],
+    "text": "Lovers in the Moonlight",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     168,
+     205,
+     196
+    ],
+    "text": "A Shadow in the Great Light",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     200,
+     199,
+     229
+    ],
+    "text": "Feelings Bound by the New Moon",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     202,
+     196,
+     509,
+     228
+    ],
+    "text": "Ever-Changing Radiance",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     6,
+     467,
+     35
+    ],
+    "text": "Truth Without Light",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     38,
+     467,
+     67
+    ],
+    "text": "A Vow on a Quiet Moonlit Night",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     69,
+     467,
+     99
+    ],
+    "text": "A Betrayal Called Deceit",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     100,
+     467,
+     131
+    ],
+    "text": "Door to an Unknown World",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     133,
+     467,
+     164
+    ],
+    "text": "Honeymoon Birdsong",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     164,
+     467,
+     196
+    ],
+    "text": "Harmony of Sun, Moon and Sea",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#7e62a9",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0307.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     36,
+     182,
+     67
+    ],
+    "text": "The Raging God",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     176,
+     101
+    ],
+    "text": "After a Fierce Battle",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     132
+    ],
+    "text": "A Serious Match",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     136,
+     251,
+     164
+    ],
+    "text": "The Shifting Water",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     166,
+     205,
+     198
+    ],
+    "text": "Treasure of the Lapis Sea",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     200,
+     205,
+     229
+    ],
+    "text": "Mistakes of the Past",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     6,
+     444,
+     36
+    ],
+    "text": "Murakumo and a Prayer",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     38,
+     444,
+     68
+    ],
+    "text": "A Trial Like a Storm",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     71,
+     444,
+     101
+    ],
+    "text": "Battle with a Monster",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     101,
+     444,
+     132
+    ],
+    "text": "A Love Deeper than the Sea",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     132,
+     454,
+     164
+    ],
+    "text": "Warmth of Joined Hands",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     165,
+     444,
+     196
+    ],
+    "text": "Return of the Hero",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     197,
+     444,
+     229
+    ],
+    "text": "A Single Tear",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#1e4bae",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0308.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     35,
+     183,
+     67
+    ],
+    "text": "A Sweet Banquet",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     176,
+     101
+    ],
+    "text": "Glory of the Laurel",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     132
+    ],
+    "text": "The Beloved Immortal God",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     135,
+     251,
+     164
+    ],
+    "text": "Christmas Lights, Falling Shadows",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     168,
+     205,
+     196
+    ],
+    "text": "Tangled Intentions",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     200,
+     250,
+     228
+    ],
+    "text": "Within Our Limited Time",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     6,
+     456,
+     35
+    ],
+    "text": "The Door of Truth",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     38,
+     456,
+     68
+    ],
+    "text": "A Journey of Memories",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     68,
+     456,
+     100
+    ],
+    "text": "Waltz to the End",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     99,
+     456,
+     131
+    ],
+    "text": "Eternal Light",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     131,
+     456,
+     163
+    ],
+    "text": "Love's Gentle Bonds",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     165,
+     455,
+     197
+    ],
+    "text": "Proof of Having Lived",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     198,
+     455,
+     230
+    ],
+    "text": "The Last Prank",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#64ad21",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0309.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     3,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     35,
+     183,
+     67
+    ],
+    "text": "Trickster of Flame",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     176,
+     101
+    ],
+    "text": "After a Fierce Battle",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     132
+    ],
+    "text": "A Whimsical Kiss",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     136,
+     251,
+     165
+    ],
+    "text": "A Wish upon the Aurora",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     168,
+     205,
+     197
+    ],
+    "text": "The Clown's Sorrow",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     200,
+     205,
+     228
+    ],
+    "text": "A New Promise",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     6,
+     425,
+     35
+    ],
+    "text": "Twilight of Ragnarok",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     38,
+     424,
+     67
+    ],
+    "text": "Love's Magic",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     71,
+     424,
+     100
+    ],
+    "text": "The One Who Ends It",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     100,
+     424,
+     131
+    ],
+    "text": "Mischievous Fire",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     132,
+     424,
+     164
+    ],
+    "text": "Feelings Without Lies",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     164,
+     429,
+     196
+    ],
+    "text": "Light of Sorrow and Joy",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     267,
+     195,
+     424,
+     229
+    ],
+    "text": "A Sealed Dream",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ca008a",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0310.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     4,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     40,
+     205,
+     70
+    ],
+    "text": "Guardian of Souls",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     68,
+     205,
+     100
+    ],
+    "text": "An Open Heart",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     100,
+     205,
+     132
+    ],
+    "text": "Scales of Good and Evil",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     136,
+     205,
+     165
+    ],
+    "text": "Forbidden Fruit",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     166,
+     205,
+     195
+    ],
+    "text": "An Innocent Wish",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     198,
+     205,
+     229
+    ],
+    "text": "Words I Want to Say",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#ec5e01",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0311.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     4,
+     205,
+     36
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     38,
+     205,
+     68
+    ],
+    "text": "Ruler of Wisdom",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     70,
+     205,
+     98
+    ],
+    "text": "The Aloof God",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     103,
+     205,
+     133
+    ],
+    "text": "The Answer I Was Led To",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     134,
+     205,
+     163
+    ],
+    "text": "Humanity's Wish",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     166,
+     205,
+     196
+    ],
+    "text": "Irreplaceable",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     197,
+     205,
+     228
+    ],
+    "text": "The Doomsday Clock",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#119ba1",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0301.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     2,
+     82,
+     34
+    ],
+    "text": "Student Council",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     39,
+     118,
+     71
+    ],
+    "text": "A Sweet Banquet",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     76,
+     164,
+     109
+    ],
+    "text": "Memories of Beautiful Days",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     112,
+     165,
+     142
+    ],
+    "text": "Meeting a Mythical Beast",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0302.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     2,
+     170,
+     37
+    ],
+    "text": "Stars in the Night Sky",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     37,
+     170,
+     72
+    ],
+    "text": "The Raging God",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     71,
+     168,
+     106
+    ],
+    "text": "Trickster of Flame",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     107,
+     170,
+     139
+    ],
+    "text": "Club Activities",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0303.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     5,
+     5,
+     133,
+     38
+    ],
+    "text": "After a Fierce Battle",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     39,
+     133,
+     72
+    ],
+    "text": "Glory of the Laurel",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     5,
+     79,
+     133,
+     112
+    ],
+    "text": "Sports Festival",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6568c1",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm0300.dat#0.1",
+  "labels": [
+   {
+    "rect": [
+     5,
+     42,
+     170,
+     72
+    ],
+    "text": "Academy of the Gods",
+    "size": 20,
+    "fit": true,
+    "align": "left",
+    "boost": 2,
+    "fill": "#6264acff",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm1400.dat#0.2",
+  "labels": [
+   {
+    "rect": [
+     20,
+     62,
+     300,
+     92
+    ],
+    "text": "Garden of the Gods",
+    "size": 20,
+    "fill": "#fcfbf5ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/anm8100.dat#0.1",
+  "labels": [
+   {
+    "rect": [
+     10,
+     61,
+     294,
+     93
+    ],
+    "text": "Test Your Knowledge",
+    "size": 20,
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "START.DAT/anm9000.dat#1.0",
+  "labels": [
+   {
+    "rect": [
+     300,
+     14,
+     411,
+     64
+    ],
+    "text": ""
+   }
+  ]
  }
 ]
