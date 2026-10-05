@@ -5768,5 +5768,210 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "START.DAT/systemMenu_ChapterIcons.txp",
+  "labels": [
+   {
+    "rect": [
+     14,
+     1,
+     72,
+     43
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     8,
+     5,
+     82,
+     41
+    ],
+    "text": "Prologue",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     99,
+     3,
+     175,
+     44
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     93,
+     7,
+     185,
+     42
+    ],
+    "text": "Council",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     193,
+     3,
+     269,
+     45
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     187,
+     7,
+     279,
+     43
+    ],
+    "text": "Clubs",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     285,
+     3,
+     362,
+     45
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     279,
+     7,
+     372,
+     43
+    ],
+    "text": "Festival",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     15,
+     52,
+     82,
+     92
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     9,
+     56,
+     92,
+     90
+    ],
+    "text": "Ch. 1",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     108,
+     51,
+     175,
+     92
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     102,
+     55,
+     185,
+     90
+    ],
+    "text": "Ch. 2",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     201,
+     51,
+     268,
+     92
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     195,
+     55,
+     278,
+     90
+    ],
+    "text": "Ch. 3",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     294,
+     51,
+     361,
+     92
+    ],
+    "text": "",
+    "erase": "#00000000"
+   },
+   {
+    "rect": [
+     288,
+     55,
+     371,
+     90
+    ],
+    "text": "Ch. 4",
+    "size": 20,
+    "fit": true,
+    "erase": "none",
+    "fill": "#6b4a2eff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
  }
 ]

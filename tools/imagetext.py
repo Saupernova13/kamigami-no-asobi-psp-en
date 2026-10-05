@@ -21,7 +21,7 @@ the lightest and the darkest opaque colours; "outline": "#00000000" for none). "
 runs the text top to bottom (90: bottom to top), for vertical labels. Glyphs come from the game's own FontA
 (START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
 "erase": "smooth" relaxes the rect from its border inwards (soft art and skies),
-"erase": "none" draws without erasing. "text": "" only erases. "boost": 2 makes the fill solid (FontA strokes are partly
+"erase": "none" draws without erasing, "erase": "dark" clears only dark ink. "text": "" only erases. "boost": 2 makes the fill solid (FontA strokes are partly
 transparent, which washes a coloured fill out over a light outline).
 
 `preview` writes before/after PNGs so a label can be checked without a build.
@@ -109,6 +109,12 @@ def render_label(img, label, font):
                 img.putpixel((x, y), c)
     elif erase == "none":       # draw over what is there (after an erase-only label)
         pass
+    elif erase == "dark":       # clear dark ink, keep light ornaments around it
+        for y in range(y0, y1):
+            for x in range(x0, x1):
+                c = img.getpixel((x, y))
+                if c[3] and c[0] * 299 + c[1] * 587 + c[2] * 114 < 200000:
+                    img.putpixel((x, y), (0, 0, 0, 0))
     elif erase == "smooth":     # fill from the border inwards (Laplace relaxation), for soft art
         import numpy as np
         a = np.asarray(img, dtype=np.float32).copy()
