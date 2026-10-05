@@ -34,50 +34,12 @@ EBOOT strings, route text.
 
 ## Build and test
 
-Needs Python 3.11+ with Pillow (and capstone for disassembly), `pspdecrypt` and `armips`
-(on PATH or `PSPDECRYPT` / `ARMIPS`), and for testing the PPSSPP libretro core.
-
-```
-python tools/build.py <original.iso> work/out/en.iso
-python tools/check.py --iso <original.iso>
-python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out/en.iso tests/ui.txt
-```
+Setup from zero, the ISO hash and the first build: [SETUP.md](SETUP.md). Checker, build
+reports and the harness: [TESTING.md](TESTING.md). Playtest ISOs and what a release
+still needs: [RELEASE.md](RELEASE.md). Machine translation server: SETUP.md section 5.
 
 `work/build/EBOOT.ELF` (decrypted, relocated) is cached; delete it to redo. armips
 rewrites `work/build/EBOOT.patched.ELF` on every build.
-
-### Playtest build
-
-A release is just the steps above in order: `check.py` must show 0 errors, then
-`build.py`, then `tests/ui.txt` through the harness, and look at the story-page shots
-(`n*`/`m*`: English, wrapped inside the window, no stray glyphs). The output ISO is the
-same size as the original; it is verified on PPSSPP only (hardware/CFW untested). Name the copy with
-the date and "WIP" while the text is unedited MT. The harness exits with status 9 after
-the last command (the core tearing down at process exit); a run that printed every
-`shot` line completed.
-
-### Harness notes
-
-- Scripts: `wait N`, `press BTN [frames]`, `repeat K press ...`, `shot NAME`. Circle
-  confirms/advances, cross cancels, triangle opens the system menu (only once the page
-  has finished typing: `wait 400` first), square hides the window.
-- `tests/ui.txt`: title -> New Game -> default name -> quiz difficulty -> prologue pages.
-  `tests/options.txt`: title -> Option screens. `tests/dictionary.txt`: plays to the
-  first keyword (iai), opens System Menu -> Dictionary -> entry 1.
-- Each `press circle 6` advances about half a page (the first press completes typing).
-  ~230 presses reach the end of the prologue's first day.
-- PPSSPP 1.17's software renderer crashes if the first frame runs before the async boot
-  finishes: `--boot-wait` (default 10 s); raise it when the machine is busy.
-- Input timing drifts with load; leave generous waits around menus.
-- The system language is Japanese in the harness, so PSP system dialogs (save/load)
-  show Japanese; on hardware they follow the console language.
-
-### Machine translation
-
-`tools/translate.py` talks to any OpenAI-compatible chat endpoint (`--endpoint`,
-`--model`, or `MT_ENDPOINT` / `MT_MODEL`). It was run with a local Qwen3.6-35B-A3B on
-llama.cpp (`llama-server --fit on --fit-ctx 32768 -fa on -ctk q8_0 -ctv q8_0`); a plain
-llama-server on its own port is the most reliable setup. 2-6 units/s.
 
 ## Patch overview
 
@@ -131,7 +93,10 @@ In rough priority order. Each says where to start.
    does.
 9. `0x0892855c` (read-rate screen) mixes single-byte ASCII into a UI string in the
    original; confirm its renderer accepts pairs.
-10. Profiles (`PROFILE.dat` has only textures; the text may be images or EBOOT strings).
+10. Profiles: `PROFILE.dat` is textures only and its labels are re-lettered (item 1);
+    check in game whether any profile text comes from EBOOT strings still in Japanese.
+11. **Release tooling.** A patch generator (xdelta3 from the original ISO) and the rest
+    of the checklist in [RELEASE.md](RELEASE.md).
 
 ## Gotchas
 

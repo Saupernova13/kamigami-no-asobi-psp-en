@@ -97,11 +97,11 @@ git commit -m "fix(translation): edit Apollon route scenes 50001-50020"
 ```
 
 `check.py` must report 0 errors before a commit. To look at a page in the emulator, see
-the harness section of [HANDOFF.md](HANDOFF.md); `tests/ui.txt` reaches the prologue.
+[TESTING.md](TESTING.md); `tests/ui.txt` reaches the prologue.
 
 Machine retranslation of single units: delete the unit from the translation file and
 run `python tools/translate.py --tags 04` with an OpenAI-compatible endpoint
-(`--endpoint`, `--model`). It skips units that already have English and caches results in
+(`--endpoint`, `--model`; server setup in [SETUP.md](SETUP.md)). It skips units that already have English and caches results in
 `work/mt_cache.json` (delete a cache entry, keyed by the Japanese text, to force a redo).
 
 ## Work packages
