@@ -3549,5 +3549,130 @@
     "outline": "#fffdf6ff"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts02.txp",
+  "labels": [
+   {
+    "rect": [
+     85,
+     13,
+     300,
+     34
+    ],
+    "text": "Apollon Agana Belea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     53,
+     300,
+     74
+    ],
+    "text": "Hades Aidoneus",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     93,
+     300,
+     114
+    ],
+    "text": "Tsukito Totsuka",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     133,
+     300,
+     154
+    ],
+    "text": "Takeru Totsuka",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     173,
+     300,
+     194
+    ],
+    "text": "Balder Hringhorni",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     213,
+     300,
+     234
+    ],
+    "text": "Loki Laevatein",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     254,
+     300,
+     275
+    ],
+    "text": "Anubis Maat",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     294,
+     300,
+     315
+    ],
+    "text": "Thoth Caduceus",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]

@@ -11,7 +11,9 @@ translation/images.json lists textures and the labels to replace:
 "texture" is the path through the ISO's archives (archive in USRDIR / nested pack /
 file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa",
 or "erase": "extend" to repeat the column left of the rect, for text on an opaque bar, or
-"erase": "clean" to fill each column with its lightest pixel, for dark text on a gradient)
+"erase": "clean" to fill each column with its lightest pixel, for dark text on a gradient,
+or "erase": "median" for text on a patterned bar, or "erase": "interp" to blend each column
+from the rect's top row to its bottom row, when those rows are clear of text)
 and the English is drawn centred in it, at "size" px (default: the rect height minus
 4), in "fill"/"outline" colours (default: sampled from the original pixels in the rect -
 the lightest and the darkest opaque colours; "outline": "#00000000" for none). Glyphs come from the game's own FontA
@@ -97,6 +99,21 @@ def render_label(img, label, font):
         for y in range(y0, y1):
             c = img.getpixel((x0 - 1, y))
             for x in range(x0, x1):
+                img.putpixel((x, y), c)
+    elif erase == "interp":     # per column, blend from the rect's top row to its bottom row
+        for x in range(x0, x1):
+            a, b = img.getpixel((x, y0)), img.getpixel((x, y1 - 1))
+            n = max(1, y1 - 1 - y0)
+            for y in range(y0, y1):
+                t = (y - y0) / n
+                img.putpixel((x, y), tuple(round(a[i] + (b[i] - a[i]) * t) for i in range(4)))
+    elif erase == "median":     # text on a patterned bar: per column, the quartile away from the text
+        lum = lambda c: c[0] * 299 + c[1] * 587 + c[2] * 114
+        pick = 0.25 if lum(fill) > 128000 else 0.75
+        for x in range(x0, x1):
+            col = sorted((img.getpixel((x, y)) for y in range(y0, y1)), key=lum)
+            c = col[int(len(col) * pick)]
+            for y in range(y0, y1):
                 img.putpixel((x, y), c)
     elif erase == "clean":      # dark text on a light horizontal gradient: lightest per column
         lum = lambda c: c[0] * 299 + c[1] * 587 + c[2] * 114
