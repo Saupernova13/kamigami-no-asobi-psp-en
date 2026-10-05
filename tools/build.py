@@ -125,7 +125,7 @@ def build_scripts(img, translations, metrics, report):
 
 
 QUIZ_LINE_PX = 320      # widest Japanese quiz line: 18 full-width glyphs + tracking
-QUIZ_SPACING = 2        # the UI loops' proportional advance adds 2px per glyph
+QUIZ_SPACING = 1        # the UI loops' gap after each glyph (UI_SPACING in asm/eboot.asm)
 
 
 DICT_LINE_PX = 360      # dictionary text area (x 72 to the scroll bar)

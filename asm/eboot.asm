@@ -12,6 +12,7 @@
 .open IN, OUT, 0x08804000 - 0xC0
 
 LETTER_SPACING equ 1
+UI_SPACING equ 1               ; UI loops' gap after a proportional glyph (originally 2)
 
 PercentForSize  equ 0x08889ac4   ; (size step) -> percent, as used by the fixed advance
 FixedAdvance    equ 0x0888a998   ; original: full-width advance for a size step
@@ -78,6 +79,28 @@ ModeCheck    0x0888a588, ModeCode0c_1e, 0x0888a5b4
 ModeCheckOne 0x0888a5e4, ModeCode0c_1e, 0x0888a660
 ModeCheck    0x0888a660, ModeCode0c_1e, 0x0888a680
 ModeCheck    0x08890868, ModeCode08_1c, 0x088908d0  ; FUN_088907dc
+
+; --- UI letter spacing: the proportional branches of the draw loops and the matching
+; width loops add 2 px after each glyph, loose for English. Same value in both, so
+; centred text stays centred.
+.org 0x08889c78                 ; FUN_08889b2c (help bar)
+    addiu   a0, a0, UI_SPACING
+.org 0x08889ddc                 ; FUN_08889cbc
+    addiu   a0, a0, UI_SPACING
+.org 0x0888acec                 ; FUN_0888ab70
+    ori     a0, zero, UI_SPACING
+.org 0x0888ae7c                 ; FUN_0888ad18
+    ori     a0, zero, UI_SPACING
+.org 0x0889078c                 ; FUN_08890550
+    addiu   a0, a0, UI_SPACING
+.org 0x0888a890                 ; width: FUN_0888a7b0
+    ori     a0, zero, UI_SPACING
+.org 0x0888a66c                 ; width: FUN_0888a4ac
+    ori     a0, zero, UI_SPACING
+.org 0x0888a784                 ; width: FUN_0888a6a4
+    addiu   a0, a0, UI_SPACING
+.org 0x088908c0                 ; width: FUN_088907dc
+    addiu   a0, a0, UI_SPACING
 
 ; --- dictionary body (FUN_08813e58): one glyph at a time, advance from GlyphAdvance with
 ; fixed = 1, minus 2. The glyph itself goes through FUN_0888ab70, which the ModeCheck
