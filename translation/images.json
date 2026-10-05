@@ -235,5 +235,154 @@
     "erase": "extend"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/NAME.dat/nameChange_parts.txp",
+  "labels": [
+   {
+    "rect": [
+     17,
+     212,
+     49,
+     231
+    ],
+    "text": "Enter",
+    "size": 11
+   },
+   {
+    "rect": [
+     62,
+     212,
+     122,
+     231
+    ],
+    "text": "Forward",
+    "size": 11
+   },
+   {
+    "rect": [
+     138,
+     212,
+     198,
+     231
+    ],
+    "text": "Back",
+    "size": 11
+   },
+   {
+    "rect": [
+     212,
+     212,
+     242,
+     231
+    ],
+    "text": "Del",
+    "size": 11
+   },
+   {
+    "rect": [
+     287,
+     212,
+     316,
+     231
+    ],
+    "text": "Quit",
+    "size": 11
+   },
+   {
+    "rect": [
+     360,
+     212,
+     398,
+     231
+    ],
+    "text": "OK",
+    "size": 11
+   },
+   {
+    "rect": [
+     195,
+     235,
+     228,
+     254
+    ],
+    "text": "Back",
+    "size": 11
+   },
+   {
+    "rect": [
+     4,
+     0,
+     90,
+     15
+    ],
+    "text": "Name",
+    "align": "left",
+    "fill": "#0c2a6aff",
+    "outline": "#00000000",
+    "size": 11
+   },
+   {
+    "rect": [
+     168,
+     0,
+     240,
+     15
+    ],
+    "text": "Nickname",
+    "align": "left",
+    "fill": "#0c2a6aff",
+    "outline": "#00000000",
+    "size": 11
+   },
+   {
+    "rect": [
+     66,
+     49,
+     95,
+     65
+    ],
+    "text": "Kanji",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     95,
+     49,
+     134,
+     65
+    ],
+    "text": "Kata",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     134,
+     49,
+     174,
+     65
+    ],
+    "text": "Hira",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     174,
+     49,
+     212,
+     65
+    ],
+    "text": "ABC",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   }
+  ]
  }
 ]
