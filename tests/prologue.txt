@@ -1,0 +1,34 @@
+# boot -> title -> New Game -> default name -> first story pages
+wait 600
+press cross
+wait 600
+press start 8
+wait 300
+press start 8
+wait 600
+press circle 8
+wait 300
+press circle 8
+wait 300
+press start 8
+wait 200
+press left 8
+wait 30
+press circle 8
+wait 600
+shot q01
+press circle 8
+wait 250
+shot q02
+press circle 8
+wait 250
+shot q03
+press circle 8
+wait 250
+shot q04
+press circle 8
+wait 250
+shot q05
+press circle 8
+wait 250
+shot q06

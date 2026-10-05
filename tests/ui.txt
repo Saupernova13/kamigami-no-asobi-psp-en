@@ -1,0 +1,58 @@
+wait 600
+press cross
+wait 600
+press start 8
+wait 300
+press start 8
+wait 1200
+press circle 8
+wait 600
+press circle 8
+wait 600
+press start 8
+wait 200
+shot v1_confirm
+press left 8
+wait 30
+press circle 8
+wait 200
+shot v2_quiz
+press circle 8
+wait 400
+repeat 8 press circle 8
+wait 250
+repeat 3 press circle 8
+wait 250
+shot n01
+wait 600
+shot m01
+repeat 3 press circle 8
+wait 250
+shot n02
+wait 600
+shot m02
+repeat 3 press circle 8
+wait 250
+shot n03
+wait 600
+shot m03
+repeat 3 press circle 8
+wait 250
+shot n04
+wait 600
+shot m04
+repeat 3 press circle 8
+wait 250
+shot n05
+wait 600
+shot m05
+repeat 3 press circle 8
+wait 250
+shot n06
+wait 600
+shot m06
+repeat 3 press circle 8
+wait 250
+shot n07
+wait 600
+shot m07

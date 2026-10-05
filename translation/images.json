@@ -1,0 +1,3876 @@
+[
+ {
+  "texture": "DATA.DAT/OPTION.dat/optionElements00.txp",
+  "labels": [
+   {
+    "rect": [
+     6,
+     193,
+     69,
+     214
+    ],
+    "text": "Read Only",
+    "size": 12
+   },
+   {
+    "rect": [
+     74,
+     193,
+     137,
+     214
+    ],
+    "text": "All",
+    "size": 12
+   },
+   {
+    "rect": [
+     142,
+     193,
+     205,
+     214
+    ],
+    "text": "Slow",
+    "size": 12
+   },
+   {
+    "rect": [
+     210,
+     193,
+     273,
+     214
+    ],
+    "text": "Normal",
+    "size": 12
+   },
+   {
+    "rect": [
+     278,
+     193,
+     341,
+     214
+    ],
+    "text": "Fast",
+    "size": 12
+   },
+   {
+    "rect": [
+     346,
+     193,
+     409,
+     214
+    ],
+    "text": "Fastest",
+    "size": 12
+   },
+   {
+    "rect": [
+     210,
+     220,
+     273,
+     244
+    ],
+    "text": "On",
+    "size": 12
+   },
+   {
+    "rect": [
+     278,
+     220,
+     341,
+     244
+    ],
+    "text": "Off",
+    "size": 12
+   },
+   {
+    "rect": [
+     6,
+     245,
+     69,
+     266
+    ],
+    "text": "Default",
+    "size": 12
+   },
+   {
+    "rect": [
+     74,
+     245,
+     137,
+     266
+    ],
+    "text": "Apollon",
+    "size": 12
+   },
+   {
+    "rect": [
+     142,
+     245,
+     205,
+     266
+    ],
+    "text": "Hades",
+    "size": 12
+   },
+   {
+    "rect": [
+     210,
+     245,
+     273,
+     266
+    ],
+    "text": "Tsukito",
+    "size": 12
+   },
+   {
+    "rect": [
+     278,
+     245,
+     341,
+     266
+    ],
+    "text": "Takeru",
+    "size": 12
+   },
+   {
+    "rect": [
+     5,
+     272,
+     68,
+     292
+    ],
+    "text": "Balder",
+    "size": 12
+   },
+   {
+    "rect": [
+     73,
+     272,
+     136,
+     292
+    ],
+    "text": "Loki",
+    "size": 12
+   },
+   {
+    "rect": [
+     141,
+     272,
+     204,
+     292
+    ],
+    "text": "Anubis",
+    "size": 12
+   },
+   {
+    "rect": [
+     210,
+     272,
+     273,
+     292
+    ],
+    "text": "Thoth",
+    "size": 12
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/OPTION.dat/optionParts.txp",
+  "labels": [
+   {
+    "rect": [
+     282,
+     243,
+     313,
+     260
+    ],
+    "text": "Tab",
+    "size": 11,
+    "fill": "#0a1638ff",
+    "outline": "#00000000",
+    "erase": "extend"
+   },
+   {
+    "rect": [
+     357,
+     243,
+     398,
+     260
+    ],
+    "text": "Reset",
+    "size": 11,
+    "fill": "#0a1638ff",
+    "outline": "#00000000",
+    "erase": "extend"
+   },
+   {
+    "rect": [
+     443,
+     243,
+     476,
+     260
+    ],
+    "text": "OK",
+    "size": 11,
+    "fill": "#0a1638ff",
+    "outline": "#00000000",
+    "erase": "extend"
+   }
+  ]
+ },
+ {
+  "texture": "START.DAT/shortCutDecision.txp",
+  "labels": [
+   {
+    "rect": [
+     31,
+     4,
+     64,
+     27
+    ],
+    "text": "OK",
+    "size": 12,
+    "fill": "#0a1638ff",
+    "outline": "#00000000",
+    "erase": "extend"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/NAME.dat/nameChange_parts.txp",
+  "labels": [
+   {
+    "rect": [
+     17,
+     212,
+     49,
+     231
+    ],
+    "text": "Enter",
+    "size": 11
+   },
+   {
+    "rect": [
+     62,
+     212,
+     122,
+     231
+    ],
+    "text": "Forward",
+    "size": 11
+   },
+   {
+    "rect": [
+     138,
+     212,
+     198,
+     231
+    ],
+    "text": "Back",
+    "size": 11
+   },
+   {
+    "rect": [
+     212,
+     212,
+     242,
+     231
+    ],
+    "text": "Del",
+    "size": 11
+   },
+   {
+    "rect": [
+     287,
+     212,
+     316,
+     231
+    ],
+    "text": "Quit",
+    "size": 11
+   },
+   {
+    "rect": [
+     360,
+     212,
+     398,
+     231
+    ],
+    "text": "OK",
+    "size": 11
+   },
+   {
+    "rect": [
+     195,
+     235,
+     228,
+     254
+    ],
+    "text": "Back",
+    "size": 11
+   },
+   {
+    "rect": [
+     4,
+     0,
+     90,
+     15
+    ],
+    "text": "Name",
+    "align": "left",
+    "fill": "#0c2a6aff",
+    "outline": "#00000000",
+    "size": 11
+   },
+   {
+    "rect": [
+     168,
+     0,
+     240,
+     15
+    ],
+    "text": "Nickname",
+    "align": "left",
+    "fill": "#0c2a6aff",
+    "outline": "#00000000",
+    "size": 11
+   },
+   {
+    "rect": [
+     66,
+     49,
+     95,
+     65
+    ],
+    "text": "Kanji",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     95,
+     49,
+     134,
+     65
+    ],
+    "text": "Kata",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     134,
+     49,
+     174,
+     65
+    ],
+    "text": "Hira",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   },
+   {
+    "rect": [
+     174,
+     49,
+     212,
+     65
+    ],
+    "text": "ABC",
+    "fill": "#7e7365ff",
+    "outline": "#00000000",
+    "size": 10
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapter_title_01.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     2,
+     222,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     22,
+     222,
+     40
+    ],
+    "text": "Memories of Beautiful Days",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     42,
+     222,
+     60
+    ],
+    "text": "Glory of the Laurel",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     62,
+     222,
+     80
+    ],
+    "text": "Clytie Blooming at Sunset",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     82,
+     222,
+     100
+    ],
+    "text": "A Stage Blessed by Thalia",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     102,
+     222,
+     120
+    ],
+    "text": "Feast of the Sun God",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     122,
+     222,
+     140
+    ],
+    "text": "Flames of Love",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     142,
+     222,
+     160
+    ],
+    "text": "Memories of Delos",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     162,
+     222,
+     180
+    ],
+    "text": "A Prophecy for the Future",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     182,
+     222,
+     200
+    ],
+    "text": "Embraced by Sunlight",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     202,
+     222,
+     220
+    ],
+    "text": "Bond of Father and Son",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     222,
+     222,
+     240
+    ],
+    "text": "Fantasia of Dark and Light",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     2,
+     446,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     22,
+     446,
+     40
+    ],
+    "text": "Stars in the Night Sky",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     42,
+     446,
+     60
+    ],
+    "text": "After a Fierce Battle",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     62,
+     446,
+     80
+    ],
+    "text": "The Lyre of Orpheus",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     82,
+     446,
+     100
+    ],
+    "text": "The Garnet Star in Your Eyes",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     102,
+     446,
+     120
+    ],
+    "text": "Happiness in Misfortune",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     122,
+     446,
+     140
+    ],
+    "text": "At the Ends of the Deep Earth",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     142,
+     446,
+     160
+    ],
+    "text": "Grudge of the Dead",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     162,
+     446,
+     180
+    ],
+    "text": "Wrapped in Starlight",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     182,
+     446,
+     200
+    ],
+    "text": "The Road to Happiness",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     202,
+     446,
+     220
+    ],
+    "text": "Hearts That Share",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     222,
+     446,
+     240
+    ],
+    "text": "The Underworld King's Solitude",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapter_title_02.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     2,
+     222,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     22,
+     222,
+     40
+    ],
+    "text": "Meeting a Mythical Beast",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     42,
+     222,
+     60
+    ],
+    "text": "Glory of the Laurel",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     62,
+     222,
+     80
+    ],
+    "text": "The Rabbit of the Lunar Sea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     82,
+     222,
+     100
+    ],
+    "text": "Lovers in the Moonlight",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     102,
+     222,
+     120
+    ],
+    "text": "A Shadow in the Great Light",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     122,
+     222,
+     140
+    ],
+    "text": "A Vow on a Quiet Moonlit Night",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     142,
+     222,
+     160
+    ],
+    "text": "A Betrayal Called Deceit",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     162,
+     222,
+     180
+    ],
+    "text": "Door to an Unknown World",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     182,
+     222,
+     200
+    ],
+    "text": "Honeymoon Birdsong",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     202,
+     222,
+     220
+    ],
+    "text": "Harmony of Sun, Moon and Sea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     222,
+     222,
+     240
+    ],
+    "text": "Ever-Changing Radiance",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     2,
+     446,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     22,
+     446,
+     40
+    ],
+    "text": "The Raging God",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     42,
+     446,
+     60
+    ],
+    "text": "After a Fierce Battle",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     62,
+     446,
+     80
+    ],
+    "text": "A Serious Match",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     82,
+     446,
+     100
+    ],
+    "text": "The Shifting Water",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     102,
+     446,
+     120
+    ],
+    "text": "Treasure of the Lapis Sea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     122,
+     446,
+     140
+    ],
+    "text": "A Trial Like a Storm",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     142,
+     446,
+     160
+    ],
+    "text": "Battle with a Monster",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     162,
+     446,
+     180
+    ],
+    "text": "A Love Deeper than the Sea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     182,
+     446,
+     200
+    ],
+    "text": "Warmth of Joined Hands",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     202,
+     446,
+     220
+    ],
+    "text": "Return of the Hero",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     222,
+     446,
+     240
+    ],
+    "text": "A Single Tear",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapter_title_03.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     2,
+     222,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     22,
+     222,
+     40
+    ],
+    "text": "A Sweet Banquet",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     42,
+     222,
+     60
+    ],
+    "text": "Glory of the Laurel",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     62,
+     222,
+     80
+    ],
+    "text": "The Beloved Immortal God",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     82,
+     222,
+     100
+    ],
+    "text": "Christmas Lights, Falling Shadows",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     102,
+     222,
+     120
+    ],
+    "text": "Tangled Intentions",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     122,
+     222,
+     140
+    ],
+    "text": "A Journey of Memories",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     142,
+     222,
+     160
+    ],
+    "text": "Waltz to the End",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     162,
+     222,
+     180
+    ],
+    "text": "Eternal Light",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     182,
+     222,
+     200
+    ],
+    "text": "Love's Gentle Bonds",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     202,
+     222,
+     220
+    ],
+    "text": "Proof of Having Lived",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     222,
+     222,
+     240
+    ],
+    "text": "The Last Prank",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     2,
+     446,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     22,
+     446,
+     40
+    ],
+    "text": "Trickster of Flame",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     42,
+     446,
+     60
+    ],
+    "text": "After a Fierce Battle",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     62,
+     446,
+     80
+    ],
+    "text": "A Whimsical Kiss",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     82,
+     446,
+     100
+    ],
+    "text": "A Wish upon the Aurora",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     102,
+     446,
+     120
+    ],
+    "text": "The Clown's Sorrow",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     122,
+     446,
+     140
+    ],
+    "text": "Love's Magic",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     142,
+     446,
+     160
+    ],
+    "text": "The One Who Ends It",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     162,
+     446,
+     180
+    ],
+    "text": "Mischievous Fire",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     182,
+     446,
+     200
+    ],
+    "text": "Feelings Without Lies",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     202,
+     446,
+     220
+    ],
+    "text": "Light of Sorrow and Joy",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     222,
+     446,
+     240
+    ],
+    "text": "A Sealed Dream",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapter_title_04.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     2,
+     222,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     22,
+     222,
+     40
+    ],
+    "text": "Guardian of Souls",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     42,
+     222,
+     60
+    ],
+    "text": "An Open Heart",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     62,
+     222,
+     80
+    ],
+    "text": "Scales of Good and Evil",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     82,
+     222,
+     100
+    ],
+    "text": "Forbidden Fruit",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     102,
+     222,
+     120
+    ],
+    "text": "An Innocent Wish",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     122,
+     222,
+     140
+    ],
+    "text": "Words I Want to Say",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     2,
+     446,
+     20
+    ],
+    "text": "Academy of the Gods",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     22,
+     446,
+     40
+    ],
+    "text": "Ruler of Wisdom",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     42,
+     446,
+     60
+    ],
+    "text": "The Aloof God",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     62,
+     446,
+     80
+    ],
+    "text": "The Answer I Was Led To",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     82,
+     446,
+     100
+    ],
+    "text": "Humanity's Wish",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     102,
+     446,
+     120
+    ],
+    "text": "Irreplaceable",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     226,
+     122,
+     446,
+     140
+    ],
+    "text": "The Doomsday Clock",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "fill": "#3a3632ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapterParts.txp",
+  "labels": [
+   {
+    "rect": [
+     -1,
+     114,
+     47,
+     130
+    ],
+    "text": "Prologue",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     114,
+     96,
+     130
+    ],
+    "text": "Council",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     97,
+     114,
+     145,
+     130
+    ],
+    "text": "Clubs",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     145,
+     114,
+     193,
+     130
+    ],
+    "text": "Sports",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     193,
+     114,
+     241,
+     130
+    ],
+    "text": "Ch. 1",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     240,
+     114,
+     288,
+     130
+    ],
+    "text": "Ch. 2",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     288,
+     114,
+     336,
+     130
+    ],
+    "text": "Ch. 3",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     337,
+     114,
+     385,
+     130
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     -1,
+     156,
+     47,
+     170
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     156,
+     96,
+     170
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     97,
+     156,
+     145,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     145,
+     156,
+     193,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     193,
+     156,
+     241,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     240,
+     156,
+     288,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     288,
+     156,
+     336,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     337,
+     156,
+     385,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     -1,
+     170,
+     47,
+     184
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     170,
+     96,
+     184
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     27,
+     262,
+     170,
+     279
+    ],
+    "text": "Apollon Agana Belea",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     262,
+     344,
+     279
+    ],
+    "text": "Hades Aidoneus",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     287,
+     170,
+     304
+    ],
+    "text": "Tsukito Totsuka",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     287,
+     344,
+     304
+    ],
+    "text": "Takeru Totsuka",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     312,
+     170,
+     329
+    ],
+    "text": "Balder Hringhorni",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     312,
+     344,
+     329
+    ],
+    "text": "Loki Laevatein",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     337,
+     170,
+     354
+    ],
+    "text": "Anubis Maat",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     337,
+     344,
+     354
+    ],
+    "text": "Thoth Caduceus",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     358,
+     147,
+     376
+    ],
+    "text": "Read",
+    "size": 13,
+    "fit": true,
+    "fill": "#1e1a28ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     148,
+     358,
+     186,
+     376
+    ],
+    "text": "Rating",
+    "size": 13,
+    "fit": true,
+    "fill": "#1e1a28ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_000.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Apollon",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_001.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Hades",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_002.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Tsukito",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_003.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Takeru",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_004.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Balder",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_005.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Loki",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_006.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Anubis",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_007.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Thoth",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_008.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Other",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_explain.txp",
+  "labels": [
+   {
+    "rect": [
+     34,
+     247,
+     108,
+     263
+    ],
+    "text": "Play/Stop Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     126,
+     247,
+     198,
+     263
+    ],
+    "text": "Pause Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     219,
+     247,
+     241,
+     263
+    ],
+    "text": "Quit",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     287,
+     247,
+     340,
+     263
+    ],
+    "text": "Full View",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     386,
+     247,
+     430,
+     263
+    ],
+    "text": "Variant",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_menuPaper_S.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     296,
+     93,
+     310
+    ],
+    "text": "Chibi Characters",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     296,
+     186,
+     310
+    ],
+    "text": "Chibi Characters",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     312,
+     93,
+     326
+    ],
+    "text": "My House",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     312,
+     186,
+     326
+    ],
+    "text": "My House",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     330,
+     93,
+     344
+    ],
+    "text": "Objects",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     330,
+     186,
+     344
+    ],
+    "text": "Objects",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     347,
+     93,
+     361
+    ],
+    "text": "Season",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     347,
+     186,
+     361
+    ],
+    "text": "Season",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     364,
+     93,
+     378
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     364,
+     186,
+     378
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     380,
+     93,
+     394
+    ],
+    "text": "Events",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     380,
+     186,
+     394
+    ],
+    "text": "Events",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     398,
+     93,
+     413
+    ],
+    "text": "Delete",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     398,
+     186,
+     413
+    ],
+    "text": "Delete",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_helpwindow.txp",
+  "labels": [
+   {
+    "rect": [
+     109,
+     44,
+     169,
+     62
+    ],
+    "text": "Camera",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     188,
+     44,
+     248,
+     62
+    ],
+    "text": "Follow",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     296,
+     44,
+     336,
+     62
+    ],
+    "text": "Fade",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     386,
+     44,
+     452,
+     62
+    ],
+    "text": "Zoom",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_help.txp",
+  "labels": [
+   {
+    "rect": [
+     20,
+     27,
+     69,
+     47
+    ],
+    "text": "Toggle",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     112,
+     27,
+     141,
+     47
+    ],
+    "text": "Place",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     20,
+     52,
+     72,
+     72
+    ],
+    "text": "Toggle",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     20,
+     76,
+     60,
+     95
+    ],
+    "text": "Close",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/AUDIOROOM.dat/submenu_help_music.txp",
+  "labels": [
+   {
+    "rect": [
+     114,
+     34,
+     204,
+     53
+    ],
+    "text": "Play/Stop",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     65,
+     204,
+     84
+    ],
+    "text": "Pause",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     93,
+     210,
+     113
+    ],
+    "text": "Category",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     114,
+     123,
+     204,
+     143
+    ],
+    "text": "Mode",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/skipSelectParts.txp",
+  "labels": [
+   {
+    "rect": [
+     24,
+     4,
+     70,
+     25
+    ],
+    "text": "Skip",
+    "size": 12,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     102,
+     4,
+     158,
+     25
+    ],
+    "text": "Mode",
+    "size": 12,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts05.txp",
+  "labels": [
+   {
+    "rect": [
+     0,
+     3,
+     68,
+     20
+    ],
+    "text": "Birthday",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     18,
+     68,
+     35
+    ],
+    "text": "Height",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     33,
+     68,
+     50
+    ],
+    "text": "Weight",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     49,
+     68,
+     66
+    ],
+    "text": "Talent",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     64,
+     68,
+     81
+    ],
+    "text": "Hobby",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     79,
+     68,
+     96
+    ],
+    "text": "Likes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     94,
+     68,
+     111
+    ],
+    "text": "Dislikes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     110,
+     68,
+     127
+    ],
+    "text": "Birthstone",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     131,
+     68,
+     148
+    ],
+    "text": "Birthday",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     146,
+     68,
+     163
+    ],
+    "text": "Height",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     162,
+     68,
+     179
+    ],
+    "text": "Weight",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     177,
+     68,
+     194
+    ],
+    "text": "Talent",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     192,
+     68,
+     209
+    ],
+    "text": "Hobby",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     207,
+     68,
+     224
+    ],
+    "text": "Likes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     223,
+     68,
+     240
+    ],
+    "text": "Dislikes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     250,
+     68,
+     267
+    ],
+    "text": "Birthstone",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     3,
+     156,
+     20
+    ],
+    "text": "Aug 1",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     49,
+     156,
+     66
+    ],
+    "text": "Prophecy",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     64,
+     156,
+     81
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     79,
+     156,
+     96
+    ],
+    "text": "Oranges",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     94,
+     156,
+     111
+    ],
+    "text": "Avocados",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     110,
+     156,
+     127
+    ],
+    "text": "Peridot",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     3,
+     228,
+     20
+    ],
+    "text": "Jan 13",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     49,
+     228,
+     66
+    ],
+    "text": "Cooking",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     64,
+     228,
+     81
+    ],
+    "text": "Gardening",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     79,
+     228,
+     96
+    ],
+    "text": "Ichigo daifuku",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     94,
+     228,
+     111
+    ],
+    "text": "Eggs",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     110,
+     228,
+     127
+    ],
+    "text": "Garnet",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     3,
+     300,
+     20
+    ],
+    "text": "Feb 12",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     49,
+     300,
+     66
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     64,
+     300,
+     81
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     79,
+     300,
+     96
+    ],
+    "text": "Tasty food",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     94,
+     300,
+     111
+    ],
+    "text": "Bad food",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     110,
+     300,
+     127
+    ],
+    "text": "Amethyst",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     3,
+     372,
+     20
+    ],
+    "text": "Mar 20",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     49,
+     372,
+     66
+    ],
+    "text": "Swordplay",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     64,
+     372,
+     81
+    ],
+    "text": "Seashells",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     79,
+     372,
+     96
+    ],
+    "text": "Soba",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     94,
+     372,
+     111
+    ],
+    "text": "Mushrooms",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     110,
+     372,
+     127
+    ],
+    "text": "Aquamarine",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     131,
+     156,
+     148
+    ],
+    "text": "Apr 29",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     177,
+     156,
+     194
+    ],
+    "text": "Immortality",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     192,
+     156,
+     209
+    ],
+    "text": "Dancing",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     207,
+     156,
+     224
+    ],
+    "text": "Steak",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     223,
+     156,
+     240
+    ],
+    "text": "Salad",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     238,
+     156,
+     255
+    ],
+    "text": "Diamond",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     131,
+     228,
+     148
+    ],
+    "text": "Oct 24",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     177,
+     228,
+     194
+    ],
+    "text": "Crafting",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     192,
+     228,
+     209
+    ],
+    "text": "Pranks",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     207,
+     228,
+     224
+    ],
+    "text": "Candy",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     223,
+     228,
+     240
+    ],
+    "text": "Seafood",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     238,
+     228,
+     255
+    ],
+    "text": "Opal",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     131,
+     300,
+     148
+    ],
+    "text": "Jun 6",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     177,
+     300,
+     194
+    ],
+    "text": "Mummy-making",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     192,
+     300,
+     209
+    ],
+    "text": "Animals",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     207,
+     300,
+     224
+    ],
+    "text": "Spices",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     223,
+     300,
+     240
+    ],
+    "text": "Sweets",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     238,
+     300,
+     255
+    ],
+    "text": "Pearl",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     131,
+     372,
+     147
+    ],
+    "text": "Dec 21",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     177,
+     372,
+     193
+    ],
+    "text": "Analysis",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     192,
+     372,
+     208
+    ],
+    "text": "Research",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     207,
+     372,
+     223
+    ],
+    "text": "Corn",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     222,
+     372,
+     238
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     236,
+     372,
+     252
+    ],
+    "text": "(picky, really)",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     250,
+     372,
+     266
+    ],
+    "text": "Lapis lazuli",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts02.txp",
+  "labels": [
+   {
+    "rect": [
+     85,
+     13,
+     300,
+     34
+    ],
+    "text": "Apollon Agana Belea",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     53,
+     300,
+     74
+    ],
+    "text": "Hades Aidoneus",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     93,
+     300,
+     114
+    ],
+    "text": "Tsukito Totsuka",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     133,
+     300,
+     154
+    ],
+    "text": "Takeru Totsuka",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     173,
+     300,
+     194
+    ],
+    "text": "Balder Hringhorni",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     213,
+     300,
+     234
+    ],
+    "text": "Loki Laevatein",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     254,
+     300,
+     275
+    ],
+    "text": "Anubis Maat",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     85,
+     294,
+     300,
+     315
+    ],
+    "text": "Thoth Caduceus",
+    "size": 15,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#ffffffff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts01.txp",
+  "labels": [
+   {
+    "rect": [
+     4,
+     3,
+     44,
+     213
+    ],
+    "text": "Greek Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     44,
+     3,
+     84,
+     213
+    ],
+    "text": "Japanese Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     84,
+     3,
+     124,
+     213
+    ],
+    "text": "Norse Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     124,
+     3,
+     164,
+     213
+    ],
+    "text": "Egyptian Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   }
+  ]
+ },
+ {
+  "texture": "START.DAT/BackLog_Window.txp",
+  "labels": [
+   {
+    "rect": [
+     246,
+     243,
+     292,
+     260
+    ],
+    "text": "Fast",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     315,
+     243,
+     341,
+     260
+    ],
+    "text": "Scroll",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     359,
+     243,
+     403,
+     260
+    ],
+    "text": "Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     424,
+     243,
+     452,
+     260
+    ],
+    "text": "Close",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
+ },
+ {
+  "texture": "START.DAT/subMenuWindow.txp",
+  "labels": [
+   {
+    "rect": [
+     115,
+     218,
+     262,
+     236
+    ],
+    "text": "Backlog",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     248,
+     262,
+     266
+    ],
+    "text": "Auto Play",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     278,
+     262,
+     296
+    ],
+    "text": "Skip to Choice",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     307,
+     262,
+     325
+    ],
+    "text": "Auto Skip",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     338,
+     262,
+     355
+    ],
+    "text": "Cancel",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   }
+  ]
+ }
+]
