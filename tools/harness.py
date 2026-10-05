@@ -9,7 +9,12 @@ Input script (one step per line, '#' comments):
   press BTN [BTN..] [N]   hold buttons for N frames (default 4), then release for 4
   shot NAME               save the current frame as NAME.png
   repeat K press ...      repeat a press K times
-Buttons: circle cross square triangle start select up down left right l r
+  save NAME / load NAME   save or restore an emulator state (<workdir>/states/NAME.state)
+  poke ADDR VAL [SIZE]    write VAL (hex) to RAM at ADDR (hex), SIZE bytes little endian
+  peek ADDR [SIZE]        print SIZE bytes of RAM at ADDR
+  dump NAME               write all of RAM to <out>/NAME.ram (diff two dumps to find flags)
+Buttons: circle cross square triangle start select up down left right l r;
+analog stick: sleft sright sup sdown
 """
 import argparse
 import ctypes as C
@@ -32,9 +37,14 @@ ENV_GET_INPUT_BITMASKS = 51 | 0x10000
 
 PIXFMT_0RGB1555, PIXFMT_XRGB8888, PIXFMT_RGB565 = 0, 1, 2
 
+RETRO_MEMORY_SYSTEM_RAM = 2
+RAM_BASE = 0x08000000      # PPSSPP exposes PSP RAM from the kernel base
+
 # libretro joypad ids; PPSSPP maps A->circle, B->cross, X->triangle, Y->square
 BUTTONS = {"cross": 0, "square": 1, "select": 2, "start": 3, "up": 4, "down": 5,
            "left": 6, "right": 7, "circle": 8, "triangle": 9, "l": 10, "r": 11}
+# analog stick directions: (axis, value)
+STICK = {"sleft": (0, -0x7FFF), "sright": (0, 0x7FFF), "sup": (1, -0x7FFF), "sdown": (1, 0x7FFF)}
 
 OPTIONS = {
     b"ppsspp_software_rendering": b"enabled",
@@ -147,11 +157,18 @@ class Runner:
         self.frame = (C.string_at(data, pitch * h), w, h, pitch)
 
     def _input(self, port, device, index, button_id):
-        if port != 0 or device != 1:
+        if port != 0:
             return 0
+        if device == 5:  # RETRO_DEVICE_ANALOG: index 0 = left stick, id 0 = x, 1 = y
+            if index != 0:
+                return 0
+            return sum(v for b, (axis, v) in STICK.items() if b in self.held and axis == button_id)
+        if device != 1:
+            return 0
+        pad = [b for b in self.held if b in BUTTONS]
         if button_id == 256:  # RETRO_DEVICE_ID_JOYPAD_MASK
-            return sum(1 << BUTTONS[b] for b in self.held)
-        return int(any(BUTTONS[b] == button_id for b in self.held))
+            return sum(1 << BUTTONS[b] for b in pad)
+        return int(any(BUTTONS[b] == button_id for b in pad))
 
     def load(self, iso, boot_wait=10.0):
         self._iso = os.path.abspath(iso).encode()
@@ -189,8 +206,48 @@ class Runner:
     def shot(self, path):
         self.image().save(path)
 
+    def save_state(self, path):
+        self.core.retro_serialize_size.restype = C.c_size_t
+        n = self.core.retro_serialize_size()
+        buf = C.create_string_buffer(n)
+        if not self.core.retro_serialize(buf, C.c_size_t(n)):
+            raise RuntimeError("core could not save a state")
+        with open(path, "wb") as f:
+            f.write(buf.raw)
 
-def run_script(r, script, outdir):
+    def load_state(self, path):
+        with open(path, "rb") as f:
+            data = f.read()
+        if not self.core.retro_unserialize(data, C.c_size_t(len(data))):
+            raise RuntimeError(f"core refused the state {path}")
+
+    def ram(self):
+        """-> ctypes byte array over PSP RAM, index 0 = address RAM_BASE."""
+        self.core.retro_get_memory_data.restype = C.c_void_p
+        self.core.retro_get_memory_size.restype = C.c_size_t
+        base = self.core.retro_get_memory_data(RETRO_MEMORY_SYSTEM_RAM)
+        size = self.core.retro_get_memory_size(RETRO_MEMORY_SYSTEM_RAM)
+        if not base or not size:
+            raise RuntimeError("core exposes no system RAM")
+        return (C.c_ubyte * size).from_address(base)
+
+    def poke(self, addr, value, size=1):
+        mem = self.ram()
+        off = addr - RAM_BASE
+        for i in range(size):
+            mem[off + i] = (value >> (8 * i)) & 0xFF
+
+    def peek(self, addr, size=4):
+        mem = self.ram()
+        off = addr - RAM_BASE
+        return bytes(mem[off:off + size])
+
+
+def state_path(statedir, name):
+    return os.path.join(statedir, name + ".state")
+
+
+def run_script(r, script, outdir, statedir):
     for raw in script.splitlines():
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -209,6 +266,21 @@ def run_script(r, script, outdir):
             elif cmd == "shot":
                 r.shot(os.path.join(outdir, args[0] + ".png"))
                 print("shot", args[0], flush=True)
+            elif cmd == "save":
+                r.save_state(state_path(statedir, args[0]))
+                print("saved", args[0], flush=True)
+            elif cmd == "load":
+                r.load_state(state_path(statedir, args[0]))
+            elif cmd == "poke":
+                size = int(args[2]) if len(args) > 2 else 1
+                r.poke(int(args[0], 16), int(args[1], 16), size)
+            elif cmd == "peek":
+                size = int(args[1]) if len(args) > 1 else 4
+                print("peek", args[0], r.peek(int(args[0], 16), size).hex(" "), flush=True)
+            elif cmd == "dump":
+                with open(os.path.join(outdir, args[0] + ".ram"), "wb") as f:
+                    f.write(bytes(r.ram()))
+                print("dumped", args[0], flush=True)
             else:
                 raise ValueError(f"bad script line: {raw}")
 
@@ -226,6 +298,9 @@ def main():
     ap.add_argument("--workdir", default="work/harness")
     ap.add_argument("--out", default="work/shots")
     ap.add_argument("-v", "--verbose", action="store_true")
+    ap.add_argument("--fresh", action="store_true",
+                    help="delete <workdir>/saves first (the game autosaves its settings there)")
+    ap.add_argument("--state", help="start from this saved state (a name in <workdir>/states or a path)")
     ap.add_argument("--boot-wait", type=float, default=10.0,
                     help="seconds to let the async loader finish before the first frame")
     ap.add_argument("iso")
@@ -233,13 +308,19 @@ def main():
     a = ap.parse_args()
     system_dir = os.path.join(a.workdir, "system")
     save_dir = os.path.join(a.workdir, "saves")
-    for d in (system_dir, save_dir, a.out):
+    state_dir = os.path.join(a.workdir, "states")
+    if a.fresh and os.path.isdir(save_dir):
+        shutil.rmtree(save_dir)
+    for d in (system_dir, save_dir, state_dir, a.out):
         os.makedirs(d, exist_ok=True)
     prepare_system_dir(system_dir, a.assets)
     r = Runner(a.core, system_dir, save_dir, a.verbose)
     r.load(a.iso, a.boot_wait)
+    if a.state:
+        r.run(1)
+        r.load_state(a.state if os.path.exists(a.state) else state_path(state_dir, a.state))
     with open(a.script) as f:
-        run_script(r, f.read(), a.out)
+        run_script(r, f.read(), a.out, state_dir)
 
 
 if __name__ == "__main__":
