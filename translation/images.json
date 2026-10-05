@@ -3727,5 +3727,70 @@
     "rotate": 270
    }
   ]
+ },
+ {
+  "texture": "START.DAT/BackLog_Window.txp",
+  "labels": [
+   {
+    "rect": [
+     246,
+     243,
+     292,
+     260
+    ],
+    "text": "Fast",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     315,
+     243,
+     341,
+     260
+    ],
+    "text": "Scroll",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     359,
+     243,
+     403,
+     260
+    ],
+    "text": "Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     424,
+     243,
+     452,
+     260
+    ],
+    "text": "Close",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "interp",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
  }
 ]
