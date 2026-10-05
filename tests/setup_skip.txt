@@ -1,7 +1,7 @@
 # boot -> Option: Message Skip All, Message Speed Fastest -> New Game (default name)
-# -> System Menu -> Option -> Key Config: R = Auto Skip, L = Next Select -> first page.
+# -> System Menu -> Option -> Key Config: R and START = Auto Skip, L = Next Select -> first page.
 # Run with --fresh (the option toggles assume default settings). Ends with state 'story'.
-# Then: press r to skip to the next choice (tests/walk.txt).
+# Then: tools/autoplay.py --state story plays on from here.
 wait 600
 press cross
 wait 600
@@ -65,6 +65,13 @@ press circle 8
 wait 60
 press square left 8
 wait 60
+press down 8
+wait 30
+repeat 5 press square left 8
+wait 60
+shot keys
+press up 8
+wait 30
 press left 8
 wait 30
 press square right 8
