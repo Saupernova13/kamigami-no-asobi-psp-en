@@ -3674,5 +3674,58 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts01.txp",
+  "labels": [
+   {
+    "rect": [
+     4,
+     3,
+     44,
+     213
+    ],
+    "text": "Greek Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     44,
+     3,
+     84,
+     213
+    ],
+    "text": "Japanese Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     84,
+     3,
+     124,
+     213
+    ],
+    "text": "Norse Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   },
+   {
+    "rect": [
+     124,
+     3,
+     164,
+     213
+    ],
+    "text": "Egyptian Mythology",
+    "size": 26,
+    "fit": true,
+    "rotate": 270
+   }
+  ]
  }
 ]

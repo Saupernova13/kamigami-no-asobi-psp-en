@@ -16,7 +16,8 @@ or "erase": "median" for text on a patterned bar, or "erase": "interp" to blend 
 from the rect's top row to its bottom row, when those rows are clear of text)
 and the English is drawn centred in it, at "size" px (default: the rect height minus
 4), in "fill"/"outline" colours (default: sampled from the original pixels in the rect -
-the lightest and the darkest opaque colours; "outline": "#00000000" for none). Glyphs come from the game's own FontA
+the lightest and the darkest opaque colours; "outline": "#00000000" for none). "rotate": 270
+runs the text top to bottom (90: bottom to top), for vertical labels. Glyphs come from the game's own FontA
 (START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
 
 `preview` writes before/after PNGs so a label can be checked without a build.
@@ -125,8 +126,10 @@ def render_label(img, label, font):
         img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), parse_colour(erase)), (x0, y0))
     size = label.get("size", (y1 - y0) - 4)
     m = font.mask(label["text"], label.get("spacing", 1))
-    if label.get("fit"):        # shrink until it fits the rect width
-        while size > 8 and round(m.width * size / CELL) + 2 > x1 - x0:
+    rotate = label.get("rotate", 0)            # 90: reads bottom to top, 270: top to bottom
+    room = (y1 - y0) if rotate in (90, 270) else (x1 - x0)
+    if label.get("fit"):        # shrink until it fits along the text direction
+        while size > 8 and round(m.width * size / CELL) + 2 > room:
             size -= 1
     w = max(1, round(m.width * size / CELL))
     m = m.resize((w, size), Image.LANCZOS)
@@ -134,8 +137,11 @@ def render_label(img, label, font):
     canvas = Image.new("L", (w + 2 * pad, size + 2 * pad))
     canvas.paste(m, (pad, pad))
     ring = canvas.filter(ImageFilter.MaxFilter(3)) if pad else None
-    if canvas.width > x1 - x0:
-        raise ValueError(f"{label['text']!r} is {canvas.width}px, the rect is {x1 - x0}px")
+    if rotate:
+        canvas = canvas.rotate(rotate, expand=True)
+        ring = ring.rotate(rotate, expand=True) if ring is not None else None
+    if canvas.width > x1 - x0 or canvas.height > y1 - y0:
+        raise ValueError(f"{label['text']!r} is {canvas.size}, the rect is {(x1 - x0, y1 - y0)}")
     if label.get("align") == "left":
         px = x0
     else:
