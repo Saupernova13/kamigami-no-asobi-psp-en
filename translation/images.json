@@ -2217,5 +2217,267 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_menuPaper_S.txp",
+  "labels": [
+   {
+    "rect": [
+     2,
+     296,
+     93,
+     310
+    ],
+    "text": "Chibi Characters",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     296,
+     186,
+     310
+    ],
+    "text": "Chibi Characters",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     312,
+     93,
+     326
+    ],
+    "text": "My House",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     312,
+     186,
+     326
+    ],
+    "text": "My House",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     330,
+     93,
+     344
+    ],
+    "text": "Objects",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     330,
+     186,
+     344
+    ],
+    "text": "Objects",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     347,
+     93,
+     361
+    ],
+    "text": "Season",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     347,
+     186,
+     361
+    ],
+    "text": "Season",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     364,
+     93,
+     378
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     364,
+     186,
+     378
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     380,
+     93,
+     394
+    ],
+    "text": "Events",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     380,
+     186,
+     394
+    ],
+    "text": "Events",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     2,
+     398,
+     93,
+     413
+    ],
+    "text": "Delete",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#a0703aff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     398,
+     186,
+     413
+    ],
+    "text": "Delete",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#4a8ccaff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GARDEN.dat/garden_helpwindow.txp",
+  "labels": [
+   {
+    "rect": [
+     109,
+     44,
+     169,
+     62
+    ],
+    "text": "Camera",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     188,
+     44,
+     248,
+     62
+    ],
+    "text": "Follow",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     296,
+     44,
+     336,
+     62
+    ],
+    "text": "Fade",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     386,
+     44,
+     452,
+     62
+    ],
+    "text": "Zoom",
+    "size": 11,
+    "fit": true,
+    "erase": "#ffffff8c",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
  }
 ]
