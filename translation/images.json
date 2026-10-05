@@ -2601,5 +2601,38 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/skipSelectParts.txp",
+  "labels": [
+   {
+    "rect": [
+     24,
+     4,
+     70,
+     25
+    ],
+    "text": "Skip",
+    "size": 12,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   },
+   {
+    "rect": [
+     102,
+     4,
+     158,
+     25
+    ],
+    "text": "Mode",
+    "size": 12,
+    "fit": true,
+    "align": "left",
+    "fill": "#14304eff",
+    "outline": "#ffffffff"
+   }
+  ]
  }
 ]
