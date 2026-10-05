@@ -10,7 +10,8 @@ translation/images.json lists textures and the labels to replace:
 
 "texture" is the path through the ISO's archives (archive in USRDIR / nested pack /
 file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa",
-or "erase": "extend" to repeat the column left of the rect, for text on an opaque bar)
+or "erase": "extend" to repeat the column left of the rect, for text on an opaque bar, or
+"erase": "clean" to fill each column with its lightest pixel, for dark text on a gradient)
 and the English is drawn centred in it, at "size" px (default: the rect height minus
 4), in "fill"/"outline" colours (default: sampled from the original pixels in the rect -
 the lightest and the darkest opaque colours; "outline": "#00000000" for none). Glyphs come from the game's own FontA
@@ -96,6 +97,12 @@ def render_label(img, label, font):
         for y in range(y0, y1):
             c = img.getpixel((x0 - 1, y))
             for x in range(x0, x1):
+                img.putpixel((x, y), c)
+    elif erase == "clean":      # dark text on a light horizontal gradient: lightest per column
+        lum = lambda c: c[0] * 299 + c[1] * 587 + c[2] * 114
+        for x in range(x0, x1):
+            c = max((img.getpixel((x, y)) for y in range(y0, y1)), key=lum)
+            for y in range(y0, y1):
                 img.putpixel((x, y), c)
     else:
         img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), parse_colour(erase)), (x0, y0))

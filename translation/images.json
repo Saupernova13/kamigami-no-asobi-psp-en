@@ -1608,5 +1608,354 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/CHAPTER.dat/chapterParts.txp",
+  "labels": [
+   {
+    "rect": [
+     -1,
+     114,
+     47,
+     130
+    ],
+    "text": "Prologue",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     114,
+     96,
+     130
+    ],
+    "text": "Council",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     97,
+     114,
+     145,
+     130
+    ],
+    "text": "Clubs",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     145,
+     114,
+     193,
+     130
+    ],
+    "text": "Sports",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     193,
+     114,
+     241,
+     130
+    ],
+    "text": "Ch. 1",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     240,
+     114,
+     288,
+     130
+    ],
+    "text": "Ch. 2",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     288,
+     114,
+     336,
+     130
+    ],
+    "text": "Ch. 3",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     337,
+     114,
+     385,
+     130
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     -1,
+     156,
+     47,
+     170
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     156,
+     96,
+     170
+    ],
+    "text": "Ch. 4",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     97,
+     156,
+     145,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     145,
+     156,
+     193,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     193,
+     156,
+     241,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     240,
+     156,
+     288,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     288,
+     156,
+     336,
+     170
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     337,
+     156,
+     385,
+     170
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     -1,
+     170,
+     47,
+     184
+    ],
+    "text": "Love",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     48,
+     170,
+     96,
+     184
+    ],
+    "text": "Fate",
+    "size": 11,
+    "fit": true
+   },
+   {
+    "rect": [
+     27,
+     262,
+     170,
+     279
+    ],
+    "text": "Apollon Agana Belea",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     262,
+     344,
+     279
+    ],
+    "text": "Hades Aidoneus",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     287,
+     170,
+     304
+    ],
+    "text": "Tsukito Totsuka",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     287,
+     344,
+     304
+    ],
+    "text": "Takeru Totsuka",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     312,
+     170,
+     329
+    ],
+    "text": "Balder Hringhorni",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     312,
+     344,
+     329
+    ],
+    "text": "Loki Laevatein",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     27,
+     337,
+     170,
+     354
+    ],
+    "text": "Anubis Maat",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     200,
+     337,
+     344,
+     354
+    ],
+    "text": "Thoth Caduceus",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     94,
+     358,
+     147,
+     376
+    ],
+    "text": "Read",
+    "size": 13,
+    "fit": true,
+    "fill": "#1e1a28ff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     148,
+     358,
+     186,
+     376
+    ],
+    "text": "Rating",
+    "size": 13,
+    "fit": true,
+    "fill": "#1e1a28ff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]
