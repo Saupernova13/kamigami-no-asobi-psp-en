@@ -6,31 +6,34 @@ Formats and addresses are in [FORMATS.md](FORMATS.md), the general method in
 
 ## What works (verified in the emulator)
 
-- Story text in the message window: proportional ASCII, word wrap at 390 px, 3 lines,
-  automatic continuation windows, `!`/`'`/narrow glyphs placed correctly.
-- Nameplates (all speakers, repacked), the heroine's nameplate as her given name.
-- Player name: default "Yui" (full-width, so name entry and the script accept it),
-  rendered proportionally in the window; `{NAME}` / `{NICK}` inserts.
-- UI strings: menus' help bar, dialogs, quiz-difficulty prompt, Yes/No, option help,
-  system menu help, dictionary list. Long strings move to an extra ELF segment.
-- Dictionary: titles in the list, entry bodies (proportional, scrolling).
-- Build: `tools/build.py` makes a full English ISO from the original in seconds once the
-  EBOOT is decrypted; `tools/check.py` validates all translation files.
+Seen in harness screenshots, on a new game and on a full route played to its ending with
+`tools/autoplay.py` (see [TESTING.md](TESTING.md)):
 
-Not seen in game yet: the Mythology Monologue screen, chapter select, the mythology quiz (needs a save that reaches it), choices, most
-EBOOT strings, route text.
+- Story text: proportional ASCII, word wrap at 390 px, 3 lines, continuation windows.
+- Choices ("Select the phrase", "Thread of fate"): proportional, labels up to 32 characters.
+- Nameplates; the heroine's nameplate is her given name. Player name defaults to "Yui";
+  name entry opens on its ABC page.
+- UI strings: help bar, dialogs (unlock notices, save prompts), Yes/No, options, system
+  menu, key config, quiz setting. Centred text is centred (width loops patched).
+- Mythology quiz (four-choice and true/false), quiz prep and result screens.
+- Chapter cards (the typed chapter title), chapter select, the "To the next chapter"
+  screens, the ending ("fin.") and credits roll.
+- Extra: Miniature Garden title, Profile, Graphic, Music, Dictionary (list, entries),
+  Mythology Monologue (list and story pages), Mythology Quiz title and setting.
 
-## Current state (2026-10-05)
+## Current state (2026-10-06)
 
 - Coverage: every extracted unit has English - 37,862 story units (01-12), 1,200 quiz,
-  254 dictionary, 6,771 Mythology Monologue, the hand-written EBOOT UI, 109 re-lettered
-  textures. `check.py`: 0 errors, 14 warnings (memorial name tokens turned into pronouns).
+  254 dictionary, 6,771 Mythology Monologue, 103 chapter titles, the hand-written EBOOT
+  UI, 130 re-lettered textures (txp and anm). `check.py`: 0 errors.
 - Quality: story, quiz, dictionary and monologue are **unedited machine translation**.
-  Hand-written: EBOOT UI, nameplates, event/chapter titles, image labels. The editing
-  passes (packages S01-S12, Q, D, M in [TRANSLATION.md](TRANSLATION.md)) are the main
-  remaining translation work; none has been merged yet.
-- The first playtest ISO went out at this state (built from `feat/text-pipeline` at
-  `49bf49b`). Playtest reports are the fastest way to find the in-game checks below.
+  Hand-written: EBOOT UI, nameplates, chapter/event titles, image labels, the 137 long
+  choices (shortened to fit). The editing passes (packages S01-S12, Q, D, M in
+  [TRANSLATION.md](TRANSLATION.md)) are the main remaining translation work.
+- Known and accepted: the fixed surname shows as 草薙 in the name-entry box (3-character
+  slot; the surname is never inserted into text). The "Get New Story" popup cuts titles
+  wider than 96 px and adds an ellipsis - the original does the same for long Japanese.
+- Playtest ISOs went out at `c38c7f8` (2026-10-05) and after this pass (2026-10-06).
 
 ## Build and test
 
@@ -50,7 +53,11 @@ rewrites `work/build/EBOOT.patched.ELF` on every build.
 | second byte 1 for single-byte text | `0x08875228` | 2-byte renderers stop at a zero byte |
 | `AsciiAdvance` | window layout `0x0887dd98` | ink-width advance for ASCII and full-width letters; bearing shift for full-width |
 | `ModeCheck` stubs | 15 sites in 5 UI loops | proportional branch for ASCII units |
-| `DictAdvance` | `0x08814094` | dictionary body advance |
+| `DictAdvance` | `0x08814094`, `0x0882369c` | dictionary and monologue body advance |
+| `ChoiceAdvance` | 4 sites in `FUN_08871678` / `FUN_088753fc` | choice label advance |
+| width-loop `ModeCheck` | `FUN_0888a7b0`, `FUN_0888a6a4`, `FUN_0888a4ac`, `FUN_088907dc` | centred English measured proportionally |
+| `UI_SPACING` | 9 sites in the UI draw and width loops | 1 px between glyphs instead of 2 |
+| name entry mode | `0x088156cc`, `0x088156e4` | opens on the ABC page |
 | code cave | `0x088a7b80` (0x300 code, rest string heap) | stubs; small strings |
 
 Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
@@ -60,43 +67,21 @@ Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 
 In rough priority order. Each says where to start.
 
-1. **Images (package IMG, mostly done).** Text baked into textures is re-lettered from
-   `translation/images.json` by `tools/imagetext.py` (see its docstring and
-   [TRANSLATION.md](TRANSLATION.md#images)). Checked in game: option values and hint
-   bar, decision button, name-entry labels and hints, dictionary page headers (all 80,
-   generated from the dictionary titles). Done, not yet seen in game: chapter select
-   (86 titles, tabs, name tags, labels), gallery tags and hints, Garden menu/help/hints,
-   audio room help, skip hints, profile (stats table, name banners, vertical myth
-   labels), backlog hints, sub-menu help. Still Japanese:
-   - `START.DAT/systemMenu_ChapterIcons.txp` (序章, 第1章 ... badges) and the season
-     icons 春 夏 秋 冬 in `DATA.DAT/SKIP.dat`: calligraphic art, an art decision.
-   - Designer notes left in atlases (sizes, spacing): never shown, leave them.
-   - Title-screen character cards (attract mode) and text inside event CGs: not surveyed.
-2. **Mythology Monologue (done, MT).** `tools/memorial.py`: the 111 `memorial*.dat` files
-   use the dictionary layout; the body renderer `FUN_088233c4` shares `DictAdvance`.
-   `MEMORIAL_LINE_PX` (330) is a guess from the Japanese line length: check in game once a
-   monologue is unlocked, and fix titles that come out too long.
-3. **Quiz in game.** Reach the quiz (it is in the story after the prologue, or Extra after
-   a clear) and check line layout; adjust `QUIZ_LINE_PX` in `tools/build.py`.
-4. **Choices.** Check the choice box width with a long English choice; add a limit to
-   `check.py`.
-5. **Name entry screen.** Kana grid and labels are Japanese; slots are 3/3/4 full-width
-   characters (`u16[10]` at `0x0896630e`). An English grid would need the grid data
-   (in the name-entry screen code/`NAME.dat`) and probably longer slots.
-6. **UI centering.** The width loops (`FUN_0888a3b0`, `FUN_0888a6a4`, `FUN_0888a7b0`,
-   `FUN_0888a4ac`) still measure fixed widths, so centered English is offset. Same
-   ModeCheck approach as the draw loops.
-7. **Help-bar tracking.** `FUN_08889b2c`'s proportional path adds 2 px per glyph, which
-   looks loose for English; patch the `+ 2` for ASCII units.
-8. **Full-width names in UI loops** (nameplate "Y u i", name entry) are fixed width;
-   extend the ModeCheck stubs to `82 4F`-`82 9A`, with the bearing shift `AsciiAdvance`
-   does.
-9. `0x0892855c` (read-rate screen) mixes single-byte ASCII into a UI string in the
-   original; confirm its renderer accepts pairs.
-10. Profiles: `PROFILE.dat` is textures only and its labels are re-lettered (item 1);
-    check in game whether any profile text comes from EBOOT strings still in Japanese.
-11. **Release tooling.** A patch generator (xdelta3 from the original ISO) and the rest
-    of the checklist in [RELEASE.md](RELEASE.md).
+1. **Edit the machine translation** (the bulk of the remaining work): work packages in
+   [TRANSLATION.md](TRANSLATION.md#work-packages).
+2. **Hardware test.** Everything is verified on PPSSPP only; run a build on a PSP with
+   custom firmware (memory use: the extra ELF segment is 128 KB).
+3. **Release tooling.** A patch generator (xdelta3 from the original ISO) and the rest
+   of the checklist in [RELEASE.md](RELEASE.md).
+4. **Screens not yet seen in game**, each reachable with `tools/autoplay.py` plus a few
+   presses from a saved state: the Miniature Garden's own menus and help (re-lettered),
+   the Skip/audio room screens, every route other than the first one autoplay takes
+   (route text is MT like the rest, so layout is the main risk).
+5. **Images not surveyed:** text inside event CGs (`ci*`/`bg*` art; export with
+   `imagetext.py export --art`) and the attract-mode title cards. Designer notes left
+   in atlases (sizes, spacing in Japanese) are never shown; leave them.
+6. **Help-bar word gap.** Spaces are the game's 8 px half space (`87 6E`), which looks a
+   little wide in the help bar at its larger size; `FUN_088a1c58` measures it. Cosmetic.
 
 ## Gotchas
 

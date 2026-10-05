@@ -10,20 +10,20 @@ New here, person or agent? Start with [AGENTS.md](AGENTS.md).
 ## Status
 
 All extracted text has English, most of it **unedited machine translation**; the editing
-passes are the main remaining work. The opening (title, name entry, prologue, options,
-dictionary) has been played in the emulator; screens further in are patched but not yet
-seen.
+passes are the main remaining work. A full route has been played in the emulator from
+the title screen to its ending, plus every Extra menu.
 
 | Area | Units | State |
 |---|---|---|
-| Story script (12 files, all routes) | 37,862 | MT, in game; wrap + continuation windows verified |
-| Menus, help bar, dialogs, titles, nameplates (EBOOT) | ~400 | hand translated, in game |
-| Mythology quiz | 1,200 | MT, patched; not yet seen in game |
+| Story script (12 files, all routes) | 37,862 | MT, in game: wrap, continuation windows, choices |
+| Menus, help bar, dialogs, nameplates (EBOOT) | ~400 | hand translated, in game |
+| Mythology quiz | 1,200 | MT, in game (four-choice and true/false) |
 | Dictionary | 254 | MT, in game (list, entries, page-header images) |
-| Mythology Monologue side stories | 6,771 | MT, patched; not yet seen in game |
-| Text baked into textures | 109 textures | re-lettered; option, name entry, dictionary seen in game |
-| Player name | - | default "Yui"; the name-entry kana grid is still Japanese |
-| Still Japanese | - | chapter badges, season icons, name-entry grid, some title/event art |
+| Mythology Monologue side stories | 6,771 | MT, in game |
+| Chapter titles | 103 | hand translated, in game (chapter cards) |
+| Text baked into textures (txp and anm) | 130 textures | re-lettered: chapter cards and badges, quiz, garden, options, profile, ... |
+| Player name | - | default "Yui"; name entry opens on its ABC page |
+| Still Japanese | - | the fixed surname 草薙 in the name box; text inside event CGs (not surveyed) |
 
 Checker: 0 errors. Verified on PPSSPP; not yet on hardware. Details and open tasks:
 [docs/HANDOFF.md](docs/HANDOFF.md). Translation packages and their state:
@@ -40,6 +40,7 @@ python tools/extract.py    original.iso      # story units      -> work/text/01.
 python tools/quiz.py       original.iso      # quiz units       -> work/text/quiz.json
 python tools/dictionary.py original.iso      # dictionary units -> work/text/dictionary.json
 python tools/memorial.py   original.iso      # monologue units  -> work/text/memorial.json
+python tools/selecter.py   original.iso      # chapter titles   -> work/text/selecter.json
 python tools/check.py --iso original.iso     # validate translation files (0 errors)
 python tools/build.py original.iso work/out/en.iso
 python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out/en.iso tests/ui.txt
@@ -83,7 +84,7 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out
 | Tool | Does |
 |---|---|
 | `extract.py` | story units from the ISO -> `work/text/01..12.json` |
-| `quiz.py`, `dictionary.py`, `memorial.py` | quiz / dictionary / Mythology Monologue units |
+| `quiz.py`, `dictionary.py`, `memorial.py`, `selecter.py` | quiz / dictionary / Mythology Monologue / chapter title units |
 | `eboot_strings.py` | catalog of the EBOOT's Japanese strings (after one build) |
 | `translate.py` | resumable machine translation into `translation/en/` |
 | `show.py` | Japanese and English side by side, by scene or id prefix |
@@ -91,7 +92,9 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out
 | `check.py` | validate translations: tokens, drawable characters, widths, coverage |
 | `build.py` | the whole patch: EBOOT, strings, scripts, data, images -> ISO |
 | `imagetext.py` | export every texture to PNG; preview re-lettering before a build |
-| `harness.py` | headless PPSSPP runner with scripted input and screenshots |
+| `anm.py` | textures inside `anm*.dat` animation files: export, read, rewrite |
+| `harness.py` | headless PPSSPP runner: scripted input, screenshots, savestates, RAM |
+| `autoplay.py` | plays the story unattended (choices, quizzes) for screenshots of later screens |
 | `story.py`, `script_text.py` | script bytecode parser/builder; units <-> markup |
 | `wrap.py`, `font.py` | word wrap with FontA metrics |
 | `nispack.py`, `iso.py`, `txp.py`, `prx.py`, `game.py` | containers, ISO writing, textures, PRX -> ELF, file locations |

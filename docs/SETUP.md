@@ -63,6 +63,7 @@ python tools/extract.py    <original.iso>        # story units  -> work/text/01.
 python tools/quiz.py       <original.iso>        # quiz         -> work/text/quiz.json
 python tools/dictionary.py <original.iso>        # dictionary   -> work/text/dictionary.json
 python tools/memorial.py   <original.iso>        # monologues   -> work/text/memorial.json
+python tools/selecter.py   <original.iso>        # chapters     -> work/text/selecter.json
 python tools/check.py --iso <original.iso>       # must end with "0 errors"
 python tools/build.py <original.iso> work/out/en.iso
 ```

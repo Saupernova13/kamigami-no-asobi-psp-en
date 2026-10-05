@@ -83,5 +83,10 @@ and obviously right; otherwise write them up in HANDOFF.md's open tasks and carr
 - The game's font has printable ASCII only on the English side: no curly quotes, em
   dashes, accents or emoji.
 - The harness exits with status 9 after a completed run; judge by the screenshots.
+- Harness savestates are only valid for the ISO they were made with: after a rebuild,
+  replay from boot (`tests/setup_skip.txt`, then `tools/autoplay.py`).
+- Choice labels hold at most 32 characters; quiz and dictionary titles 31.
+- Later screens (quiz, chapter cards, Extra) are reached with `tools/autoplay.py`; see
+  docs/TESTING.md before writing long input scripts by hand.
 - Long machine-translation runs: run them detached and resumable (they skip finished
   units); do not block a session waiting for one.

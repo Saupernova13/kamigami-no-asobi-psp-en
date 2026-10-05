@@ -37,7 +37,9 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/<name> wor
 
 Options: `--assets <PPSSPP assets dir>` seeds `work/harness/system/PPSSPP` (optional;
 the game uses its own font), `--boot-wait S` (default 10), `-v` for core logs,
-`--workdir` (default `work/harness`, holds the system and save folders).
+`--workdir` (default `work/harness`, holds the system, save and state folders),
+`--fresh` (delete the save folder first: the game autosaves its settings there, and
+scripts that toggle options assume defaults), `--state NAME` (start from a saved state).
 
 ### Scripts in `tests/`
 
@@ -48,6 +50,7 @@ the game uses its own font), `--boot-wait S` (default 10), `-v` for core logs,
 | `ui.txt` | title -> New Game -> name confirm (`v1_confirm`) -> quiz difficulty (`v2_quiz`) -> prologue pages (`n01`..`n07` mid-page, `m01`..`m07` finished page) | 16 |
 | `options.txt` | title -> Option screens (values, hint bar, help) | 9 |
 | `dictionary.txt` | plays to the first keyword (iai), System Menu -> Dictionary -> entry 1 | 3 |
+| `setup_skip.txt` | (run with `--fresh`) Option: Message Skip All -> New Game -> Key Config: R and START = Auto Skip, L = Next Select -> first page; saves state `story` | 1 |
 
 `ui.txt` is the regression gate: after any engine, wrap or EBOOT change, its `n*`/`m*`
 shots must show English inside the window, wrapped, with no stray or overlapping glyphs.
@@ -59,15 +62,42 @@ wait N                  run N frames with no input (60 frames = 1 s)
 press BTN [BTN..] [N]   hold buttons for N frames (default 4), then release for 4
 repeat K press ...      repeat a press K times
 shot NAME               save the current frame as NAME.png
+save NAME / load NAME   save or restore an emulator state (<workdir>/states/NAME.state)
+poke ADDR VAL [SIZE]    write VAL (hex) to RAM at ADDR (hex)
+peek ADDR [SIZE]        print RAM bytes
+dump NAME               write all of RAM to <out>/NAME.ram (diff dumps to find flags)
 # comment
 ```
 
-Buttons: `circle cross square triangle start select up down left right l r`.
+Buttons: `circle cross square triangle start select up down left right l r`; analog
+stick: `sleft sright sup sdown`.
 
 In this game: circle confirms and advances text (the first press finishes typing the
 page, so one `press circle 6` is about half a page), cross cancels, triangle opens the
 system menu (only once the page has finished typing: `wait 400` first), square hides
 the message window. About 230 presses reach the end of the prologue's first day.
+
+### Reaching later screens: autoplay
+
+`tools/autoplay.py` plays on unattended from the `story` state: at each choice it picks
+an option (rotating 1st/2nd/3rd so "ask everything" menus move on) and presses R (Auto
+Skip, which also skips to the next choice); on quiz screens (screen word `0x089a6000` =
+7) it answers and resumes. A screenshot `aNNN.png` per step and a state `aNNN` every 10
+steps, so any point can be revisited.
+
+```
+python tools/harness.py --core <core> --fresh --out work/shots/walk work/out/en.iso tests/setup_skip.txt
+python tools/autoplay.py --core <core> --state story --steps 90 work/out/en.iso
+```
+
+About 90 steps (2-3 minutes) play the first route to its ending, unlocking Chapter
+Select and Extra; a few more presses return to the title. From there, a script with
+`--state` can open any menu. Contact sheets of the `aNNN.png` shots are the quickest
+way to review a run.
+
+States hold the game's code and file positions: after a build that changes the EBOOT
+or moves files in the ISO, old states are invalid (runs crash or show garbage). Replay
+from boot with `setup_skip.txt` after every rebuild.
 
 ### Writing a new script
 
@@ -89,8 +119,7 @@ the message window. About 230 presses reach the end of the prologue's first day.
 - Saves persist in `work/harness/saves`. Delete that folder if a run takes a different
   path than expected (for example the title screen offering Continue).
 - Screens behind progress (quiz, Mythology Monologue, chapter select, gallery, garden,
-  routes) need a save that reaches them. Getting there by script is slow; a save from a
-  real play-through copied into `work/harness/saves` is the practical route.
+  routes) are reached with `autoplay.py` (above).
 
 ## 4. Playtesting by hand
 

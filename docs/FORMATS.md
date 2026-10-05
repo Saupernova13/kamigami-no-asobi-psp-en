@@ -114,8 +114,7 @@ zero-padded SJIS. The first choice is the right answer; true/false records keep 
 answer key (a circle or cross) in choice 0, which stays untouched. English is stored as
 `(c, 0x01)` pairs, so a field holds 31 characters; the build wraps questions at 320 px
 (the widest Japanese line) and narrower until every line fits. 400 questions, 1,000
-choices. Not yet checked in the emulator (the quiz is not reachable from a new game
-without a save).
+choices. Checked in the emulator.
 
 ## Dictionary (`tools/dictionary.py`)
 
@@ -128,6 +127,61 @@ Lines are drawn by `FUN_08813e58` one glyph at a time; `87 6C` / `87 6D` in a li
 the player's surname / given name. The page header is a texture per entry
 (`dbtx00`-`79.txp` in `DATA.DAT`), not text. The build rebuilds the entries and the
 offset table; `DictAdvance` in the asm gives the body a proportional advance.
+
+## Choices
+
+Labels are appended by `FUN_08862da0` into a per-choice field at `+0x8c` (stride 0x52 in
+the VM state), as `u16` units `lead | second << 8`, so English arrives as `(c, 0x01)`.
+The count check is `< 0x81` but the field is 64 bytes: more than 32 units overwrite the
+count and the next choice, so `build.CHOICE_UNITS` cuts at 32 and `check.py` errors.
+`FUN_08871678` lays the box out and `FUN_088753fc` draws it, each glyph with
+`FUN_0888a27c` and `GlyphAdvance(code, -1, fixed 1)`: `ChoiceAdvance` replaces the four
+calls.
+
+## Table strings
+
+Some UI labels are rows of a fixed-stride table read as `base + i * stride` (Quiz Setting
+at `0x0897143c`, 32-byte rows). Only the base is referenced, so moving it to the extra
+segment shifts every row ("ndom" for "Format"). `build.patch_eboot_strings` keeps a
+referenced string in place when the next field holds a catalogued string, growing it to
+its field size.
+
+## Chapter titles (`tools/selecter.py`)
+
+`TITLE01-11.DAT` -> `NN_Selecter.dat`: `u32` count, offsets, records of 0x70 bytes with a
+64-byte inverted-SJIS title first (then `無` padding fields and numbers). TITLE04-11 are
+the routes' chapter titles in chapter-select order; the title card types the record's
+title under "Prologue"/"Chapter N". Unused records are titled `無`.
+
+## Animation files (`tools/anm.py`)
+
+`anm*.dat` (99 in DATA.DAT, `anm9000.dat` in START.DAT) hold the animated screens: title
+cards, chapter cards, garden objects, quiz and garden title screens. Parsed by
+`FUN_088b631c`: `u32` block count, 12 bytes padding, blocks. Block header (0x3c bytes):
+`u32` size, `u32` x5 (the fourth word: palettes in the low half, textures in the high
+half), `u32` x9 section offsets. Section 3: palettes (`u32` offset, `u32` colours);
+section 4: textures (`u32` offset, `u16` w, h, `u8` bpp, 0x10, 0x10, swizzled); section
+5: 16-byte sprite rects (`u16` texture, palette, `u32` 0, `s16` x, y, w, h); section 6:
+frames. A typed title is one rect listed again and again with a growing width.
+
+Chapter cards: `anm0300`-`0311` (`#0.2` the route's title list, `#0.1` card parts).
+Text-bearing screens: `anm1400#0.2` (Miniature Garden), `anm8100#0.1` (Mythology Quiz),
+`anm9000#1.0` (Thread of fate).
+
+## Screen sizes measured in game
+
+- Mythology Monologue body: drawn at ~121% of FontA's 100% metrics, x 77 to ~432, so
+  `MEMORIAL_LINE_PX` is 290.
+- UI loops: 1 px between glyphs after the `UI_SPACING` patch (`QUIZ_SPACING` follows).
+- "Get New Story" popup (`FUN_0887b664`): copies at most 30 bytes, then drops the last
+  unit and appends `81 63` (an ellipsis) until the width is <= 96 px.
+- Name entry (`FUN_0881567c`): mode byte at `0x0896663e` (copy at `0x08966308`): 0
+  hiragana, 1 katakana, 2 ABC, 3 kanji.
+
+## Screen state word
+
+`0x089a6000` (`u32`): 6 in the story and on the map, 7 on quiz screens. `autoplay.py`
+reads it to decide how to advance. Found by diffing RAM dumps (`harness.py` `dump`).
 
 ## Not done yet
 

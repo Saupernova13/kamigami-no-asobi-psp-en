@@ -13,7 +13,8 @@ a time. Engineering work (formats, patches, images) is in [HANDOFF.md](HANDOFF.m
 | `translation/en/dictionary.json` | dictionary titles, headings, entries | 254 | `work/text/dictionary.json` |
 | `translation/en/eboot.json` | menus, help bar, dialogs, chapter/event/song titles, nameplates | ~400 | `work/text/eboot.json` (catalog) |
 | `translation/en/memorial.json` | Mythology Monologue side stories | 6,771 | `work/text/memorial.json` |
-| `translation/images.json` | text baked into textures (rect + English) | ~170 labels | the textures (`tools/imagetext.py export`) |
+| `translation/en/selecter.json` | chapter titles typed on the chapter cards | 103 | `work/text/selecter.json` |
+| `translation/images.json` | text baked into textures (rect + English) | ~350 labels | the textures (`imagetext.py export`, `anm.py export`) |
 
 Make the Japanese files once from your own ISO (they hold the game's script, so they never
 go in git):
@@ -23,6 +24,7 @@ python tools/extract.py <original.iso>          # work/text/01..12.json
 python tools/quiz.py <original.iso>             # work/text/quiz.json
 python tools/dictionary.py <original.iso>       # work/text/dictionary.json
 python tools/memorial.py <original.iso>         # work/text/memorial.json
+python tools/selecter.py <original.iso>         # work/text/selecter.json
 python tools/eboot_strings.py work/build/EBOOT.ELF   # after one build; UI catalog
 ```
 
@@ -39,6 +41,7 @@ unit per line, so edits to different units merge cleanly in git.
 | `4quiz00/101/q`, `.../c0`-`c3` | quiz question, answer choices (`c0` is the right answer) |
 | `dict/12/t`, `/h0`, `/p0` | dictionary title, section heading, paragraph |
 | `mem/0002/2/t`, `/p0` | Mythology Monologue file 0002, entry 2: title, paragraph |
+| `sel/04/1` | chapter title: TITLE04, record 1 (the route chapters follow chapter select order) |
 | `0x08925820` | EBOOT string at that address; `nameplates` holds speaker names by id |
 
 ## Markup rules
@@ -65,7 +68,8 @@ Lengths (the build wraps and reports overflow; the checker warns early):
 
 - Story pages: 3 lines of ~390 px per window (about 55 characters a line). Longer pages
   continue in a second window automatically; keep it to two windows where possible.
-- Choices: short, one line (under ~35 characters).
+- Choices: one line, **at most 32 characters** (a longer label overwrites the next
+  choice; the checker reports it as an error and the build cuts it).
 - Quiz: question up to 3 lines of 31 characters; each choice under 31 characters, no
   final period. Keep `c0` the correct answer.
 - Dictionary: titles under 31 characters; paragraphs wrap freely (the page scrolls).
@@ -129,7 +133,8 @@ Big files can be split by scene range (the scene id is the part before `/`).
 | D | `dictionary.json` | 254 | 80 entries | dictionary: terms, myth notes | MT | |
 | U | `eboot.json` | ~400 | - | UI, help bar, titles, nameplates (hand translated) | edited | |
 | M | `memorial.json` | 6,771 | 111 stories | Mythology Monologue: each god's first-person side stories | MT | |
-| IMG | `images.json` | - | - | re-letter baked-in text; open screens listed in HANDOFF.md | partial | |
+| T | `selecter.json` | 103 | 11 files | chapter titles (match the chapter select images in `images.json`) | edited | |
+| IMG | `images.json` | - | - | re-letter baked-in text; open items in HANDOFF.md | done (all seen screens) | |
 
 Route labels come from the speakers in each file and may be loose; check the Japanese.
 
@@ -138,21 +143,28 @@ U, Q, D, then the routes in any order.
 
 ## Images
 
-`translation/images.json` lists textures (by archive path, e.g.
-`DATA.DAT/OPTION.dat/optionElements00.txp`) and for each a list of labels: `rect`
-[x0, y0, x1, y1] to erase and the English `text` to draw there, with optional `size`,
-`fit` (shrink to the rect), `align` ("left"), `fill`/`outline` colours and `erase`
-("extend" for text on an opaque bar, "clean" for dark text on a light gradient; default
-transparent). Glyphs are the game's own FontA, so nothing else is needed.
+`translation/images.json` lists textures and, for each, labels: `rect` [x0, y0, x1, y1]
+to erase and the English `text` to draw there. Options: `size`, `fit` (shrink to the
+rect), `align` ("left"), `fill`/`outline` colours, `boost` (solid coloured fill over a
+light outline), and `erase`: transparent (default), a colour, `extend` (opaque bar),
+`clean` (dark text on a light gradient), `median` (patterned bar), `interp` (vertical
+blend), `smooth` (fill from the border, soft art), `dark` (dark ink only), `none` (draw
+over an earlier erase-only label, `"text": ""`). Glyphs are the game's own FontA. The
+full reference is the docstring of `tools/imagetext.py`.
+
+Texture paths: `DATA.DAT/OPTION.dat/optionElements00.txp` for a .txp (archive / nested
+pack / file); `DATA.DAT/anm0304.dat#0.2` for texture 0.2 of an animation file (chapter
+cards, garden and quiz title screens - see `tools/anm.py`).
 
 ```
-python tools/imagetext.py export <original.iso>     # every texture -> work/images/export/
-  ... find the Japanese, measure the rect (an image viewer with pixel coordinates) ...
+python tools/imagetext.py export <original.iso>     # every .txp -> work/images/export/
+python tools/anm.py export <original.iso>           # every anm texture -> work/images/export/anm/
+  ... find the Japanese, measure the rect (an image viewer with pixel coordinates;
+      anm.sprites() lists the rects an animation cuts from each texture) ...
 python tools/imagetext.py preview <original.iso>    # before/after PNGs in work/images/preview/
 ```
 
-Exported and preview PNGs are game art: keep them in `work/`. Open screens are listed under
-Images in [HANDOFF.md](HANDOFF.md).
+Exported and preview PNGs are game art: keep them in `work/`.
 
 ## What MT got wrong so far (watch for these)
 
