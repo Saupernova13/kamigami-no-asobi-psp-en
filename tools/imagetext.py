@@ -9,7 +9,8 @@ translation/images.json lists textures and the labels to replace:
     "labels": [{"rect": [13, 193, 62, 214], "text": "Read Only", "size": 12}, ...]}]
 
 "texture" is the path through the ISO's archives (archive in USRDIR / nested pack /
-file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa",
+file; "anm0304.dat#0.2" is texture 0.2 of an anm file, see tools/anm.py). Each label's
+rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa",
 or "erase": "extend" to repeat the column left of the rect, for text on an opaque bar, or
 "erase": "clean" to fill each column with its lightest pixel, for dark text on a gradient,
 or "erase": "median" for text on a patterned bar, or "erase": "interp" to blend each column
@@ -19,6 +20,8 @@ and the English is drawn centred in it, at "size" px (default: the rect height m
 the lightest and the darkest opaque colours; "outline": "#00000000" for none). "rotate": 270
 runs the text top to bottom (90: bottom to top), for vertical labels. Glyphs come from the game's own FontA
 (START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
+"text": "" only erases. "boost": 2 makes the fill solid (FontA strokes are partly
+transparent, which washes a coloured fill out over a light outline).
 
 `preview` writes before/after PNGs so a label can be checked without a build.
 """
@@ -30,6 +33,7 @@ import sys
 
 from PIL import Image, ImageFilter
 
+import anm
 import game
 import nispack
 import txp
@@ -90,6 +94,7 @@ def sample_colours(img, rect):
 
 def render_label(img, label, font):
     x0, y0, x1, y1 = label["rect"]
+    x1, y1 = min(x1, img.width), min(y1, img.height)     # sprite rects may overhang
     fill, outline = sample_colours(img, (x0, y0, x1, y1))
     if "fill" in label:
         fill = parse_colour(label["fill"])
@@ -124,6 +129,8 @@ def render_label(img, label, font):
                 img.putpixel((x, y), c)
     else:
         img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), parse_colour(erase)), (x0, y0))
+    if not label["text"]:            # erase only
+        return
     size = label.get("size", (y1 - y0) - 4)
     m = font.mask(label["text"], label.get("spacing", 1))
     rotate = label.get("rotate", 0)            # 90: reads bottom to top, 270: top to bottom
@@ -149,6 +156,9 @@ def render_label(img, label, font):
     py = y0 + (y1 - y0 - canvas.height) // 2
     if ring is not None:
         img.paste(Image.new("RGBA", canvas.size, outline), (px, py), ring)
+    boost = label.get("boost", 1)       # >1: solid strokes, for a colour fill over a light outline
+    if boost != 1:
+        canvas = canvas.point(lambda v: min(255, round(v * boost)))
     img.paste(Image.new("RGBA", canvas.size, fill), (px, py), canvas)
 
 
@@ -157,6 +167,32 @@ def apply(txp_bytes, labels, font, new_palette=False):
     for label in labels:
         render_label(img, label, font)
     return txp.write_txp(img, txp_bytes, new_palette)
+
+
+def apply_anm(data, tex, labels, font):
+    """anm file bytes -> the same with texture tex ("B.T") re-lettered."""
+    t = anm.find(data, tex)
+    img = anm.read(data, t)
+    for label in labels:
+        render_label(img, label, font)
+    return anm.write(data, t, img)
+
+
+def split_anm(parts):
+    """["anm0304.dat#0.2"] -> (["anm0304.dat"], "0.2"); other paths -> (parts, None)."""
+    if "#" in parts[-1]:
+        name, tex = parts[-1].split("#", 1)
+        return parts[:-1] + [name], tex
+    return parts, None
+
+
+def edit(before, ent, font):
+    """Apply one spec entry to the bytes of its file (a .txp, or an anm file for #B.T)."""
+    _, parts = split_path(ent["texture"])
+    _, tex = split_anm(parts)
+    if tex:
+        return apply_anm(before, tex, ent["labels"], font)
+    return apply(before, ent["labels"], font, ent.get("new_palette", False))
 
 
 def dictionary_headers(dict_tr):
@@ -250,11 +286,12 @@ def main():
         archive, parts = split_path(ent["texture"])
         if archive not in cache:
             cache[archive] = img.archive(archive)[0]
-        before = read_nested(cache[archive], parts)
-        after = apply(before, ent["labels"], font, ent.get("new_palette", False))
-        stem = ent["texture"].replace("/", "_")
+        file_parts, tex = split_anm(parts)
+        before = read_nested(cache[archive], file_parts)
+        after = edit(before, ent, font)
+        stem = ent["texture"].replace("/", "_").replace("#", "_")
         for tag, data in (("before", before), ("after", after)):
-            im = txp.read_txp(data)
+            im = anm.read(data, anm.find(data, tex)) if tex else txp.read_txp(data)
             bg = Image.new("RGBA", im.size, (40, 40, 90, 255))
             bg.alpha_composite(im)
             bg.convert("RGB").save(os.path.join(a.out, f"{stem}.{tag}.png"))

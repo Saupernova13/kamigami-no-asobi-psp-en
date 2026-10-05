@@ -179,15 +179,19 @@ def set_nested(files, parts, data):
 def image_edits(img, spec, start_files, report):
     """-> {archive path: [(parts, new texture bytes)]} for translation/images.json."""
     fnt = imagetext.Font(start_files)
-    out, cache = {}, {}
+    cache, current = {}, {}           # current: (archive, file parts) -> edited bytes so far
     for ent in spec:
         archive, parts = imagetext.split_path(ent["texture"])
+        parts, _ = imagetext.split_anm(parts)
         if archive not in cache:
             cache[archive] = img.archive(archive)[0]
-        before = imagetext.read_nested(cache[archive], parts)
-        after = imagetext.apply(before, ent["labels"], fnt, ent.get("new_palette", False))
-        out.setdefault(archive, []).append((parts, after))
+        key = (archive, tuple(parts))
+        before = current.get(key) or imagetext.read_nested(cache[archive], parts)
+        current[key] = imagetext.edit(before, ent, fnt)
         report["images"] += 1
+    out = {}
+    for (archive, parts), data in current.items():
+        out.setdefault(archive, []).append((list(parts), data))
     return out
 
 

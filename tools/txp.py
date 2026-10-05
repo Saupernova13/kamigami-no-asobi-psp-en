@@ -71,11 +71,15 @@ def read_txp(data):
 
 def _nearest(pal):
     cache = {}
+    clear = [k for k, p in enumerate(pal) if p[3] == 0]
 
     def index(c):
         i = cache.get(c)
         if i is None:
-            i = min(range(len(pal)), key=lambda k: sum((a - b) ** 2 for a, b in zip(pal[k], c)))
+            if c[3] == 0 and clear:          # transparent: any clear entry, whatever its RGB
+                i = clear[0]
+            else:
+                i = min(range(len(pal)), key=lambda k: sum((a - b) ** 2 for a, b in zip(pal[k], c)))
             cache[c] = i
         return i
     return index
