@@ -1,0 +1,170 @@
+"""Re-letter text baked into textures, from a declarative spec.
+
+  python tools/imagetext.py preview <original.iso> [--spec translation/images.json] [--out work/images/preview]
+
+translation/images.json lists textures and the labels to replace:
+
+  [{"texture": "DATA.DAT/OPTION.dat/optionElements00.txp",
+    "labels": [{"rect": [13, 193, 62, 214], "text": "Read Only", "size": 12}, ...]}]
+
+"texture" is the path through the ISO's archives (archive in USRDIR / nested pack /
+file). Each label's rect [x0, y0, x1, y1] is erased to transparent (or to "erase": "#rrggbbaa")
+and the English is drawn centred in it, at "size" px (default: the rect height minus
+4), in "fill"/"outline" colours (default: sampled from the original pixels in the rect -
+the lightest and the darkest opaque colours). Glyphs come from the game's own FontA
+(START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
+
+`preview` writes before/after PNGs so a label can be checked without a build.
+"""
+import argparse
+import json
+import os
+import struct
+import sys
+
+from PIL import Image, ImageFilter
+
+import game
+import nispack
+import txp
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+USRDIR = "/PSP_GAME/USRDIR/"
+CELL = 18          # FontA cell size; 16 cells a row in each 288 px page
+
+
+class Font:
+    """FontA ASCII glyphs from START.DAT: page FontA000.txp, index = code - 0x20."""
+
+    def __init__(self, start_files):
+        self.page = txp.read_txp(start_files["FontA000.txp"])
+        self.ftd = start_files["fontA.ftd"]
+
+    def glyph(self, ch):
+        k = ord(ch) - 0x20
+        if not 0 <= k < 95:
+            raise ValueError(f"no glyph for {ch!r}")
+        x, y = (k % 16) * CELL, (k // 16) * CELL
+        lb, rb = struct.unpack_from("bb", self.ftd, 2 + 2 * k)
+        return self.page.crop((x, y, x + CELL, y + CELL)), lb, rb
+
+    def mask(self, text, spacing=1):
+        """-> L-mode alpha mask of text at the font's native 18 px cell height."""
+        parts, width = [], 0
+        for ch in text:
+            if ch == " ":
+                width += 5
+                continue
+            g, lb, rb = self.glyph(ch)
+            ink = g.crop((lb, 0, CELL - rb, CELL))
+            parts.append((width, ink))
+            width += ink.width + spacing
+        out = Image.new("L", (max(1, width - spacing), CELL))
+        for x, ink in parts:
+            out.paste(ink.getchannel("A"), (x, 0), ink.getchannel("A"))
+        return out
+
+
+def parse_colour(s):
+    s = s.lstrip("#")
+    if len(s) == 6:
+        s += "ff"
+    return tuple(int(s[i:i + 2], 16) for i in range(0, 8, 2))
+
+
+def sample_colours(img, rect):
+    """Lightest and darkest clearly opaque colours in rect (the text and its outline)."""
+    px = [c for c in img.crop(rect).getdata() if c[3] > 200]
+    if not px:
+        return (255, 255, 255, 255), (0, 0, 0, 255)
+    lum = lambda c: c[0] * 299 + c[1] * 587 + c[2] * 114
+    return max(px, key=lum), min(px, key=lum)
+
+
+def render_label(img, label, font):
+    x0, y0, x1, y1 = label["rect"]
+    fill, outline = sample_colours(img, (x0, y0, x1, y1))
+    if "fill" in label:
+        fill = parse_colour(label["fill"])
+    if "outline" in label:
+        outline = parse_colour(label["outline"])
+    erase = parse_colour(label.get("erase", "#00000000"))
+    img.paste(Image.new("RGBA", (x1 - x0, y1 - y0), erase), (x0, y0))
+    size = label.get("size", (y1 - y0) - 4)
+    m = font.mask(label["text"], label.get("spacing", 1))
+    w = max(1, round(m.width * size / CELL))
+    m = m.resize((w, size), Image.LANCZOS)
+    pad = 1 if outline[3] else 0
+    canvas = Image.new("L", (w + 2 * pad, size + 2 * pad))
+    canvas.paste(m, (pad, pad))
+    ring = canvas.filter(ImageFilter.MaxFilter(3)) if pad else None
+    if canvas.width > x1 - x0:
+        raise ValueError(f"{label['text']!r} is {canvas.width}px, the rect is {x1 - x0}px")
+    if label.get("align") == "left":
+        px = x0
+    else:
+        px = x0 + (x1 - x0 - canvas.width) // 2
+    py = y0 + (y1 - y0 - canvas.height) // 2
+    if ring is not None:
+        img.paste(Image.new("RGBA", canvas.size, outline), (px, py), ring)
+    img.paste(Image.new("RGBA", canvas.size, fill), (px, py), canvas)
+
+
+def apply(txp_bytes, labels, font, new_palette=False):
+    img = txp.read_txp(txp_bytes)
+    for label in labels:
+        render_label(img, label, font)
+    return txp.write_txp(img, txp_bytes, new_palette)
+
+
+def split_path(path):
+    """"DATA.DAT/OPTION.dat/x.txp" -> ("/PSP_GAME/USRDIR/DATA.DAT", ["OPTION.dat", "x.txp"])"""
+    head, *rest = path.split("/")
+    return USRDIR + head, rest
+
+
+def read_nested(files, parts):
+    data = files[parts[0]]
+    for p in parts[1:]:
+        data = nispack.load_bytes(data)[0][p]
+    return data
+
+
+def load_spec(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("cmd", choices=["preview"])
+    ap.add_argument("iso")
+    ap.add_argument("--spec", default=os.path.join(ROOT, "translation", "images.json"))
+    ap.add_argument("--out", default=os.path.join(ROOT, "work", "images", "preview"))
+    a = ap.parse_args()
+    img = game.Image(a.iso)
+    start, _ = img.archive(USRDIR + "START.DAT")
+    font = Font(start)
+    os.makedirs(a.out, exist_ok=True)
+    cache = {}
+    for ent in load_spec(a.spec):
+        archive, parts = split_path(ent["texture"])
+        if archive not in cache:
+            cache[archive] = img.archive(archive)[0]
+        before = read_nested(cache[archive], parts)
+        after = apply(before, ent["labels"], font, ent.get("new_palette", False))
+        stem = ent["texture"].replace("/", "_")
+        for tag, data in (("before", before), ("after", after)):
+            im = txp.read_txp(data)
+            bg = Image.new("RGBA", im.size, (40, 40, 90, 255))
+            bg.alpha_composite(im)
+            bg.convert("RGB").save(os.path.join(a.out, f"{stem}.{tag}.png"))
+        print(ent["texture"], len(ent["labels"]), "labels")
+    img.close()
+
+
+if __name__ == "__main__":
+    sys.exit(main())

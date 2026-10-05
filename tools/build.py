@@ -19,7 +19,9 @@ import dictionary
 import eboot_strings
 import font
 import game
+import imagetext
 import iso as isolib
+import memorial
 import nispack
 import prx
 import quiz
@@ -116,6 +118,7 @@ QUIZ_SPACING = 2        # the UI loops' proportional advance adds 2px per glyph
 
 DICT_LINE_PX = 360      # dictionary text area (x 72 to the scroll bar)
 DICT_SPACING = 1        # DictAdvance in asm/eboot.asm: ink width + 1
+MEMORIAL_LINE_PX = 330  # Mythology Monologue text area (x 77; 20 full-width glyphs a line)
 
 
 def fit_lines(text, metrics, px, spacing, field=None):
@@ -150,9 +153,36 @@ def patch_dictionary(pack, tr, metrics, report):
     return nispack.build(inner_entries, inner)
 
 
-def build_data_dat(img, quiz_tr, dict_tr, metrics, report):
-    """-> {DATA.DAT path: rebuilt archive}, or {} when there is nothing to change."""
-    if not quiz_tr and not dict_tr:
+def set_nested(files, parts, data):
+    """files[parts[0]] (a NISPACK when parts go deeper) with the file at parts replaced."""
+    if len(parts) == 1:
+        files[parts[0]] = data
+        return
+    inner, inner_entries = nispack.load_bytes(files[parts[0]])
+    inner = dict(inner)
+    set_nested(inner, parts[1:], data)
+    files[parts[0]] = nispack.build(inner_entries, inner)
+
+
+def image_edits(img, spec, start_files, report):
+    """-> {archive path: [(parts, new texture bytes)]} for translation/images.json."""
+    fnt = imagetext.Font(start_files)
+    out, cache = {}, {}
+    for ent in spec:
+        archive, parts = imagetext.split_path(ent["texture"])
+        if archive not in cache:
+            cache[archive] = img.archive(archive)[0]
+        before = imagetext.read_nested(cache[archive], parts)
+        after = imagetext.apply(before, ent["labels"], fnt, ent.get("new_palette", False))
+        out.setdefault(archive, []).append((parts, after))
+        report["images"] += 1
+    return out
+
+
+def build_data_dat(img, quiz_tr, dict_tr, mem_tr, images, metrics, report):
+    """-> {DATA.DAT path: rebuilt archive}, or {} when there is nothing to change.
+    images: [(parts, texture bytes)] inside DATA.DAT."""
+    if not quiz_tr and not dict_tr and not mem_tr and not images:
         return {}
     files, entries = img.archive(quiz.ARCHIVE)
     files = dict(files)
@@ -160,8 +190,28 @@ def build_data_dat(img, quiz_tr, dict_tr, metrics, report):
         files[quiz.PACK] = patch_quiz(files[quiz.PACK], quiz_tr, metrics, report)
     if dict_tr:
         files[dictionary.PACK] = patch_dictionary(files[dictionary.PACK], dict_tr, metrics, report)
-    report["units"] += len(quiz_tr) + len(dict_tr)
+    if mem_tr:
+        files.update(memorial.rebuild(
+            files, mem_tr, encode_ui,
+            lambda t: fit_lines(t, metrics, MEMORIAL_LINE_PX, DICT_SPACING), report))
+    for parts, data in images:
+        set_nested(files, parts, data)
+    report["units"] += len(quiz_tr) + len(dict_tr) + len(mem_tr)
     return {quiz.ARCHIVE: nispack.build(entries, files)}
+
+
+def build_image_archives(img, edits, done):
+    """Rebuild the other archives that only have texture edits."""
+    out = {}
+    for archive, items in edits.items():
+        if archive in done:
+            raise ValueError(f"{archive}: texture edits in an archive the script build rewrites")
+        files, entries = img.archive(archive)
+        files = dict(files)
+        for parts, data in items:
+            set_nested(files, parts, data)
+        out[archive] = nispack.build(entries, files)
+    return out
 
 
 HALF_SPACE = bytes([0x87, 0x6E])
@@ -298,7 +348,7 @@ def main():
 
     img = game.Image(a.iso)
     report = {"units": 0, "overflow": [], "split": [], "eboot_too_long": [], "relocated": 0,
-              "quiz_too_long": [], "dict_too_long": []}
+              "quiz_too_long": [], "dict_too_long": [], "images": 0}
 
     elf = decrypt_eboot(img, pspdecrypt, a.workdir)
     patched = os.path.join(a.workdir, "EBOOT.patched.ELF")
@@ -318,9 +368,13 @@ def main():
     metrics = font.Metrics(start_files["fontA.ftd"])
     translations = {tag: load_json(os.path.join(a.translations, f"{tag}.json"), {}) for tag in game.STORY_FILES}
     archives = build_scripts(img, translations, metrics, report)
+    images = image_edits(img, imagetext.load_spec(os.path.join(a.translations, "..", "images.json")),
+                         start_files, report)
     archives.update(build_data_dat(img, load_json(os.path.join(a.translations, "quiz.json"), {}),
                                    load_json(os.path.join(a.translations, "dictionary.json"), {}),
-                                   metrics, report))
+                                   load_json(os.path.join(a.translations, "memorial.json"), {}),
+                                   images.pop(quiz.ARCHIVE, []), metrics, report))
+    archives.update(build_image_archives(img, images, set(archives)))
     img.close()
 
     shutil.copyfile(a.iso, a.out)
@@ -340,6 +394,8 @@ def main():
               f"(listed in {a.workdir}/overflow.txt)")
         with open(overflow_path, "w", encoding="utf-8") as f:
             f.write("\n".join(report["overflow"]) + "\n")
+    if report["images"]:
+        print(f"  {report['images']} textures re-lettered")
     if report["relocated"]:
         print(f"  {report['relocated']} EBOOT strings moved to the extra segment")
     for uid in report["quiz_too_long"] + report["dict_too_long"]:
