@@ -22,6 +22,7 @@ import game
 import imagetext
 import iso as isolib
 import memorial
+import selecter
 import nispack
 import prx
 import quiz
@@ -129,7 +130,7 @@ QUIZ_SPACING = 2        # the UI loops' proportional advance adds 2px per glyph
 
 DICT_LINE_PX = 360      # dictionary text area (x 72 to the scroll bar)
 DICT_SPACING = 1        # DictAdvance in asm/eboot.asm: ink width + 1
-MEMORIAL_LINE_PX = 330  # Mythology Monologue text area (x 77; 20 full-width glyphs a line)
+MEMORIAL_LINE_PX = 290  # Mythology Monologue: x 77 to ~432, drawn at ~121% (343 px on screen for 283)
 
 
 def fit_lines(text, metrics, px, spacing, field=None):
@@ -209,6 +210,22 @@ def build_data_dat(img, quiz_tr, dict_tr, mem_tr, images, metrics, report):
         set_nested(files, parts, data)
     report["units"] += len(quiz_tr) + len(dict_tr) + len(mem_tr)
     return {quiz.ARCHIVE: nispack.build(entries, files)}
+
+
+def build_selecters(img, tr, report):
+    """TITLE01-11.DAT with English chapter titles from selecter.json."""
+    out = {}
+    for i in range(1, 12):
+        num = f"{i:02d}"
+        if not any(k.startswith(f"sel/{num}/") for k in tr):
+            continue
+        arc, name = selecter.path(num)
+        files, entries = img.archive(arc)
+        files = dict(files)
+        files[name] = selecter.rebuild(files[name], num, tr, encode_ui, report)
+        out[arc] = nispack.build(entries, files)
+    report["units"] += len(tr)
+    return out
 
 
 def build_image_archives(img, edits, done):
@@ -311,8 +328,13 @@ def patch_eboot_strings(elf, original, table, heap, report):
         enc = slot.get("enc", "cp932")
         raw = (encode_ui(ent["en"]) if enc == "cp932" else ent["en"].encode(enc)) + b"\0"
         where = refs.get(int(addr, 16), [])
-        if len(raw) > size and not where and "size" not in ent:
-            size = max(size, slot.get("field", 0))        # inline record field: grow in place
+        field = slot.get("field", 0)
+        if len(raw) > size and "size" not in ent and (
+                not where or f"0x{int(addr, 16) + field:08x}" in slots):
+            # inline record field: grow in place. A referenced string whose next field
+            # holds another string is the base of a table read as base + i * field, so
+            # moving it would shift every later row; keep it in place too.
+            size = max(size, field)
         if len(raw) > size:
             if not where or heap[1] - heap[0] < len(raw):
                 report["eboot_too_long"].append(f"{addr} {ent['en']!r} ({len(raw)} > {size}, "
@@ -387,6 +409,8 @@ def main():
                                    dict_tr,
                                    load_json(os.path.join(a.translations, "memorial.json"), {}),
                                    images.pop(quiz.ARCHIVE, []), metrics, report))
+    archives.update(build_selecters(img, load_json(os.path.join(a.translations, "selecter.json"), {}),
+                                    report))
     archives.update(build_image_archives(img, images, set(archives)))
     img.close()
 
