@@ -80,6 +80,16 @@ ModeCheckOne 0x0888a5e4, ModeCode0c_1e, 0x0888a660
 ModeCheck    0x0888a660, ModeCode0c_1e, 0x0888a680
 ModeCheck    0x08890868, ModeCode08_1c, 0x088908d0  ; FUN_088907dc
 
+; --- name entry opens on the ABC page (FUN_0881567c, a1 = 0x08966304): mode 0
+; hiragana, 1 katakana, 2 ABC, 3 kanji, kept at +0x33a and copied to +4. The two
+; byte clears at +0xb6 and +0xb7 merge into one halfword store to make room.
+.org 0x088156cc
+    sh      zero, 0xb6(a1)
+.org 0x088156e4
+    ori     t0, zero, 2
+    sb      t0, 0x33a(a1)
+    sb      t0, 4(a1)
+
 ; --- UI letter spacing: the proportional branches of the draw loops and the matching
 ; width loops add 2 px after each glyph, loose for English. Same value in both, so
 ; centred text stays centred.
