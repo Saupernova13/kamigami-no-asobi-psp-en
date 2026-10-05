@@ -66,6 +66,10 @@ ModeCheck 0x0889076c, ModeCode1c_50, 0x0889079c
 .org 0x08814094
     jal     DictAdvance
 
+; Mythology Monologue body (FUN_088233c4) is the same loop.
+.org 0x0882369c
+    jal     DictAdvance
+
 ; --- code cave: FUN_088a7b80 has no callers, jumps, pointers or address constructions --
 .org 0x088a7b80
 .area 0x280                     ; code; the rest of the cave is a string heap (tools/build.py)

@@ -183,6 +183,10 @@ def speaker_label(gl, u):
         return "dictionary section heading"
     if u["kind"] == "dict_text":
         return "dictionary entry text"
+    if u["kind"] == "mem_title":
+        return "story title"
+    if u["kind"] == "mem_text":
+        return "Mythology Monologue (a god's first-person side story)"
     return gl["speakers"].get(str(u.get("speaker", 0)), f"speaker {u.get('speaker')}")
 
 
