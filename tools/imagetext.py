@@ -20,7 +20,8 @@ and the English is drawn centred in it, at "size" px (default: the rect height m
 the lightest and the darkest opaque colours; "outline": "#00000000" for none). "rotate": 270
 runs the text top to bottom (90: bottom to top), for vertical labels. Glyphs come from the game's own FontA
 (START.DAT), so nothing but the spec is committed. "align": "left" draws from x0.
-"text": "" only erases. "boost": 2 makes the fill solid (FontA strokes are partly
+"erase": "smooth" relaxes the rect from its border inwards (soft art and skies),
+"erase": "none" draws without erasing. "text": "" only erases. "boost": 2 makes the fill solid (FontA strokes are partly
 transparent, which washes a coloured fill out over a light outline).
 
 `preview` writes before/after PNGs so a label can be checked without a build.
@@ -106,6 +107,20 @@ def render_label(img, label, font):
             c = img.getpixel((x0 - 1, y))
             for x in range(x0, x1):
                 img.putpixel((x, y), c)
+    elif erase == "none":       # draw over what is there (after an erase-only label)
+        pass
+    elif erase == "smooth":     # fill from the border inwards (Laplace relaxation), for soft art
+        import numpy as np
+        a = np.asarray(img, dtype=np.float32).copy()
+        top, bot = a[y0 - 1, x0:x1].copy(), a[y1, x0:x1].copy()
+        for k in range(y1 - y0):                       # start from the vertical blend
+            t = (k + 1) / (y1 - y0 + 1)
+            a[y0 + k, x0:x1] = top * (1 - t) + bot * t
+        for _ in range(400):
+            a[y0:y1, x0:x1] = (a[y0 - 1:y1 - 1, x0:x1] + a[y0 + 1:y1 + 1, x0:x1]
+                               + a[y0:y1, x0 - 1:x1 - 1] + a[y0:y1, x0 + 1:x1 + 1]) / 4
+        img.paste(Image.fromarray(np.clip(a[y0:y1, x0:x1] + 0.5, 0, 255).astype("uint8"), "RGBA"),
+                  (x0, y0))
     elif erase == "interp":     # per column, blend from the rect's top row to its bottom row
         for x in range(x0, x1):
             a, b = img.getpixel((x, y0)), img.getpixel((x, y1 - 1))

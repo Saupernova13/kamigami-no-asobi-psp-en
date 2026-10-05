@@ -5630,5 +5630,143 @@
     "text": ""
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/thumb40.txp",
+  "labels": [
+   {
+    "rect": [
+     30,
+     29,
+     77,
+     77
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     3,
+     52,
+     77,
+     76
+    ],
+    "text": "Spring",
+    "size": 17,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/thumb41.txp",
+  "labels": [
+   {
+    "rect": [
+     30,
+     29,
+     77,
+     77
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     3,
+     52,
+     77,
+     76
+    ],
+    "text": "Summer",
+    "size": 17,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/thumb42.txp",
+  "labels": [
+   {
+    "rect": [
+     30,
+     29,
+     77,
+     77
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     3,
+     52,
+     77,
+     76
+    ],
+    "text": "Autumn",
+    "size": 17,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/thumb43.txp",
+  "labels": [
+   {
+    "rect": [
+     30,
+     29,
+     77,
+     77
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     3,
+     52,
+     77,
+     76
+    ],
+    "text": "Winter",
+    "size": 17,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/SKIP.dat/skipSelectBg.txp",
+  "labels": [
+   {
+    "rect": [
+     445,
+     248,
+     478,
+     266
+    ],
+    "text": "Start",
+    "size": 12,
+    "erase": "interp",
+    "fill": "#1c2a4cff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]
