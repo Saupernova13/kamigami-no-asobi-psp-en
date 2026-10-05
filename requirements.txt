@@ -1,0 +1,3 @@
+Pillow>=10
+# optional: ad-hoc MIPS disassembly while reverse engineering (no tool imports it)
+capstone>=5
