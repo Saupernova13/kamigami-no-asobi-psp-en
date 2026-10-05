@@ -2634,5 +2634,920 @@
     "outline": "#ffffffff"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/PROFILE.dat/profileParts05.txp",
+  "labels": [
+   {
+    "rect": [
+     0,
+     3,
+     68,
+     20
+    ],
+    "text": "Birthday",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     18,
+     68,
+     35
+    ],
+    "text": "Height",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     33,
+     68,
+     50
+    ],
+    "text": "Weight",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     49,
+     68,
+     66
+    ],
+    "text": "Talent",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     64,
+     68,
+     81
+    ],
+    "text": "Hobby",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     79,
+     68,
+     96
+    ],
+    "text": "Likes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     94,
+     68,
+     111
+    ],
+    "text": "Dislikes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     110,
+     68,
+     127
+    ],
+    "text": "Birthstone",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     131,
+     68,
+     148
+    ],
+    "text": "Birthday",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     146,
+     68,
+     163
+    ],
+    "text": "Height",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     162,
+     68,
+     179
+    ],
+    "text": "Weight",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     177,
+     68,
+     194
+    ],
+    "text": "Talent",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     192,
+     68,
+     209
+    ],
+    "text": "Hobby",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     207,
+     68,
+     224
+    ],
+    "text": "Likes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     223,
+     68,
+     240
+    ],
+    "text": "Dislikes",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     0,
+     250,
+     68,
+     267
+    ],
+    "text": "Birthstone",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     3,
+     156,
+     20
+    ],
+    "text": "Aug 1",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     49,
+     156,
+     66
+    ],
+    "text": "Prophecy",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     64,
+     156,
+     81
+    ],
+    "text": "Music",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     79,
+     156,
+     96
+    ],
+    "text": "Oranges",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     94,
+     156,
+     111
+    ],
+    "text": "Avocados",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     110,
+     156,
+     127
+    ],
+    "text": "Peridot",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     3,
+     228,
+     20
+    ],
+    "text": "Jan 13",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     49,
+     228,
+     66
+    ],
+    "text": "Cooking",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     64,
+     228,
+     81
+    ],
+    "text": "Gardening",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     79,
+     228,
+     96
+    ],
+    "text": "Ichigo daifuku",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     94,
+     228,
+     111
+    ],
+    "text": "Eggs",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     110,
+     228,
+     127
+    ],
+    "text": "Garnet",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     3,
+     300,
+     20
+    ],
+    "text": "Feb 12",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     49,
+     300,
+     66
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     64,
+     300,
+     81
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     79,
+     300,
+     96
+    ],
+    "text": "Tasty food",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     94,
+     300,
+     111
+    ],
+    "text": "Bad food",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     110,
+     300,
+     127
+    ],
+    "text": "Amethyst",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     3,
+     372,
+     20
+    ],
+    "text": "Mar 20",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     49,
+     372,
+     66
+    ],
+    "text": "Swordplay",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     64,
+     372,
+     81
+    ],
+    "text": "Seashells",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     79,
+     372,
+     96
+    ],
+    "text": "Soba",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     94,
+     372,
+     111
+    ],
+    "text": "Mushrooms",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     110,
+     372,
+     127
+    ],
+    "text": "Aquamarine",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     131,
+     156,
+     148
+    ],
+    "text": "Apr 29",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     177,
+     156,
+     194
+    ],
+    "text": "Immortality",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     192,
+     156,
+     209
+    ],
+    "text": "Dancing",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     207,
+     156,
+     224
+    ],
+    "text": "Steak",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     223,
+     156,
+     240
+    ],
+    "text": "Salad",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     86,
+     238,
+     156,
+     255
+    ],
+    "text": "Diamond",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     131,
+     228,
+     148
+    ],
+    "text": "Oct 24",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     177,
+     228,
+     194
+    ],
+    "text": "Crafting",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     192,
+     228,
+     209
+    ],
+    "text": "Pranks",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     207,
+     228,
+     224
+    ],
+    "text": "Candy",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     223,
+     228,
+     240
+    ],
+    "text": "Seafood",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     158,
+     238,
+     228,
+     255
+    ],
+    "text": "Opal",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     131,
+     300,
+     148
+    ],
+    "text": "Jun 6",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     177,
+     300,
+     194
+    ],
+    "text": "Mummy-making",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     192,
+     300,
+     209
+    ],
+    "text": "Animals",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     207,
+     300,
+     224
+    ],
+    "text": "Spices",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     223,
+     300,
+     240
+    ],
+    "text": "Sweets",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     230,
+     238,
+     300,
+     255
+    ],
+    "text": "Pearl",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     131,
+     372,
+     147
+    ],
+    "text": "Dec 21",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     177,
+     372,
+     193
+    ],
+    "text": "Analysis",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     192,
+     372,
+     208
+    ],
+    "text": "Research",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     207,
+     372,
+     223
+    ],
+    "text": "Corn",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     222,
+     372,
+     238
+    ],
+    "text": "None",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     236,
+     372,
+     252
+    ],
+    "text": "(picky, really)",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   },
+   {
+    "rect": [
+     302,
+     250,
+     372,
+     266
+    ],
+    "text": "Lapis lazuli",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "fill": "#6a4a2aff",
+    "outline": "#fffdf6ff"
+   }
+  ]
  }
 ]
