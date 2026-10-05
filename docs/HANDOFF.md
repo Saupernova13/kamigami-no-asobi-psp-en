@@ -76,25 +76,18 @@ Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 
 In rough priority order. Each says where to start.
 
-1. **Images (package IMG, in progress).** Text baked into textures is re-lettered from
+1. **Images (package IMG, mostly done).** Text baked into textures is re-lettered from
    `translation/images.json` by `tools/imagetext.py` (see its docstring and
-   [TRANSLATION.md](TRANSLATION.md#images)). Done and checked in game: option values,
-   option hint bar, decision button, name-entry labels, dictionary page headers (all 80,
-   generated from the dictionary titles). Done, not seen in game: chapter-select titles
-   (86), tabs, name tags. Still Japanese (survey of `imagetext.py export`):
-   - `DATA.DAT/GALLERY.dat`: character name tags on the 9 character cards; hint bar
-     (voice play/stop, ...).
-   - `DATA.DAT/GARDEN.dat`: help hints (camera, add character, ...), Garden menu list
-     (chibi character, my house, object, season, music, event), button labels
-     (select/deselect, place, close).
-   - `DATA.DAT/AUDIOROOM.dat`: help panel (play, stop, ...).
-   - `DATA.DAT/SKIP.dat`: skip/mode hints; season icons 春 夏 秋 冬 (calligraphic art).
-   - `DATA.DAT/PROFILE.dat`: name tags with readings, mythology labels (vertical), the
-     profile stats table (birthday, height, weight, likes, ...: needs the values
-     translated too).
-   - `START.DAT/systemMenu_ChapterIcons.txp`: chapter badges (序章, 第1章 ...),
-     calligraphic: an art decision.
-   - Title-screen character cards (attract mode), CG/text in story images: not surveyed.
+   [TRANSLATION.md](TRANSLATION.md#images)). Checked in game: option values and hint
+   bar, decision button, name-entry labels and hints, dictionary page headers (all 80,
+   generated from the dictionary titles). Done, not yet seen in game: chapter select
+   (86 titles, tabs, name tags, labels), gallery tags and hints, Garden menu/help/hints,
+   audio room help, skip hints, profile (stats table, name banners, vertical myth
+   labels), backlog hints, sub-menu help. Still Japanese:
+   - `START.DAT/systemMenu_ChapterIcons.txp` (序章, 第1章 ... badges) and the season
+     icons 春 夏 秋 冬 in `DATA.DAT/SKIP.dat`: calligraphic art, an art decision.
+   - Designer notes left in atlases (sizes, spacing): never shown, leave them.
+   - Title-screen character cards (attract mode) and text inside event CGs: not surveyed.
 2. **Mythology Monologue (done, MT).** `tools/memorial.py`: the 111 `memorial*.dat` files
    use the dictionary layout; the body renderer `FUN_088233c4` shares `DictAdvance`.
    `MEMORIAL_LINE_PX` (330) is a guess from the Japanese line length: check in game once a

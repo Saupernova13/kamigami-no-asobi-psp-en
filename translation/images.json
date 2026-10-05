@@ -3792,5 +3792,85 @@
     "outline": "#ffffffff"
    }
   ]
+ },
+ {
+  "texture": "START.DAT/subMenuWindow.txp",
+  "labels": [
+   {
+    "rect": [
+     115,
+     218,
+     262,
+     236
+    ],
+    "text": "Backlog",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     248,
+     262,
+     266
+    ],
+    "text": "Auto Play",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     278,
+     262,
+     296
+    ],
+    "text": "Skip to Choice",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     307,
+     262,
+     325
+    ],
+    "text": "Auto Skip",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     115,
+     338,
+     262,
+     355
+    ],
+    "text": "Cancel",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "#00000000",
+    "fill": "#14304eff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]
