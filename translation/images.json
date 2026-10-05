@@ -1957,5 +1957,265 @@
     "outline": "#00000000"
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_000.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Apollon",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_001.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Hades",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_002.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Tsukito",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_003.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Takeru",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_004.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Balder",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_005.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Loki",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_006.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Anubis",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_007.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Thoth",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_008.txp",
+  "labels": [
+   {
+    "rect": [
+     37,
+     235,
+     111,
+     250
+    ],
+    "text": "Other",
+    "size": 13,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#4a3a30ff",
+    "outline": "#00000000"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GALLERY.dat/extra_graphic_explain.txp",
+  "labels": [
+   {
+    "rect": [
+     34,
+     247,
+     108,
+     263
+    ],
+    "text": "Play/Stop Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     126,
+     247,
+     198,
+     263
+    ],
+    "text": "Pause Voice",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     219,
+     247,
+     241,
+     263
+    ],
+    "text": "Quit",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     287,
+     247,
+     340,
+     263
+    ],
+    "text": "Full View",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   },
+   {
+    "rect": [
+     386,
+     247,
+     430,
+     263
+    ],
+    "text": "Variant",
+    "size": 11,
+    "fit": true,
+    "align": "left",
+    "erase": "clean",
+    "fill": "#14406cff",
+    "outline": "#00000000"
+   }
+  ]
  }
 ]
