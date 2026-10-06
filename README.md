@@ -1,6 +1,6 @@
 # kamigami-psp-en
 
-Unofficial English fan translation of *Kamigami no Asobi InFinite* (神々の悪戯, PSP,
+Unofficial English fan translation of *Kamigami no Asobi* (神々の悪戯, PSP,
 `NPJH50809`, Broccoli). This repository holds the patch, the tools that build it, the
 English text and the docs. It contains no game data: you patch your own copy of the
 Japanese ISO.

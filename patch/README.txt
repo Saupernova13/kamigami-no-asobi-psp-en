@@ -1,7 +1,7 @@
 Kamigami no Asobi English Patch v1.0
 ====================================
 
-An English translation patch for Kamigami no Asobi InFinite (PSP, Japan,
+An English translation patch for Kamigami no Asobi (PSP, Japan,
 NPJH50809). It changes the script, menus, quiz, dictionary, Mythology Monologue,
 chapter titles and the text drawn into the game's images.
 
