@@ -170,8 +170,11 @@ def main():
     os.makedirs(dest)
 
     patch_path = os.path.join(dest, patch)
-    subprocess.run([xdelta, "-e", "-9", "-S", "djw", "-f", "-s", a.original, a.english, patch_path],
-                   check=True)
+    # The source window must span the whole original: rebuilt archives move to the end of
+    # the image, and with the default 64 MB window xdelta stores them whole (83 MB vs 3 MB).
+    window = str(max(os.path.getsize(a.original), 1 << 26))
+    subprocess.run([xdelta, "-e", "-9", "-S", "djw", "-B", window, "-f", "-s", a.original,
+                    a.english, patch_path], check=True)
     with tempfile.TemporaryDirectory(dir=a.out) as tmp:
         check = os.path.join(tmp, "check.iso")
         subprocess.run([xdelta, "-d", "-f", "-s", a.original, patch_path, check], check=True)
