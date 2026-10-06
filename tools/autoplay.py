@@ -38,8 +38,8 @@ def quiz_step(r):
     r.run(150)
 
 
-def story_step(r, i):
-    for _ in range(i % 3 + 1):
+def story_step(r, i, offset=0):
+    for _ in range((i + offset) % 3 + 1):
         r.press(["down"], 8)
         r.run(30)
     r.press(["circle"], 8)
@@ -57,6 +57,8 @@ def main():
     ap.add_argument("--steps", type=int, default=150)
     ap.add_argument("--every", type=int, default=10, help="save a state every N steps")
     ap.add_argument("--prefix", default="a")
+    ap.add_argument("--pick-offset", type=int, default=0,
+                    help="shift the rotating choice pick (1 or 2) to take other routes")
     ap.add_argument("--boot-wait", type=float, default=10.0)
     ap.add_argument("iso")
     a = ap.parse_args()
@@ -75,7 +77,7 @@ def main():
         if m == QUIZ:
             quiz_step(r)
         else:
-            story_step(r, i)
+            story_step(r, i, a.pick_offset)
         name = f"{a.prefix}{i:03d}"
         r.shot(os.path.join(a.out, name + ".png"))
         line = f"{name} mode {m}"
