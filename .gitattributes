@@ -1,2 +1,4 @@
 * text=auto eol=lf
 *.bat text eol=crlf
+patch/README.txt text eol=crlf
+*.xdelta binary
