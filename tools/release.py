@@ -1,9 +1,10 @@
 """Make a distributable patch: an xdelta3 (VCDIFF) patch from the original ISO to the
 English one, with apply instructions and checksums, and check it applies.
 
-  python tools/release.py <original.iso> <english.iso> [--version 1.0] [--out work/release]
+  python tools/release.py <original.iso> <english.iso> [--version 1.0] [--out patch]
 
-Needs xdelta3 on PATH, in XDELTA3, or via --xdelta3. Writes <out>/<name>/:
+Needs xdelta3 on PATH, in XDELTA3, or via --xdelta3. Replaces the contents of <out>
+(default: the committed patch/ folder, which is what people clone or download) with:
 
   <name>.xdelta        the patch (no game data: only the differences)
   README.txt           how to apply it, the expected original checksum, credits
@@ -11,7 +12,7 @@ Needs xdelta3 on PATH, in XDELTA3, or via --xdelta3. Writes <out>/<name>/:
   apply-patch.sh       Linux / macOS / Steam Deck
   SHA256SUMS.txt       original, patch and patched ISO
 
-and <out>/<name>.zip with the same files. The patch is applied to the original once more
+and writes the same files as work/release/<name>.zip for a release download. The patch is applied to the original once more
 and the result compared with <english.iso>, so a release never ships a broken patch.
 """
 import argparse
@@ -153,7 +154,8 @@ def main():
     ap.add_argument("original")
     ap.add_argument("english")
     ap.add_argument("--version", default="1.0")
-    ap.add_argument("--out", default=os.path.join(ROOT, "work", "release"))
+    ap.add_argument("--out", default=os.path.join(ROOT, "patch"))
+    ap.add_argument("--zip-dir", default=os.path.join(ROOT, "work", "release"))
     ap.add_argument("--xdelta3")
     a = ap.parse_args()
     xdelta = find_tool("xdelta3", a.xdelta3, "XDELTA3")
@@ -164,7 +166,7 @@ def main():
     name = f"Kamigami-no-Asobi-EN-v{a.version}"
     iso = f"Kamigami no Asobi - English v{a.version}.iso"   # no parentheses: cmd blocks
     patch = f"{name}.xdelta"
-    dest = os.path.join(a.out, name)
+    dest = a.out
     if os.path.isdir(dest):
         shutil.rmtree(dest)
     os.makedirs(dest)
@@ -175,7 +177,8 @@ def main():
     window = str(max(os.path.getsize(a.original), 1 << 26))
     subprocess.run([xdelta, "-e", "-9", "-S", "djw", "-B", window, "-f", "-s", a.original,
                     a.english, patch_path], check=True)
-    with tempfile.TemporaryDirectory(dir=a.out) as tmp:
+    os.makedirs(a.zip_dir, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=a.zip_dir) as tmp:
         check = os.path.join(tmp, "check.iso")
         subprocess.run([xdelta, "-d", "-f", "-s", a.original, patch_path, check], check=True)
         iso_sha = sha256(check)
@@ -196,7 +199,7 @@ def main():
         with open(os.path.join(dest, fname), "w", encoding="ascii", newline="") as f:
             f.write(text)
 
-    zpath = dest + ".zip"
+    zpath = os.path.join(a.zip_dir, name + ".zip")
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
         for fname in sorted(os.listdir(dest)):
             z.write(os.path.join(dest, fname), f"{name}/{fname}")
