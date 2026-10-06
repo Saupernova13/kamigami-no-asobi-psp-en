@@ -11,7 +11,8 @@ Units
 Page markup
   \\n                 line break (op 0xCC 0000)
   {SURNAME} {NAME} {NICK}   player name variables (op 0xD5 arg 0 / 1 / 2)
-  {kw:ID:F:TEXT}     keyword marker (op 0x7DD: u16 id, u8 flag F, u8 len, text): tags the
+  {kw:ID:F:TEXT}     keyword marker (op 0x7DD: u16 id, u8 flag F, u8 len, text; English
+                     TEXT is stored pair-encoded, as the popup draws it with a UI loop): tags the
                      word TEXT that comes just *before* it as dictionary entry ID; the
                      marker itself is not printed
   {op:XXXX:HEX}      any other instruction found between two text runs, kept verbatim
@@ -63,15 +64,49 @@ def arg_text_split(ins):
     return a[:skip], a[skip:end], a[end:]
 
 
+HALF_SPACE = b"\x87\x6e"
+
+
+def pair_encode(text):
+    """ASCII as (c, 0x01) pairs and spaces as the half space 87 6E, for argument text the
+    game draws with its 2-byte UI loops (the keyword popup); see build.encode_ui."""
+    out = bytearray()
+    for ch in text:
+        if ch == " ":
+            out += HALF_SPACE
+        elif " " < ch <= "~":
+            out += bytes([ord(ch), 1])
+        else:
+            out += ch.encode("cp932")
+    return bytes(out)
+
+
+def pair_decode(raw):
+    out, i = [], 0
+    while i < len(raw):
+        if i + 1 < len(raw) and raw[i + 1] == 1 and 0x20 < raw[i] < 0x7F:
+            out.append(chr(raw[i]))
+            i += 2
+        elif raw[i:i + 2] == HALF_SPACE:
+            out.append(" ")
+            i += 2
+        else:
+            n = 2 if raw[i] >= 0x81 else 1
+            out.append(raw[i:i + n].decode("cp932"))
+            i += n
+    return "".join(out)
+
+
 def arg_text_get(ins):
-    return invert(arg_text_split(ins)[1]).decode("cp932")
+    raw = invert(arg_text_split(ins)[1])
+    return pair_decode(raw) if ins.op == OP_KEYWORD else raw.decode("cp932")
 
 
 def arg_text_set(ins, text):
     if ins.args and text == arg_text_get(ins):
         return  # unchanged: keep the original bytes (cp932 has duplicate code points)
     pre, _, post = arg_text_split(ins)
-    raw = invert(text.encode("cp932"))
+    raw = invert(pair_encode(text) if ins.op == OP_KEYWORD else text.encode("cp932"))
     if ins.op == 0x51E:
         pre = struct.pack("<H", len(raw))
     elif ins.op == OP_KEYWORD:
