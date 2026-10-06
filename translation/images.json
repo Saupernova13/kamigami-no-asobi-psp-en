@@ -215,6 +215,20 @@
     "fill": "#0a1638ff",
     "outline": "#00000000",
     "erase": "extend"
+   },
+   {
+    "rect": [
+     282,
+     270,
+     318,
+     289
+    ],
+    "text": "Toggle",
+    "size": 11,
+    "fill": "#0a1638ff",
+    "outline": "#00000000",
+    "erase": "extend",
+    "fit": true
    }
   ]
  },
