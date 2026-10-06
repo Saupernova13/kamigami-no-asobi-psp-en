@@ -5,9 +5,10 @@
 
 Header (0x10 bytes, little endian):
   u16 width, u16 height, u16 palette entries (0 = none), u16 0,
-  u16 palette entries (again), u16 1, u16 1, u16 1
+  u16 palette entries (again), u16 1, u16 swizzled, u16 1
 Palette: RGBA8888 entries. Pixels: 4bpp (16-colour, low nibble first) or 8bpp (256-colour),
-stored PSP-swizzled (16-byte x 8-row blocks).
+stored PSP-swizzled (16-byte x 8-row blocks), or in linear rows when the swizzled field
+is 0 (the 480x282 event CGs).
 
 Encoding keeps the original header and size. By default each pixel maps to the nearest
 colour of the original palette, which suits re-lettering on the same artwork; with
@@ -55,9 +56,15 @@ def header(data):
     return w, h, npal, 4 if npal == 16 else 8, pal
 
 
+def swizzled(data):
+    return struct.unpack_from("<H", data, 0x0C)[0] != 0
+
+
 def read_txp(data):
     w, h, npal, bpp, pal = header(data)
-    px = unswizzle(data[0x10 + npal * 4:], w * bpp // 8, h)
+    px = data[0x10 + npal * 4:]
+    if swizzled(data):
+        px = unswizzle(px, w * bpp // 8, h)
     img = Image.new("RGBA", (w, h))
     out = []
     if npal == 16:
@@ -107,8 +114,11 @@ def write_txp(img, original, new_palette=False):
         packed = bytes(idx)
     body_start = 0x10 + npal * 4
     old_px = original[body_start:]
-    area = row_bytes * (h // 8 * 8)
-    sw = swizzle(packed[:area].ljust(area, b"\0"), row_bytes, h // 8 * 8)
+    if swizzled(original):
+        area = row_bytes * (h // 8 * 8)
+        sw = swizzle(packed[:area].ljust(area, b"\0"), row_bytes, h // 8 * 8)
+    else:
+        sw = packed
     out = bytearray(original[:0x10])
     out += b"".join(bytes(c) for c in pal)
     out += sw + old_px[len(sw):]
