@@ -6,7 +6,8 @@ With no files, checks every translation/en/*.json that has Japanese units in wor
 (run tools/extract.py, quiz.py and dictionary.py first). Reports, per unit:
 
   ERROR   unknown unit id, broken or missing keyword/op token, character the game cannot
-          draw, Japanese left in the English, choice over 32 characters
+          draw, Japanese left in the English, choice over 32 characters, a
+          dictionary keyword with no term
   WARN    name token dropped or added, line wider than the window after layout, text that will be
           cut, untranslated units (coverage)
 
@@ -34,6 +35,7 @@ import wrap           # noqa: E402
 
 JP_CHARS = re.compile(r"[぀-ヿ㐀-鿿ｦ-ﾟ]")
 BRACE = re.compile(r"\{[^}]*\}?")
+KW_EMPTY = re.compile(r"\{kw:\d+:1:\}")
 
 
 def tokens(markup):
@@ -97,6 +99,8 @@ def check_file(path, units, metrics, issues):
             hard = {k for k in list(missing) + list(extra) if k not in names}
             level = "ERROR" if hard else "WARN"
             issues.append((level, where, f"tokens differ: missing {dict(missing)} extra {dict(extra)}"))
+        for m in KW_EMPTY.finditer(en):
+            issues.append(("ERROR", where, f"keyword {m.group()} has no term (the Get New Word popup shows it)"))
         if JP_CHARS.search(en):
             issues.append(("ERROR", where, "Japanese characters in the English"))
         chars = bad_chars(en)
