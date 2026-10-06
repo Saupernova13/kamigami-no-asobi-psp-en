@@ -6,7 +6,7 @@
 Start from a state made by tests/setup_skip.txt (Message Skip All, R/START = Auto Skip).
 Each step: if the game is in a quiz (screen word 7), circle a few times to answer, then
 START (starts the quiz on its title screen; in a question it pauses, and down + circle
-resume); otherwise pick a choice (the pick rotates 1st/2nd/3rd so menus that
+resume); a screen left unchanged by the previous step gets the same treatment; otherwise pick a choice (the pick rotates 1st/2nd/3rd so menus that
 loop until every option is PASSED move on) and press R to skip to the next choice. A
 screenshot <prefix>NNN.png after every step, a state <prefix>NNN every --every steps,
 and a log line with the mode word, so a run can be resumed from any saved step.
@@ -72,12 +72,17 @@ def main():
     r.run(1)
     path = a.state if os.path.exists(a.state) else harness.state_path(state_dir, a.state)
     r.load_state(path)
+    stuck = 0
     for i in range(1, a.steps + 1):
         m = mode(r)
-        if m == QUIZ:
+        before = r.image().tobytes()
+        # A step that changed nothing is either a quiz screen the word missed or a menu
+        # pick that landed on a PASSED option: alternate quiz presses and the next pick.
+        if m == QUIZ or stuck == 1:
             quiz_step(r)
         else:
             story_step(r, i, a.pick_offset)
+        stuck = (stuck + 1) % 2 if r.image().tobytes() == before else 0
         name = f"{a.prefix}{i:03d}"
         r.shot(os.path.join(a.out, name + ".png"))
         line = f"{name} mode {m}"

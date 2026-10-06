@@ -34,6 +34,7 @@ anything extracted from it (`.gitignore` covers `work/`, `*.iso`, `*.DAT`, `*.EL
 | armips | assembling `asm/eboot.asm` (build) | github.com/Kingcom/armips releases (or build it) | PATH, `ARMIPS`, or `--armips` |
 | PPSSPP libretro core | headless testing | buildbot.libretro.com nightly, `ppsspp_libretro.dll/.so`, or RetroArch's core folder | `--core` |
 | PPSSPP (desktop) | playing the result by hand | ppsspp.org | - |
+| xdelta3 | making a release patch | github.com/jmacd/xdelta-gpl releases | PATH, `XDELTA3`, or `--xdelta3` |
 | Ghidra 11+ | reverse engineering only | ghidra-sre.org | see below |
 | An OpenAI-compatible LLM endpoint | machine translation only | e.g. llama.cpp `llama-server` | `--endpoint` / `MT_ENDPOINT` |
 

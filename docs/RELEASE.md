@@ -18,19 +18,21 @@ Keep "WIP" in the name while the story text is unedited machine translation.
 A built ISO contains the whole game: hand it only to people who own the original, and
 never commit or publish it.
 
-## Public release (not done yet)
+## Public release
 
-A public release must be a **patch**, not an ISO. What is still needed:
+```
+python tools/release.py <original.iso> work/out/en.iso --version 1.0
+```
 
-- [ ] Editing passes merged for at least S01, S02, U, Q, D (see the work packages in
-      [TRANSLATION.md](TRANSLATION.md)).
-- [ ] The in-game checks in [HANDOFF.md](HANDOFF.md) open tasks done (quiz, choices,
-      chapter select, Mythology Monologue).
-- [ ] Tested on real hardware (custom firmware) as well as PPSSPP.
-- [ ] A patch generator: an xdelta3 (VCDIFF) patch from the original ISO (hash in
-      [SETUP.md](SETUP.md)) to the built one, plus a short apply guide (xdelta UI on
-      Windows, `xdelta3 -d -s original.iso patch.xdelta out.iso` elsewhere). Building
-      it is one command; it is not scripted in `tools/` yet.
-- [ ] A license chosen for the tools and the translation (the repository has none yet).
-- [ ] Credits: translators/editors per package, the tools this builds on (armips,
-      pspdecrypt, PPSSPP).
+needs xdelta3 (PATH, `XDELTA3` or `--xdelta3`; github.com/jmacd/xdelta-gpl releases).
+It writes `work/release/Kamigami-no-Asobi-EN-v<version>/` and a zip of it: the
+`.xdelta` patch, `README.txt` (apply guide, the original's checksum, credits),
+`apply-patch.bat` (drag the ISO onto it), `apply-patch.sh` and `SHA256SUMS.txt`. It
+applies the patch once more and compares the result with the built ISO, so a broken
+patch never ships. Both apply scripts were tested end to end for v1.0.
+
+Before a release: `check.py` 0 errors, the harness regression, and ideally an autoplay
+run of every route (TESTING.md). Bump the version for every published patch.
+
+The tools and translation are MIT licensed (`LICENSE`); the game itself is not.
+

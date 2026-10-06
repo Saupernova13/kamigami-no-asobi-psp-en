@@ -95,6 +95,18 @@ Select and Extra; a few more presses return to the title. From there, a script w
 `--state` can open any menu. Contact sheets of the `aNNN.png` shots are the quickest
 way to review a run.
 
+### Every route: route test ISOs
+
+Autoplay always ends up on the Apollon route. `tools/routeiso.py` copies a built ISO and
+retargets the common route's first branch (scene 40512) to another route, for testing
+only:
+
+```
+python tools/routeiso.py work/out/en.iso work/out/route.iso hades
+python tools/harness.py --core <core> --fresh --workdir work/harness_r --out work/shots/hades work/out/route.iso tests/setup_skip.txt
+python tools/autoplay.py --core <core> --workdir work/harness_r --state story --steps 130 --out work/shots/hades work/out/route.iso
+```
+
 States hold the game's code and file positions: after a build that changes the EBOOT
 or moves files in the ISO, old states are invalid (runs crash or show garbage). Replay
 from boot with `setup_skip.txt` after every rebuild.

@@ -21,19 +21,25 @@ Seen in harness screenshots, on a new game and on a full route played to its end
 - Extra: Miniature Garden title, Profile, Graphic, Music, Dictionary (list, entries),
   Mythology Monologue (list and story pages), Mythology Quiz title and setting.
 
-## Current state (2026-10-06)
+## Current state (2026-10-06, v1.0)
 
 - Coverage: every extracted unit has English - 37,862 story units (01-12), 1,200 quiz,
   254 dictionary, 6,771 Mythology Monologue, 103 chapter titles, the hand-written EBOOT
-  UI, 130 re-lettered textures (txp and anm). `check.py`: 0 errors.
-- Quality: story, quiz, dictionary and monologue are **unedited machine translation**.
-  Hand-written: EBOOT UI, nameplates, chapter/event titles, image labels, the 137 long
-  choices (shortened to fit). The editing passes (packages S01-S12, Q, D, M in
-  [TRANSLATION.md](TRANSLATION.md)) are the main remaining translation work.
-- Known and accepted: the fixed surname shows as 草薙 in the name-entry box (3-character
-  slot; the surname is never inserted into text). The "Get New Story" popup cuts titles
-  wider than 96 px and adds an ellipsis - the original does the same for long Japanese.
-- Playtest ISOs went out at `c38c7f8` (2026-10-05) and after this pass (2026-10-06).
+  UI, 135 re-lettered textures (txp and anm). `check.py`: 0 errors, 0 warnings.
+- Every texture (txp, anm, and the 152 event CGs) was reviewed; what is not re-lettered
+  is English already, art without text, or designer notes the game never shows.
+- In the emulator: Apollon, Hades and Anubis played to their endings; Tsukito, Takeru,
+  Balder, Loki and Thoth played 50-130 autoplay steps into the route (autoplay then
+  wandered into a menu; no patch problem seen). Plus all Extra screens and the Garden.
+- Quality: story, quiz, dictionary and monologue are **machine translation** with an
+  automatic cleanup (tokens, keyword terms, names, line fits). The editing passes in
+  [TRANSLATION.md](TRANSLATION.md) are the way to improve it further.
+- The fixed surname is a full-width space: the game requires one and "Kusanagi" does
+  not fit its 3-character slot; the script never prints it.
+- The "Get New Story" popup cuts titles wider than 96 px with an ellipsis, as the
+  original does for long Japanese.
+- Release v1.0: `tools/release.py` (xdelta3 patch, apply scripts, checksums), see
+  [RELEASE.md](RELEASE.md).
 
 ## Build and test
 
@@ -58,6 +64,9 @@ rewrites `work/build/EBOOT.patched.ELF` on every build.
 | width-loop `ModeCheck` | `FUN_0888a7b0`, `FUN_0888a6a4`, `FUN_0888a4ac`, `FUN_088907dc` | centred English measured proportionally |
 | `UI_SPACING` | 9 sites in the UI draw and width loops | 1 px between glyphs instead of 2 |
 | name entry mode | `0x088156cc`, `0x088156e4` | opens on the ABC page |
+
+Keyword markers (`op 0x7DD`) carry the term the "Get New Word" popup shows; the popup
+draws it with a 2-byte UI loop, so `script_text` stores English terms pair-encoded.
 | code cave | `0x088a7b80` (0x300 code, rest string heap) | stubs; small strings |
 
 Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
@@ -65,23 +74,11 @@ Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 
 ## Open tasks
 
-In rough priority order. Each says where to start.
-
-1. **Edit the machine translation** (the bulk of the remaining work): work packages in
-   [TRANSLATION.md](TRANSLATION.md#work-packages).
-2. **Hardware test.** Everything is verified on PPSSPP only; run a build on a PSP with
-   custom firmware (memory use: the extra ELF segment is 128 KB).
-3. **Release tooling.** A patch generator (xdelta3 from the original ISO) and the rest
-   of the checklist in [RELEASE.md](RELEASE.md).
-4. **Screens not yet seen in game**, each reachable with `tools/autoplay.py` plus a few
-   presses from a saved state: the Miniature Garden's own menus and help (re-lettered),
-   the Skip/audio room screens, every route other than the first one autoplay takes
-   (route text is MT like the rest, so layout is the main risk).
-5. **Images not surveyed:** text inside event CGs (`ci*`/`bg*` art; export with
-   `imagetext.py export --art`) and the attract-mode title cards. Designer notes left
-   in atlases (sizes, spacing in Japanese) are never shown; leave them.
-6. **Help-bar word gap.** Spaces are the game's 8 px half space (`87 6E`), which looks a
-   little wide in the help bar at its larger size; `FUN_088a1c58` measures it. Cosmetic.
+1. **Edit the machine translation** (optional quality work): work packages in
+   [TRANSLATION.md](TRANSLATION.md#work-packages). Rebuild and release a new version
+   with `tools/release.py --version 1.x`.
+2. **Hardware test.** Verified on PPSSPP; a run on a PSP with custom firmware is still
+   welcome (memory use: the extra ELF segment is 128 KB).
 
 ## Gotchas
 

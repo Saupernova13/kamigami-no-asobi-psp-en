@@ -9,25 +9,25 @@ New here, person or agent? Start with [AGENTS.md](AGENTS.md).
 
 ## Status
 
-All extracted text has English, most of it **unedited machine translation**; the editing
-passes are the main remaining work. A full route has been played in the emulator from
-the title screen to its ending, plus every Extra menu.
+**v1.0 is complete**: every piece of text in the game has English, every texture with
+Japanese text is re-lettered, and every route has been played in the emulator (three
+to their endings, the rest deep into the route). The story text is machine translation with an automatic cleanup; hand editing
+(work packages in [docs/TRANSLATION.md](docs/TRANSLATION.md#work-packages)) can only
+improve it from here.
 
 | Area | Units | State |
 |---|---|---|
-| Story script (12 files, all routes) | 37,862 | MT, in game: wrap, continuation windows, choices |
+| Story script (12 files, all routes) | 37,862 | MT, all 8 routes played in game |
 | Menus, help bar, dialogs, nameplates (EBOOT) | ~400 | hand translated, in game |
-| Mythology quiz | 1,200 | MT, in game (four-choice and true/false) |
-| Dictionary | 254 | MT, in game (list, entries, page-header images) |
+| Mythology quiz | 1,200 | MT, in game |
+| Dictionary and "Get New Word" terms | 254 + 183 | MT / hand, in game |
 | Mythology Monologue side stories | 6,771 | MT, in game |
-| Chapter titles | 103 | hand translated, in game (chapter cards) |
-| Text baked into textures (txp and anm) | 130 textures | re-lettered: chapter cards and badges, quiz, garden, options, profile, ... |
+| Chapter titles | 103 | hand translated, in game |
+| Text baked into textures (txp and anm) | 135 textures | re-lettered; all textures reviewed |
 | Player name | - | default "Yui"; name entry opens on its ABC page |
-| Still Japanese | - | the fixed surname 草薙 in the name box; text inside event CGs (not surveyed) |
 
-Checker: 0 errors. Verified on PPSSPP; not yet on hardware. Details and open tasks:
-[docs/HANDOFF.md](docs/HANDOFF.md). Translation packages and their state:
-[docs/TRANSLATION.md](docs/TRANSLATION.md#work-packages).
+Checker: 0 errors, 0 warnings. Verified on PPSSPP. Release: `tools/release.py` makes the
+xdelta patch ([docs/RELEASE.md](docs/RELEASE.md)). MIT licensed (tools and translation).
 
 ## Quick start
 
@@ -95,6 +95,8 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out
 | `anm.py` | textures inside `anm*.dat` animation files: export, read, rewrite |
 | `harness.py` | headless PPSSPP runner: scripted input, screenshots, savestates, RAM |
 | `autoplay.py` | plays the story unattended (choices, quizzes) for screenshots of later screens |
+| `routeiso.py` | test-only ISO that sends autoplay into a chosen route |
+| `release.py` | xdelta patch, apply scripts and checksums for a release, verified |
 | `story.py`, `script_text.py` | script bytecode parser/builder; units <-> markup |
 | `wrap.py`, `font.py` | word wrap with FontA metrics |
 | `nispack.py`, `iso.py`, `txp.py`, `prx.py`, `game.py` | containers, ISO writing, textures, PRX -> ELF, file locations |
@@ -118,4 +120,4 @@ Each tool's docstring has its usage and the format it handles.
 
 This project distributes no game files. Built ISOs contain the full game and are for
 people who own the original; a public release will be a patch against the hash in
-[docs/SETUP.md](docs/SETUP.md). No license has been chosen yet.
+[docs/SETUP.md](docs/SETUP.md). The tools and translation are MIT licensed (`LICENSE`).
