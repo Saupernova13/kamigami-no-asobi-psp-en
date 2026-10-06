@@ -5973,5 +5973,310 @@
     "boost": 2
    }
   ]
+ },
+ {
+  "texture": "DATA.DAT/OPTION.dat/optionElements03.txp",
+  "labels": [
+   {
+    "rect": [
+     34,
+     23,
+     166,
+     43
+    ],
+    "text": "Apollon",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     172,
+     23,
+     304,
+     43
+    ],
+    "text": "Hades",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     34,
+     64,
+     166,
+     84
+    ],
+    "text": "Tsukito",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     172,
+     64,
+     304,
+     84
+    ],
+    "text": "Takeru",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     34,
+     105,
+     166,
+     123
+    ],
+    "text": "Balder",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     172,
+     105,
+     304,
+     123
+    ],
+    "text": "Loki",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     34,
+     145,
+     166,
+     164
+    ],
+    "text": "Anubis",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     172,
+     145,
+     304,
+     164
+    ],
+    "text": "Thoth",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     35,
+     210,
+     167,
+     230
+    ],
+    "text": "Dionysus",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     172,
+     210,
+     304,
+     230
+    ],
+    "text": "Yo",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     37,
+     251,
+     169,
+     270
+    ],
+    "text": "Thor",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     173,
+     251,
+     305,
+     270
+    ],
+    "text": "Zeus",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     36,
+     292,
+     168,
+     310
+    ],
+    "text": "Melissa",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     174,
+     292,
+     306,
+     310
+    ],
+    "text": "Mii",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   },
+   {
+    "rect": [
+     35,
+     331,
+     167,
+     351
+    ],
+    "text": "Others",
+    "size": 13,
+    "align": "left",
+    "fill": "#ffffffff",
+    "outline": "#1f6a8cff"
+   }
+  ]
+ },
+ {
+  "texture": "DATA.DAT/GARDENTHUMBNAIL.dat/others.txp",
+  "labels": [
+   {
+    "rect": [
+     24,
+     28,
+     60,
+     60
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     4,
+     40,
+     60,
+     60
+    ],
+    "text": "Spring",
+    "size": 14,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     86,
+     28,
+     122,
+     60
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     66,
+     40,
+     122,
+     60
+    ],
+    "text": "Summer",
+    "size": 14,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     148,
+     28,
+     184,
+     60
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     128,
+     40,
+     184,
+     60
+    ],
+    "text": "Autumn",
+    "size": 14,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   },
+   {
+    "rect": [
+     210,
+     28,
+     246,
+     60
+    ],
+    "text": "",
+    "erase": "smooth"
+   },
+   {
+    "rect": [
+     190,
+     40,
+     246,
+     60
+    ],
+    "text": "Winter",
+    "size": 14,
+    "fit": true,
+    "erase": "none",
+    "fill": "#8a6628ff",
+    "outline": "#ffffffff",
+    "boost": 2
+   }
+  ]
  }
 ]
