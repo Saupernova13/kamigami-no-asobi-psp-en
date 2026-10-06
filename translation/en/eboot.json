@@ -1,9 +1,16 @@
 {
  "0x0892476c": "None",
+ "0x089248d4": "　",
  "0x089248dc": "Ｙｕｉ",
  "0x089248e4": "Ｙｕｉ",
  "0x089249a0": "New Save Data",
+ "0x08924d38": {
+  "en": "【%.0s%s】",
+  "size": 12,
+  "note": "backlog speaker for the heroine: given name only (the surname slot holds 3 chars)"
+ },
  "0x08924e90": "Enter Name",
+ "0x08924e9c": "　",
  "0x08924ea4": "Ｙｕｉ",
  "0x08924eac": "Ｙｕｉ",
  "0x08924eb4": "Choose the quiz difficulty",
@@ -57,6 +64,11 @@
  "0x08925b88": "Rice Ball Party",
  "0x08925b9c": "Everyone's Feelings",
  "0x08925ba8": "Cassandra",
+ "0x08925bb4": {
+  "en": "Nephew",
+  "size": 4,
+  "note": "event title; one character in the original, so not in the catalog"
+ },
  "0x08925bb8": "The Truth Is...",
  "0x08925bc4": "My Beloved",
  "0x08925bd0": "Under the Palm Tree",
@@ -293,8 +305,17 @@
  "0x08928b4c": "Save system data?",
  "0x08928b90": "Change the quiz difficulty",
  "0x08928bac": "(Change it later in Option)",
+ "0x08928bd4": "　",
  "0x08928bdc": "Ｙｕｉ",
  "0x08928be4": "Ｙｕｉ",
+ "0x08928e9c": "　",
+ "0x08928ea4": "Ｙｕｉ",
+ "0x08928eac": "Ｙｕｉ",
+ "0x08929974": {
+  "en": "%.0s%s",
+  "size": 8,
+  "note": "heroine nameplate: given name only"
+ },
  "0x08929984": "Yes",
  "0x0892998c": "No",
  "0x08961bc8": "Kamigami no Asobi",
@@ -515,15 +536,5 @@
   "61": "Zeus",
   "70": "Grudge of the Dead",
   "9999": "???"
- },
- "0x08924d38": {
-  "en": "【%.0s%s】",
-  "size": 12,
-  "note": "backlog speaker for the heroine: given name only (the surname slot holds 3 chars)"
- },
- "0x08929974": {
-  "en": "%.0s%s",
-  "size": 8,
-  "note": "heroine nameplate: given name only"
  }
 }
