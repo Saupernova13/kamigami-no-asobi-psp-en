@@ -20,19 +20,29 @@ never commit or publish it.
 
 ## Public release
 
-```
-python tools/release.py <original.iso> work/out/en.iso --version 1.0
-```
+The released patch lives in `patch/` and is committed, so a clone or the repository ZIP
+is all a player needs. To publish a new version, on a release branch:
 
-needs xdelta3 (PATH, `XDELTA3` or `--xdelta3`; github.com/jmacd/xdelta-gpl releases).
-It writes `work/release/Kamigami-no-Asobi-EN-v<version>/` and a zip of it: the
-`.xdelta` patch, `README.txt` (apply guide, the original's checksum, credits),
-`apply-patch.bat` (drag the ISO onto it), `apply-patch.sh` and `SHA256SUMS.txt`. It
-applies the patch once more and compares the result with the built ISO, so a broken
-patch never ships. Both apply scripts were tested end to end for v1.0.
+1. `check.py` 0 errors, the harness regression, and ideally an autoplay run of every
+   route ([TESTING.md](TESTING.md)).
+2. Build from the committed tree: `python tools/build.py <original.iso> work/out/en.iso`.
+3. `python tools/release.py <original.iso> work/out/en.iso --version 1.x`
 
-Before a release: `check.py` 0 errors, the harness regression, and ideally an autoplay
-run of every route (TESTING.md). Bump the version for every published patch.
+   needs xdelta3 (PATH, `XDELTA3` or `--xdelta3`; github.com/jmacd/xdelta-gpl releases).
+   It replaces `patch/` with the `.xdelta` patch, `README.txt` (apply guide, the
+   original's checksum, credits), `apply-patch.bat` (drag the ISO onto it),
+   `apply-patch.sh` and `SHA256SUMS.txt`, and writes the same files as
+   `work/release/Kamigami-no-Asobi-EN-v1.x.zip`. It applies the patch once more and
+   compares the result with the built ISO, so a broken patch never ships.
+4. Update the patch file name in README.md ("Play it"), commit `patch/` as
+   `chore(release): v1.x`, merge, and tag the merge `v1.x`.
+5. On the hosting side, create a release for the tag and attach the ZIP.
+
+The encoder uses a source window as large as the original ISO (`-B`): rebuilt archives
+are appended at the end of the image, and with xdelta3's default 64 MB window the
+patch grows from about 3 MB to over 80 MB. Decoding needs no extra option.
+
+The build is deterministic: the same commit and original ISO give the same patched
+ISO, so anyone can check a published patch by building it themselves.
 
 The tools and translation are MIT licensed (`LICENSE`); the game itself is not.
-

@@ -38,8 +38,8 @@ Seen in harness screenshots, on a new game and on a full route played to its end
   not fit its 3-character slot; the script never prints it.
 - The "Get New Story" popup cuts titles wider than 96 px with an ellipsis, as the
   original does for long Japanese.
-- Release v1.0: `tools/release.py` (xdelta3 patch, apply scripts, checksums), see
-  [RELEASE.md](RELEASE.md).
+- Release v1.0: the xdelta3 patch, apply scripts and checksums are in `patch/`, made by
+  `tools/release.py`; see [RELEASE.md](RELEASE.md). The build is deterministic.
 
 ## Build and test
 
@@ -64,10 +64,10 @@ rewrites `work/build/EBOOT.patched.ELF` on every build.
 | width-loop `ModeCheck` | `FUN_0888a7b0`, `FUN_0888a6a4`, `FUN_0888a4ac`, `FUN_088907dc` | centred English measured proportionally |
 | `UI_SPACING` | 9 sites in the UI draw and width loops | 1 px between glyphs instead of 2 |
 | name entry mode | `0x088156cc`, `0x088156e4` | opens on the ABC page |
+| code cave | `0x088a7b80` (0x300 code, rest string heap) | stubs; small strings |
 
 Keyword markers (`op 0x7DD`) carry the term the "Get New Word" popup shows; the popup
 draws it with a 2-byte UI loop, so `script_text` stores English terms pair-encoded.
-| code cave | `0x088a7b80` (0x300 code, rest string heap) | stubs; small strings |
 
 Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 `eboot_strings.references` (pointer and lui/addiu refs), `build.patch_nameplates`.
