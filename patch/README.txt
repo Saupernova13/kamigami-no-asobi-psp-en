@@ -43,7 +43,7 @@ Notes
 
 Credits
 -------
-Translation tooling, engine patch and translation: the kamigami-psp-en project.
+Translation tooling, engine patch and translation: Saupernova13.
 Built with armips (Kingcom), pspdecrypt (John-K), PPSSPP (testing) and
 xdelta3 (Joshua MacDonald). Kamigami no Asobi (c) Broccoli. This is an
 unofficial fan translation; please support the official release.

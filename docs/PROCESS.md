@@ -7,13 +7,13 @@ something that can be checked; do not move on until it is.
 
 | Tool | Use |
 |---|---|
-| 7-Zip | unpack the ISO for browsing |
+| 7-Zip, or any tool that opens an ISO | unpack the ISO for browsing |
 | pspdecrypt | decrypt `EBOOT.BIN` to a plain ELF |
 | Ghidra (MIPS:LE:32:default) + `ghidra_scripts/` | headless analysis: decompile all, refs, asm dumps, dead functions |
 | armips | assemble EBOOT patches (`.psp`, `.open IN, OUT, base`) |
 | Python 3 + Pillow + capstone | the `tools/` scripts |
 | PPSSPP libretro core | `tools/harness.py` runs the game headless (software renderer) and takes screenshots |
-| OpenAI-compatible LLM endpoint | `tools/translate.py` (local llama.cpp works) |
+| OpenAI-compatible chat endpoint | `tools/translate.py`; a hosted API or a local server both work |
 
 ## 1. Find the text
 
@@ -25,7 +25,7 @@ something that can be checked; do not move on until it is.
    and which formats exist (`FontA.fnt`, `story.dat`, `%02d_Story.dat`).
 4. Find the encoding: try Shift-JIS on likely text; if it is noise, try simple transforms
    (XOR 0xFF, XOR a constant, byte rotation) on a short run - a known word such as the
-   heroine's name makes this quick. Utapri was SJIS with every byte inverted.
+   heroine's name makes this quick.
 5. Search for the same strings in the EBOOT (plain and transformed): UI, names and
    system messages often live there, sometimes UTF-8 for PSP system dialogs.
 
@@ -62,13 +62,13 @@ relocated word. `tools/prx.py` applies the relocations for 0x08804000 (where the
 module loads) and emits a static ELF; analyse and patch that. Confirm it boots before
 patching anything.
 
-## 3c. Reusing work from a related game
+## 3c. Another game on the same engine
 
 Games on the same engine usually share the bytecode and text path. Port by matching
 decompiled patterns, not addresses: the VM's `^ 0xFF` text decoder, the `< 0x2a8` glyph
 buffer append, the space-width special cases (`0x8140`, `0x20`, `0x876e`). Expect small
-format changes (Kamigami's keyword opcode gained a flag byte and moved after its word) -
-the byte-exact round trip finds them immediately.
+format changes - here the keyword opcode carries a flag byte and follows the word it
+tags - and let the byte-exact round trip find them.
 
 ## 4. Make the engine show English
 
@@ -94,7 +94,8 @@ run again to continue; delete an entry to redo it.
 
 - Put names, terms and character voice in `data/glossary.json` before the run.
 - Run a 50-unit pilot, read it, fix the prompt, delete the pilot output, then run all.
-- Detach long runs (`Start-Process ... -WindowStyle Hidden`) and watch the log.
+- Detach long runs (`nohup` or `screen`; `Start-Process -WindowStyle Hidden` on Windows)
+  and watch the log.
 - Problems go to `work/mt_problems.log`; review those units by hand.
 - UI and EBOOT strings are short and few: translate them by hand, checking each fits.
 

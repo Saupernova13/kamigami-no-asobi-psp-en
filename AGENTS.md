@@ -25,8 +25,8 @@ task counts as done.
    English only. `.gitignore` enforces most of this; check `git status` anyway.
 2. **No machine-specific values in the repository.** No local paths, user names, ports
    of someone's setup or credentials, in code defaults or docs. Use arguments,
-   environment variables (`PSPDECRYPT`, `ARMIPS`, `MT_ENDPOINT`, `MT_MODEL`) and
-   placeholders like `<original.iso>`.
+   environment variables (`PSPDECRYPT`, `ARMIPS`, `MT_ENDPOINT`, `MT_MODEL`,
+   `MT_API_KEY`) and placeholders like `<original.iso>`.
 3. **Never commit to the primary branch** (`main`). One branch per task, named
    `<type>/<slug>` (`feat/`, `fix/`, `docs/`, `chore/`, `refactor/`), merged by the
    maintainer.

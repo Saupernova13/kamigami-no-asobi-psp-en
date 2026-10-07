@@ -36,7 +36,7 @@ anything extracted from it (`.gitignore` covers `work/`, `*.iso`, `*.DAT`, `*.EL
 | PPSSPP (desktop) | playing the result by hand | ppsspp.org | - |
 | xdelta3 | making a release patch | github.com/jmacd/xdelta-gpl releases | PATH, `XDELTA3`, or `--xdelta3` |
 | Ghidra 11+ | reverse engineering only | ghidra-sre.org | see below |
-| An OpenAI-compatible LLM endpoint | machine translation only | e.g. llama.cpp `llama-server` | `--endpoint` / `MT_ENDPOINT` |
+| An OpenAI-compatible chat endpoint | machine translation only | a hosted API, or a local server (llama.cpp, Ollama, LM Studio, vLLM) | `--endpoint` / `MT_ENDPOINT` |
 
 `build.py` fails at once with "pspdecrypt not found" or "armips not found" if either is
 missing; that is the most common first-run error.
@@ -98,20 +98,36 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/first work
 Then open `work/shots/first/*.png`. See [TESTING.md](TESTING.md) for what each script
 covers and how to write new ones. To play normally, load `work/out/en.iso` in PPSSPP.
 
-## 5. Optional: machine translation server
+## 5. Optional: a translation endpoint
 
-Only needed to (re)translate units. Any OpenAI-compatible chat endpoint works. The
-existing MT used Qwen3.6-35B-A3B (Q4_K_M GGUF) on llama.cpp; a plain `llama-server` on its
-own port was the most reliable setup:
+Only needed to (re)translate units. `tools/translate.py` posts to any OpenAI-compatible
+`/v1/chat/completions` endpoint and does not care what serves it: a hosted API, or a model
+running on your own machine under llama.cpp, Ollama, LM Studio or vLLM.
+
+```
+python tools/translate.py --endpoint <base URL>/v1 --model <model name> --tags 04
+```
+
+`MT_ENDPOINT` and `MT_MODEL` set the defaults. A hosted API that wants a key reads it from
+`MT_API_KEY` (or `--api-key`), sent as a bearer token. The built-in default,
+`http://127.0.0.1:8080/v1`, is only where a local `llama-server` happens to listen.
+
+By default the request carries `chat_template_kwargs`, a llama.cpp and vLLM extension that
+turns a thinking model's reasoning off. An API that validates its request body strictly
+rejects it; pass `--plain-request` to send standard fields only.
+
+The setup behind v1.0 is one option, not a requirement, and yours will likely look
+nothing like it: Qwen3.6-35B-A3B (Q4_K_M GGUF) under llama.cpp on a single desktop GPU,
+started as
 
 ```
 llama-server -m <model.gguf> --fit on --fit-ctx 32768 -np 1 -fa on -ctk q8_0 -ctv q8_0 --host 127.0.0.1 --port <port>
-python tools/translate.py --endpoint http://127.0.0.1:<port>/v1 --tags 04
 ```
 
-It runs at 2-6 units/s on one consumer GPU. Runs are resumable (see
-[TRANSLATION.md](TRANSLATION.md)). Detach long runs and watch the log rather than
-blocking a shell on them.
+which gave 2-6 units/s. Another model, a hosted API or another machine will differ in
+speed and in the English it writes, so run the 50-unit pilot in
+[TRANSLATION.md](TRANSLATION.md) and read it before starting a full run. Runs are
+resumable; detach long ones and watch the log rather than blocking a shell on them.
 
 ## 6. Optional: Ghidra
 

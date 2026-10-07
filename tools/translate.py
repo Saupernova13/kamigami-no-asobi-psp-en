@@ -1,6 +1,12 @@
 """Machine-translate extracted script units with any OpenAI-compatible chat endpoint.
 
   python tools/translate.py [--tags 00 02] [--endpoint URL] [--model NAME] [--limit N]
+                           [--api-key KEY] [--plain-request]
+
+The endpoint can be a local server (llama.cpp, Ollama, LM Studio, vLLM) or a hosted API:
+--api-key (or MT_API_KEY) is sent as a bearer token, and --plain-request drops the
+llama.cpp/vLLM-only body field that turns a thinking model's reasoning off, which a
+strict API rejects.
 
 Reads work/text/<tag>.json (from extract.py), writes translation/en/<tag>.json as
 {unit id: English markup}. Units already present in the output are skipped, so the run
@@ -191,19 +197,24 @@ def speaker_label(gl, u):
 
 
 class Client:
-    def __init__(self, endpoint, model, timeout=600):
+    def __init__(self, endpoint, model, api_key=None, plain=False, timeout=600):
         self.url = endpoint.rstrip("/") + "/chat/completions"
         self.model = model
+        self.headers = {"Content-Type": "application/json"}
+        if api_key:
+            self.headers["Authorization"] = "Bearer " + api_key
+        self.plain = plain
         self.timeout = timeout
 
     def chat(self, system, user, temperature=0.3):
         body = {
             "model": self.model, "temperature": temperature,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-            "chat_template_kwargs": {"enable_thinking": False},
         }
+        if not self.plain:
+            body["chat_template_kwargs"] = {"enable_thinking": False}
         req = urllib.request.Request(self.url, data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"})
+                                     headers=self.headers)
         with urllib.request.urlopen(req, timeout=self.timeout) as r:
             res = json.load(r)
         return res["choices"][0]["message"]["content"]
@@ -312,6 +323,10 @@ def main():
     ap.add_argument("--glossary", default=os.path.join(ROOT, "data", "glossary.json"))
     ap.add_argument("--endpoint", default=os.environ.get("MT_ENDPOINT", "http://127.0.0.1:8080/v1"))
     ap.add_argument("--model", default=os.environ.get("MT_MODEL", "local"))
+    ap.add_argument("--api-key", default=os.environ.get("MT_API_KEY"),
+                    help="bearer token, for endpoints that want one")
+    ap.add_argument("--plain-request", action="store_true",
+                    help="send only standard OpenAI fields (no chat_template_kwargs)")
     ap.add_argument("--batch", type=int, default=20)
     ap.add_argument("--max-chars", type=int, default=1200)
     ap.add_argument("--context", type=int, default=6)
@@ -321,7 +336,7 @@ def main():
     with open(a.glossary, encoding="utf-8") as f:
         gl = json.load(f)
     os.makedirs(a.out, exist_ok=True)
-    client = Client(a.endpoint, a.model)
+    client = Client(a.endpoint, a.model, a.api_key, a.plain_request)
     tags = a.tags or sorted(n[:-5] for n in os.listdir(a.text) if n.endswith(".json"))
     cache_path = os.path.join(os.path.dirname(a.text), "mt_cache.json")
     cache = json.load(open(cache_path, encoding="utf-8")) if os.path.exists(cache_path) else {}

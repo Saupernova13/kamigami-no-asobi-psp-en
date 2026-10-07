@@ -2,7 +2,7 @@
 ; tools/prx.py (module fixed at 0x08804000, file offset 0xC0):
 ;   armips asm/eboot.asm -strequ IN <static EBOOT.ELF> -strequ OUT <patched ELF>
 ;
-; Same problem as Utapri's NIS engine: the script VM hands single-byte (ASCII) characters
+; The problem this solves: the script VM hands single-byte (ASCII) characters
 ; to the window with a zero second byte, the 2-byte renderers stop at a zero byte, and the
 ; window lays glyphs out at a fixed 16px. The glyph lookup (FUN_088a216c) ignores the
 ; second byte for 0x20-0x7E, so ASCII stored as (c, 0x01) draws correctly; the window then
