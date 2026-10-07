@@ -7,7 +7,7 @@ something that can be checked; do not move on until it is.
 
 | Tool | Use |
 |---|---|
-| 7-Zip | unpack the ISO for browsing |
+| 7-Zip, or any tool that opens an ISO | unpack the ISO for browsing |
 | pspdecrypt | decrypt `EBOOT.BIN` to a plain ELF |
 | Ghidra (MIPS:LE:32:default) + `ghidra_scripts/` | headless analysis: decompile all, refs, asm dumps, dead functions |
 | armips | assemble EBOOT patches (`.psp`, `.open IN, OUT, base`) |
