@@ -13,7 +13,7 @@ something that can be checked; do not move on until it is.
 | armips | assemble EBOOT patches (`.psp`, `.open IN, OUT, base`) |
 | Python 3 + Pillow + capstone | the `tools/` scripts |
 | PPSSPP libretro core | `tools/harness.py` runs the game headless (software renderer) and takes screenshots |
-| OpenAI-compatible LLM endpoint | `tools/translate.py` (local llama.cpp works) |
+| OpenAI-compatible chat endpoint | `tools/translate.py`; a hosted API or a local server both work |
 
 ## 1. Find the text
 
@@ -94,7 +94,8 @@ run again to continue; delete an entry to redo it.
 
 - Put names, terms and character voice in `data/glossary.json` before the run.
 - Run a 50-unit pilot, read it, fix the prompt, delete the pilot output, then run all.
-- Detach long runs (`Start-Process ... -WindowStyle Hidden`) and watch the log.
+- Detach long runs (`nohup` or `screen`; `Start-Process -WindowStyle Hidden` on Windows)
+  and watch the log.
 - Problems go to `work/mt_problems.log`; review those units by hand.
 - UI and EBOOT strings are short and few: translate them by hand, checking each fits.
 

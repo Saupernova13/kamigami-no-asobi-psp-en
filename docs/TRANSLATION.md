@@ -104,8 +104,8 @@ git commit -m "fix(translation): edit Apollon route scenes 50001-50020"
 [TESTING.md](TESTING.md); `tests/ui.txt` reaches the prologue.
 
 Machine retranslation of single units: delete the unit from the translation file and
-run `python tools/translate.py --tags 04` with an OpenAI-compatible endpoint
-(`--endpoint`, `--model`; server setup in [SETUP.md](SETUP.md)). It skips units that already have English and caches results in
+run `python tools/translate.py --tags 04` against an OpenAI-compatible endpoint
+(`--endpoint`, `--model`, `--api-key`; hosted or local, see [SETUP.md](SETUP.md)). It skips units that already have English and caches results in
 `work/mt_cache.json` (delete a cache entry, keyed by the Japanese text, to force a redo).
 
 ## Work packages
