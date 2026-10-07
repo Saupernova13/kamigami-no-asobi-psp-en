@@ -158,7 +158,7 @@ Each tool's docstring has its usage and the format it handles.
 
 ## Credits
 
-The kamigami-psp-en contributors, with
+Saupernova13, with
 [armips](https://github.com/Kingcom/armips) (Kingcom),
 [pspdecrypt](https://github.com/John-K/pspdecrypt) (John-K),
 [PPSSPP](https://www.ppsspp.org/) (testing) and
