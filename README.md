@@ -1,9 +1,8 @@
-# kamigami-psp-en
+# Kamigami no Asobi - English patch (PSP)
 
-Unofficial English fan translation of *Kamigami no Asobi* (神々の悪戯, PSP,
-`NPJH50809`, Broccoli). This repository holds the patch, the tools that build it, the
-English text and the docs. It contains no game data: you patch your own copy of the
-Japanese ISO.
+An unofficial English fan translation of *Kamigami no Asobi* (神々の悪戯, `NPJH50809`,
+Broccoli): the patch, the tools that build it, the English text and the docs. No game
+data is included - you patch your own copy of the Japanese ISO.
 
 ## Play it
 
@@ -35,11 +34,11 @@ New here as a contributor, person or agent? Start with [AGENTS.md](AGENTS.md) an
 
 ## Status
 
-**v1.0 is complete**: every piece of text in the game has English, every texture with
-Japanese text is re-lettered, and every route has been played in the emulator (three
-to their endings, the rest deep into the route). The story text is machine translation
-with an automatic cleanup; hand editing (work packages in
-[docs/TRANSLATION.md](docs/TRANSLATION.md#work-packages)) can only improve it from here.
+v1.0 covers the whole game: every extracted unit has English, the textures carrying
+Japanese text are re-lettered, and each route has been played in the emulator - three to
+their endings, the rest well into the route. The story text is machine translation with
+an automatic cleanup pass and reads like it; editing it by hand is the open work, split
+into packages in [docs/TRANSLATION.md](docs/TRANSLATION.md#work-packages).
 
 | Area | Units | State |
 |---|---|---|
@@ -53,12 +52,13 @@ with an automatic cleanup; hand editing (work packages in
 | Player name | - | default "Yui"; name entry opens on its ABC page |
 
 Checker: 0 errors, 0 warnings. Verified on PPSSPP; not yet tested on PSP hardware.
+
 ## Building from source
 
-The patch in `patch/` is built from this repository; building it yourself gives the same
-ISO byte for byte. Needs Python 3.11+ (`pip install -r requirements.txt`), pspdecrypt and armips (on PATH or
-in `PSPDECRYPT` / `ARMIPS`). Full setup, the expected ISO hash and where to get each tool:
-[docs/SETUP.md](docs/SETUP.md).
+The patch in `patch/` is built from this repository, and building it yourself gives the
+same ISO byte for byte. Needs Python 3.11+ (`pip install -r requirements.txt`),
+pspdecrypt and armips (on PATH or in `PSPDECRYPT` / `ARMIPS`). Full setup, the expected
+ISO hash and where to get each tool: [docs/SETUP.md](docs/SETUP.md).
 
 ```
 python tools/extract.py    original.iso      # story units      -> work/text/01..12.json
@@ -78,8 +78,8 @@ python tools/harness.py --core <ppsspp_libretro.dll> --out work/shots/x work/out
    translation unit with readable tokens (`script_text.py`, `extract.py`). Quiz,
    dictionary and monologue files have their own extractors.
 2. **Translate**: `translation/en/<tag>.json` maps unit ids to English markup. The first
-   pass is machine translation (`translate.py`, any OpenAI-compatible endpoint); people
-   and agents then edit it package by package.
+   pass is machine translation (`translate.py`, against any OpenAI-compatible endpoint,
+   hosted or local); the editing passes that follow go package by package.
 3. **Patch the engine**: the EBOOT is decrypted and converted from a PRX to a static ELF
    (`prx.py`), then `asm/eboot.asm` (armips) adds proportional ASCII rendering and
    fixes the advance loops. UI strings are written in place or moved to an added ELF
