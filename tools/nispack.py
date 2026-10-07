@@ -1,4 +1,4 @@
-"""NISPACK archive reader/writer (Nippon Ichi container used by the Utapri PSP data files).
+"""NISPACK archive reader/writer (Nippon Ichi container holding this game's PSP data files).
 
 Layout (little endian):
   0x00  char[8]  "NISPACK\0"

@@ -1,7 +1,7 @@
 # Kamigami no Asobi PSP: formats and engine notes
 
-Same NIS engine family as *Uta no Prince-sama* (see the utapri-psp-en repo); this file
-records what differs. Addresses are runtime addresses in the static EBOOT made by
+What the game's files hold and where its text path runs, as found by reverse
+engineering it. Addresses are runtime addresses in the static EBOOT made by
 `tools/prx.py` (module at 0x08804000, file offset 0xC0).
 
 ## Disc layout
@@ -33,26 +33,26 @@ there are at least 11 separate 2-byte string loops (`FUN_08889b2c`, `FUN_08889cb
 
 ## Story script
 
-Bytecode identical to Utapri (`tools/story.py`); all 12 files round-trip byte-exactly.
+Parsed and rebuilt by `tools/story.py`; all 12 files round-trip byte-exactly.
 Totals: 37,142 pages, 720 choices; 34,691 unique strings, ~940k characters. Japanese
 pages have up to 3 lines, max 311 px.
 
-One difference: the keyword op `0x7DD` is `u16 id, u8 flag, u8 len, text` and comes
+The keyword op `0x7DD` is `u16 id, u8 flag, u8 len, text` and comes
 **after** the word it tags (`"...ゼウス" {kw:2:1:ゼウス} "。"`). Markup: `{kw:ID:FLAG:TEXT}`.
 Flag is 1 or 0 (92 each).
 
 ## Text rendering and the patch (`asm/eboot.asm`)
 
-| Role | Utapri | Kamigami |
-|---|---|---|
-| VM text path | `FUN_0884da54` | `FUN_08871678` |
-| single-byte emit, hi byte | `0x088505ac` | `0x08875228` (`FUN_08862f20(.., c, 0)`) |
-| window glyph append | `FUN_08856384` | `FUN_0887dcd8` (table `0x089ad410`, count `+0x1aa0`, cursor `+0x2d28`) |
-| fixed advance call | `0x088564d4` | `0x0887dd98` (`FUN_0888a998`) |
-| FontA width(code, %) | `FUN_088669b0` | `FUN_088a1690` |
-| glyph index | `FUN_088672c4` | `FUN_088a2128` -> `FUN_088a216c` (ignores 2nd byte for 0x20-0x7E) |
-| FontA.ftd pointer | `0x08b5dbb8` | `0x08996934` |
-| code cave | `FUN_0880d2b0` | `FUN_088a7b80` (1,076 B, dead) |
+| Role | Address |
+|---|---|
+| VM text path | `FUN_08871678` |
+| single-byte emit, hi byte | `0x08875228` (`FUN_08862f20(.., c, 0)`) |
+| window glyph append | `FUN_0887dcd8` (table `0x089ad410`, count `+0x1aa0`, cursor `+0x2d28`) |
+| fixed advance call | `0x0887dd98` (`FUN_0888a998`) |
+| FontA width(code, %) | `FUN_088a1690` |
+| glyph index | `FUN_088a2128` -> `FUN_088a216c` (ignores 2nd byte for 0x20-0x7E) |
+| FontA.ftd pointer | `0x08996934` |
+| code cave | `FUN_088a7b80` (1,076 B, dead) |
 
 The font here uses 18 px cells drawn at 16 px: advance = `int((18 - l - r) * 16/18 + 0.5)`,
 spaces 8 px. The draw already offsets ASCII glyphs by their left bearing, so for those the

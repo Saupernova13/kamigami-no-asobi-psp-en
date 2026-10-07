@@ -88,7 +88,7 @@ Build-side: `prx.add_segment` (128 KB PT_LOAD after bss for relocated strings),
 - A string nothing points to is a char array in a record: only its field size is
   available (`field` in the catalog). Anything referenced can move to the extra segment.
 - The dictionary's `u16` at +6 is the line count the scroll bar uses; keep it in step.
-- Keyword tokens carry a flag: `{kw:ID:FLAG:TEXT}` (Utapri's had none).
+- Keyword tokens carry a flag as well as an id: `{kw:ID:FLAG:TEXT}`.
 - When writing Python through a shell heredoc, backslash escapes (`\n`, `\0`) can be
   turned into raw characters by the shell layer; prefer an editor, and scan sources for
   NUL bytes if in doubt.
